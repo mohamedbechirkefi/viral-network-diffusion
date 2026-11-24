@@ -14,9 +14,9 @@ and
 **Contributor:** The individual accepting this Agreement.
 
 The Agreement concerns contributions intentionally submitted
-for inclusion in VIRAL (research repository), planned at:
+for inclusion in VIRAL (research repository), at:
 
-https://github.com/mohamedbechirkefi/viral-research
+https://github.com/mohamedbechirkefi/viral-network-diffusion
 
 ## 1. Ownership of contributions
 

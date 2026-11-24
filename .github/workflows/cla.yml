@@ -29,13 +29,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path-to-signatures: "signatures/version1/cla.json"
-          path-to-document: "https://github.com/mohamedbechirkefi/viral-research/blob/cla-v1.0/CLA.md"
+          path-to-document: "https://github.com/mohamedbechirkefi/viral-network-diffusion/blob/cla-v1.0/CLA.md"
           branch: "cla-signatures"
           allowlist: "mohamedbechirkefi,dependabot[bot],github-actions[bot]"
           custom-pr-sign-comment: "I have read the VIRAL CLA v1.0 and I hereby sign it"
           custom-notsigned-prcomment: >-
             Thank you for your contribution. Before it can be merged, please read the
-            [VIRAL Contributor License Agreement v1.0](https://github.com/mohamedbechirkefi/viral-research/blob/cla-v1.0/CLA.md)
+            [VIRAL Contributor License Agreement v1.0](https://github.com/mohamedbechirkefi/viral-network-diffusion/blob/cla-v1.0/CLA.md)
             and sign it by posting the comment below on this pull request. You keep the
             copyright in your contribution; the CLA grants the maintainer the license it describes.
           custom-allsigned-prcomment: "All contributors have signed the VIRAL CLA v1.0. Thank you."
