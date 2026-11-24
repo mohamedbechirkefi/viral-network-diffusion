@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0
+# Licence: VIRAL Source-Available Non-Commercial Research License v1.0 (see LICENSE).
+# Not an SPDX-listed licence, so no "license" field is given.
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "VIRAL: network topology, initial exposure and diffusion"
+type: software
+authors:
+  - family-names: Kefi
+    given-names: Mohamed Bechir
+version: 0.0.1
+date-released: 2026-11-24
+abstract: "Independent research project in progress (M0). Simulation study of independent cascade and threshold diffusion on synthetic random, small-world and scale-free graphs. No findings yet."
+keywords:
+  - network diffusion
+  - independent cascade
+  - threshold model
+  - small-world networks
+  - scale-free networks

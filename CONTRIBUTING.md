@@ -35,3 +35,11 @@ Mohamed Bechir Kefi is the project owner and lead maintainer, and the only perso
 ## 5. Privacy and disclosure
 
 Never commit an e-mail address, a name or any other personal identifier in code, logs, fixtures or results. Report security issues privately through GitHub's private vulnerability reporting.
+
+## 6. Development commands
+
+- Install the locked environment: `uv sync --locked` (uv 0.9.5 or later).
+- Refresh the lockfile after a reviewed dependency change: `uv lock`.
+- Generate the manuscript LaTeX source: `pandoc research/paper/manuscript.md -s -t latex -o research/paper/manuscript.tex`.
+- Build a PDF without TeX: `pandoc <file>.md -s -t typst -V mainfont="Libertinus Serif" -o <file>.typ`, then `python -c "import typst; typst.compile('<file>.typ', output='<file>.pdf')"`.
+- Tests and experiment commands are added at milestone M2.

@@ -1,0 +1,1 @@
+{"schema_version": "0.1", "updated": "2026-11-24", "artifacts": [], "note": "Maps every quantitative figure, table and claim to experiment id, run ids, metric, result path, generator script, config/protocol hash and code revision. Empty: no results at M0."}

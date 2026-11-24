@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "updated": "2026-11-24",
+  "note": "No dataset is downloaded or bundled. All experiments use synthetic graphs generated from recorded generator, parameters and seed (decision D-003). Licence of this file: see NOTICE.md.",
+  "synthetic_generators": [
+    {"id": "er_gnm", "generator": "networkx.gnm_random_graph", "planned_version": "networkx 3.7", "parameters": {"n": 1000, "m": 3000}, "seed": "derived per run from the experiment master seed", "status": "planned"},
+    {"id": "ws", "generator": "networkx.watts_strogatz_graph", "planned_version": "networkx 3.7", "parameters": {"n": 1000, "k": 6, "p": 0.1}, "seed": "derived per run", "status": "planned"},
+    {"id": "ba", "generator": "networkx.barabasi_albert_graph", "planned_version": "networkx 3.7", "parameters": {"n": 1000, "m": 3}, "seed": "derived per run", "status": "planned"}
+  ],
+  "external_datasets": [
+    {"name": "SNAP network datasets", "url": "https://snap.stanford.edu/data/", "accessed": "2026-11-24", "license": "not stated on the index page (citation request only)", "redistributable": "unknown", "used": false, "sha256": null, "status": "excluded; owner must resolve rights before any use"},
+    {"name": "Netzschleuder network catalogue", "url": "https://networks.skewed.de/", "accessed": "2026-11-24", "license": "not stated on the entry page opened (karate); footer AGPLv3 logo of unclear scope", "redistributable": "unknown", "used": false, "sha256": null, "status": "excluded; owner must resolve rights before any use"}
+  ]
+}

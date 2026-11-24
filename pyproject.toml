@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0
+[project]
+name = "viral"
+version = "0.0.1"
+description = "VIRAL: network topology, initial exposure and diffusion (simulation research)"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+# Licence: VIRAL Source-Available Non-Commercial Research License v1.0 (LicenseRef-VIRAL-NC-Research-1.0); see LICENSE.
+dependencies = [
+    "networkx==3.7",
+    "numpy==2.5.4",
+    "jsonschema==4.26.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.2.0",
+    "hypothesis==6.170.15",
+]
+figures = [
+    "matplotlib==3.11.2",
+]
+
+[tool.uv]
+# The package is not built yet (M2); resolve dependencies only.
+package = false
+# Only versions released at least two weeks before 2026-11-24.
+exclude-newer = "2026-11-10T00:00:00Z"
