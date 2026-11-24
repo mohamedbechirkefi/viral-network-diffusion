@@ -151,3 +151,45 @@ pyproject.toml, uv.lock, src/viral/*, tests/*, experiments/*, results/explorator
 
 ### Next action
 Owner: decide on D-007 and freeze the protocols (G-FREEZE). Session: write the EXP-001 12-part report from the two exploratory runs, add EXP-003 and EXP-004 configs, and wire S1 to S3 into the runner.
+
+## 2026-11-24, session DATA-FREEZE (real-data check, owner-approved amendments, freeze)
+
+**Milestone:** M1 gate. **Starting state:** `43174d4`, tree clean, 158 tests passing. **Authority:** `../_shared/owner-approvals-2026-11-24b.md` sections 1 and 7 ("Approve all"; "yes for all others").
+
+### Licence check (D-008)
+- SNAP (https://snap.stanford.edu/data/, ego-Facebook and email-Enron pages): no licence text found (`grep -i licen|terms|copyright` returned nothing).
+- Netzschleuder (https://networks.skewed.de/about): no dataset licence; code AGPLv3; data offered "with the belief that this is not only permitted...". API entries `karate`, `email_enron`, `facebook_friends`, `dolphins`: no licence field.
+- `facebook_friends` upstream, https://github.com/benmaier/BFMaierFBnetwork: GitHub API licence `MIT`; LICENSE file read (MIT, Copyright (c) 2014 Benjamin F. Maier). Adopted for EXP-005.
+
+### Commands and actual outputs
+```
+$ .venv/bin/python scripts/download_data.py
+bfmaier_anonymized_fb_network.gml: 97876 bytes, sha256 cb94e2c6a02c4f8457730418fd4413d5abb75783f65c02b990eb1dade4a41aaa
+LICENSE: 1074 bytes, sha256 bc424e303eb0d4a656b9ce6cda8a67a20d355d6c3cff0bddb53703a60a5600e1
+README.md: 788 bytes, sha256 6260f8d817d96e92f9976b992f62d5bb15e3bec851ebe5de0eae5fb58536eb37
+$ .venv/bin/python scripts/ingest_data.py
+processed_sha256 e286957db7367d10bf401217116787ee4a7ccef0fd6a70ebbcb20e427fc529cc, 18959 bytes;
+counts: 362 nodes, 1988 edges declared and kept; 0 missing, unknown, self-loop or duplicate; 14 isolated nodes
+$ .venv/bin/python scripts/fit_calibration.py      (after protocol section 11.5 was written)
+p_c 0.0483851339839852; mean degree 10.9834; <k^2> 237.98; 20 components; giant 0.9088
+EXP-005 p grid: 0.005806 0.014516 0.029031 0.043547 0.058062 0.087093 0.145155   (0.22 s)
+$ ../.tools/py/bin/uv sync --frozen --all-groups --all-extras   -> Audited 25 packages
+$ .venv/bin/python -m pytest       -> before freeze record: 167 passed, 1 skipped; after: 168 passed in 5.84 s
+$ guard: frozen_status on EXP-002, EXP-003, EXP-004 S1, EXP-005 configs -> (True, 'frozen')
+$ .venv/bin/viral run --config <EXP-002 config with replicates 121>
+REFUSED: ... config sha256 f0ea826f5777 is not a frozen EXP-002 config (changed or never frozen).   rc=3
+```
+Graph construction check only (no cascades) for EXP-005 replicate 0: real, real_er, real_dpr all 362 nodes, 1988 edges, no graph check failure; `real_dpr` 0.111 s.
+
+### Changes
+- Protocol section 11 and EXP-001 to EXP-004 amendment sections; new EXP-005 protocol; status FROZEN v1.0.
+- Code: `viral.realdata`; config and result schemas 1.1.0; topologies `er_trim`, `ws_trim`, `ba_dpr`, `real`, `real_er`, `real_dpr`; `p_scale = pc_multiple`; `holm_bootstrap_contrasts`, `confirmatory_contrasts`; freeze-record guard. Tests: `tests/test_realdata_freeze.py` (synthetic GML fixture), updated gate tests (the CLI refusal test now uses a changed copy so it can never start a confirmatory run).
+- Configs: EXP-002 (R = 120, seed 20261125), EXP-003, EXP-004 S1 to S4, EXP-005.
+- Records: `data/manifest.json`, `data/real_network_calibration.json`, decision log D-008 to D-010, journal (exploratory calibration fit), registry, limitations, references, CITATION, manuscript metadata, `research/freeze.json`.
+
+### Failures and risks
+- None blocking. The S1 per-multiplier criterion and the interval construction were chosen by the session at the freeze (D-009); the owner may revisit them only by a post-freeze amendment.
+- EXP-005 needs the git-ignored data on the run machine; `load_processed` refuses a file whose SHA-256 differs from the pinned value.
+
+### Next action
+Coordinator: schedule M3. No confirmatory run was made in this session.

@@ -1,0 +1,152 @@
+{
+ "kind": "viral-freeze-record",
+ "record_version": "1",
+ "date": "2026-11-24",
+ "status": "frozen (owner-approved 2026-11-24), not yet run",
+ "gate": "G-FREEZE",
+ "owner_approval": {
+  "sources": [
+   "../_shared/owner-approvals-2026-11-24.md (labs workspace, outside this repository)",
+   "../_shared/owner-approvals-2026-11-24b.md (labs workspace, outside this repository), sections 1 and 7"
+  ],
+  "date": "2026-11-24",
+  "owner_answers_quoted": [
+   "yes for all others",
+   "Approve all"
+  ],
+  "viral_real_data_quoted": "VIRAL | SNAP or Netzschleuder networks with an explicit licence that permits research use | Stay synthetic",
+  "viral_amendments_quoted": "Per-probability contrasts are primary, R = 120, with Holm. Threshold grid 0.18 to 0.30. A new master seed. Specify the Holm interval method."
+ },
+ "real_data": {
+  "licence_check": "SNAP and Netzschleuder: no explicit dataset licence (not adopted as sources). Netzschleuder entry facebook_friends -> upstream github.com/benmaier/BFMaierFBnetwork, MIT License: clean, adopted (D-008).",
+  "dataset": "maier_fb (pinned commit d1446af55483c98d93f72015b6238200e1a30575), 362 nodes, 1988 edges, 97,876-byte GML (99,738 bytes with LICENSE and README)",
+  "raw_gml_sha256": "cb94e2c6a02c4f8457730418fd4413d5abb75783f65c02b990eb1dade4a41aaa",
+  "processed_sha256": "e286957db7367d10bf401217116787ee4a7ccef0fd6a70ebbcb20e427fc529cc",
+  "role": "EXP-005 only: calibration of the transmission grid from the degree sequence (p_c) and a second test against real_er and real_dpr nulls. Never used by EXP-001 to EXP-004; the fit does not use the primary contrast.",
+  "calibration": {
+   "method": "research/protocol.md section 11.5 (written before the fit)",
+   "fitted_p_c": 0.0483851339839852,
+   "exp005_p_grid": [
+    0.005806,
+    0.014516,
+    0.029031,
+    0.043547,
+    0.058062,
+    0.087093,
+    0.145155
+   ],
+   "journal": "research/experiment_journal.jsonl run_id EXP-005-calibration-fit-20261124 (exploratory)",
+   "artifact": "data/real_network_calibration.json"
+  },
+  "committed": "provenance, SHA-256 values and aggregate statistics only; data/raw/ and data/processed/ git-ignored"
+ },
+ "amendments_applied": {
+  "A-1": "Per-p contrasts primary: 14 contrasts (WS, BA vs ER x 7 p), one Holm family at 0.05; grid mean secondary (protocol 11.1; EXP-002 A-1)",
+  "A-2": "R = 120 in EXP-002 (protocol 11.2; EXP-002 A-2)",
+  "A-3": "EXP-003 phi grid {0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30} (protocol 11.4; EXP-003 A-1)",
+  "A-4": "New master seeds: EXP-002 and EXP-004 20261125, EXP-003 20261126, EXP-005 20261128; pilot seed was 20261124 (protocol 11.2)",
+  "A-5": "Holm interval method specified and implemented (protocol 11.3; viral.stats.holm_bootstrap_contrasts)",
+  "note": "The interval construction, the per-multiplier reading of EXP-004 S1 and the EXP-004 seed choice were made by the AI assistant at the freeze, before any confirmatory value was seen (D-009). Not applied because not on the approved list: D-007 A4 (LT depth definition; D = T by construction is disclosed) and A6 (budget stays 4 h)."
+ },
+ "common_decisions": {
+  "C1": "Data: real data as approved (the maier_fb network, EXP-005 only, D-008); synthetic otherwise (EXP-001 to EXP-004).",
+  "C2": "PDFs: built with pandoc and Typst (-V mainfont=\"Libertinus Serif\"); no LaTeX on the machine.",
+  "C3": "Authorship: \"Mohamed Bechir Kefi\", no affiliation. The AI is disclosed as a research and development assistant, not as an author (CITATION.cff, manuscript metadata).",
+  "C4": "Disclosure: exploratory values of the primary contrast were seen before the freeze, all on master seed 20261124 (disjoint from every confirmatory seed). (1) Smoke run EXP-001-20261124T162117Z-99c548ac (R = 5, p in {0, 0.05, 0.2, 1}): BA - ER at p = 0.2 = 0.1127, WS - ER at p = 0.2 = -0.0878; stored in results/exploratory/EXP-001/EXP-001-20261124T162117Z-99c548ac/tables/contrasts_by_param.csv. (2) Planning probe EXP-001-20261124T162121Z-d947f41d (R = 10, full EXP-002 p grid): BA - ER per p (0.02 to 0.5) = 0.00002, 0.00035, 0.0061, 0.0548, 0.1019, -0.0540, -0.0445; WS - ER = 0.000004, -0.00002, -0.0004, -0.0047, -0.0835, -0.3564, 0.0531; grid means BA - ER 0.0092, WS - ER -0.0560; stored in results/exploratory/EXP-001/EXP-001-20261124T162121Z-d947f41d/tables/contrasts_by_param.csv and contrasts.csv. The probe also ran LT at phi in {0.10, 0.14, 0.18, 0.22, 0.26} (EXP-003 values at 0.18, 0.22, 0.26 seen; same run, tables/cells.csv). These values motivated A-1, A-2 and A-3 (D-007). No EXP-004 sensitivity or EXP-005 real-network diffusion value has been computed. None of these values is evidence for any hypothesis."
+ },
+ "study_protocol": {
+  "path": "research/protocol.md",
+  "version": "v1.0",
+  "sha256": "d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32"
+ },
+ "data_manifest": {
+  "path": "data/manifest.json",
+  "sha256": "ffb8eaf7b0d0beb556649e4bbc64ee9f16de43f5eb66ff8ea81d5ec8f5e2af23"
+ },
+ "experiments": {
+  "EXP-001": {
+   "type": "exploratory (not confirmatory; hash recorded for completeness; no config is frozen, so run refuses any confirmatory EXP-001 config)",
+   "protocol_path": "research/experiments/EXP-001/protocol.md",
+   "version": "v1.0",
+   "protocol_sha256": "e65cf620d66b6fd8cf98815f626693b7744dc7d801f30bdbdd55875da14f9ff0",
+   "configs": []
+  },
+  "EXP-002": {
+   "type": "confirmatory (primary)",
+   "protocol_path": "research/experiments/EXP-002/protocol.md",
+   "version": "v1.0",
+   "protocol_sha256": "2b21902acfdedd2acb9395633e2ae28ddffb3f8dba1927e8f2a05cd0fd58272c",
+   "configs": [
+    {
+     "path": "experiments/EXP-002/config.json",
+     "file_sha256": "3a1cd795beb86e3f132f56cacb4b3ff63a08bc94848c27a5bba616cee9954ac8",
+     "canonical_sha256": "2c7febb68d111345c89d9d165dc574b107319b8b3dd4df141b4de66db64f4256"
+    }
+   ]
+  },
+  "EXP-003": {
+   "type": "confirmatory (secondary)",
+   "protocol_path": "research/experiments/EXP-003/protocol.md",
+   "version": "v1.0",
+   "protocol_sha256": "55ed5cb330f1fafc2f764949375fb6c8b070ceef007172ecb66641fcdd8280ac",
+   "configs": [
+    {
+     "path": "experiments/EXP-003/config.json",
+     "file_sha256": "728f9a31435777ffce283aa282ab8ee1c45eb5ef93b0bf865ff12012a4a6b659",
+     "canonical_sha256": "a2d668abb8f1dd40c442582d4276509c81040a95a47f2d00277abdc9f47a2abd"
+    }
+   ]
+  },
+  "EXP-004": {
+   "type": "confirmatory sensitivity (S4 optional)",
+   "protocol_path": "research/experiments/EXP-004/protocol.md",
+   "version": "v1.0",
+   "protocol_sha256": "bc3746ae7ac7f1eb6b65dbe502ad3fb3d50ec45869a893689f5c9b734e959a44",
+   "configs": [
+    {
+     "path": "experiments/EXP-004/S1-config.json",
+     "file_sha256": "17f64abe4ef78a063cd0cbafd1376c35c46682184705656bd553ffcae443a693",
+     "canonical_sha256": "de14a4b374f26f4a688857695c225e8ed7986296f8183a0aba343ac1e4d4148d"
+    },
+    {
+     "path": "experiments/EXP-004/S2-config.json",
+     "file_sha256": "42fd53afd45e2ef7aa4477410f21dd43f59fb72de0ab3ad2e909a65c8dc37a60",
+     "canonical_sha256": "916e8d2905088aaf46ba170cad8f894464dcb789bfdb1d759798ab5a0deb92e0"
+    },
+    {
+     "path": "experiments/EXP-004/S3-config.json",
+     "file_sha256": "9d0aaf2b4e76d5effcc8eaf2f393f9c5372839c9693ce1a06cf9ad8f26b0a64e",
+     "canonical_sha256": "e1d240911d90b80284fd78d8ecf60ec96fd4a2f97064a066dd8d3817ee166971"
+    },
+    {
+     "path": "experiments/EXP-004/S4-n500-config.json",
+     "file_sha256": "6e91910ff329012678a9f5d8667c89772d88319ef020abc9e15852862f21379e",
+     "canonical_sha256": "e31dba07eb685936f0ea61f10455d4e7f7f358acfd1ff4906565ab288d52ba1b"
+    },
+    {
+     "path": "experiments/EXP-004/S4-n2000-config.json",
+     "file_sha256": "b9cf372f65aa7dc2f5b54e67b3b470c4dfa1394b7c974c3e96e3117e97ce3619",
+     "canonical_sha256": "40385ec33b306aa97f3df78618fead6b0f833c3f527d13b85a3eefbf7c728a73"
+    }
+   ]
+  },
+  "EXP-005": {
+   "type": "confirmatory (second test on a real network)",
+   "protocol_path": "research/experiments/EXP-005/protocol.md",
+   "version": "v1.0",
+   "protocol_sha256": "ba77b7ef31cb7ed864a6bf0bdbe9910ec88c36399e479a9d5a56314d773847a3",
+   "configs": [
+    {
+     "path": "experiments/EXP-005/config.json",
+     "file_sha256": "06b507e45eef7d299a6579e98038aae7e69d76d4f368eaed9b5f51ebeb20f758",
+     "canonical_sha256": "d277f271e6863fba0f5a3ee24796b1e94e273c5c7f4a4276c20e8e7a651218ae"
+    }
+   ]
+  }
+ },
+ "git_revision": {
+  "commit": "9049861e73406aa9fa00e558732dc9e10b5bcea6",
+  "note": "freeze-prep commit holding the frozen protocol, configs and code; this record is committed on top of it"
+ },
+ "guard": "viral run accepts a confirmatory config only if its file SHA-256 is listed here for its experiment and the study protocol, experiment protocol and data manifest hashes match (src/viral/protocol_gate.py; tests/test_realdata_freeze.py)."
+}

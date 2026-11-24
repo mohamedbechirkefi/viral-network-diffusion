@@ -1,14 +1,14 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # VIRAL roadmap
 
-Updated 2026-11-24 (session M2). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
+Updated 2026-11-24 (session DATA-FREEZE). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
 
 | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|
 | M0 Bootstrap and feasibility | none | P0 | 0.25 d | done (pending owner review of scope and cost) | none |
-| M1 Research and preregistration | M0 | P0 | 0.5 d | in progress: drafts written; freeze gated (owner) | G-FREEZE: owner must freeze `research/protocol.md` and EXP-001 to EXP-004 protocols |
+| M1 Research and preregistration | M0 | P0 | 0.5 d | done: gate passed, protocol v1.0 frozen (owner-approved 2026-11-24; `research/freeze.json`) | none |
 | M2 Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1.5 d | done for the pre-freeze scope (see M2 section); EXP-001 report.md pending (M3) | none for implementation; owner decisions D-007 before the freeze |
-| M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | not started | G-FREEZE |
+| M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | not started; EXP-002 to EXP-005 frozen, not yet run | scheduling by the coordinator |
 | M4 Interpretation | M3 | P0 | 0.75 d | not started | none |
 | M5 Interactive experience | M3 results (sandbox can start at M2) | P1 | 0.75 d | not started | none |
 | M6 Release candidate | M4, M5 | P0 | 0.25 d | not started | G-PUBLIC for any publication |
@@ -24,7 +24,7 @@ Updated 2026-11-24 (session M2). Effort is a planning estimate in focused days (
 - Acceptance: evidence review with verification levels; formal model and baselines; protocol with H0/H1, primary metric, unit, seeds, sample-size rationale, uncertainty, exclusion and stopping rules, smoke and full matrix, sensitivity analyses; experiment-specific protocols (11.2) for EXP-001 to EXP-004; fixture manifest (`data/manifest.json`).
 - 11.6 additions: freeze confirmatory protocols before execution, with hash and recorded owner approval.
 - Gate: protocol frozen before confirmatory runs; exploratory results visibly separated.
-- Status: drafts done 2026-11-24; freeze pending the owner.
+- Status: drafts done 2026-11-24; amendments applied and protocol v1.0 frozen 2026-11-24 (owner-approved, D-009, D-010). Real-data check done (D-008): one MIT-licensed real network adopted for EXP-005.
 
 ## M2 Core implementation
 
