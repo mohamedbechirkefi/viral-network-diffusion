@@ -99,6 +99,16 @@ def contrasts(doc: dict, model: str = "ic", rule: str = "random", count: int = 1
     return out
 
 
+def contrasts_by_param(doc: dict, model: str = "ic", rule: str = "random", count: int = 1) -> list[dict]:
+    """The same descriptive contrast at each parameter value separately (shows crossings that a grid mean hides)."""
+    params = sorted({c["param"] for c in doc["cells"] if c["model"] == model and c["seed_rule"] == rule and c["seed_count"] == count})
+    rows = []
+    for p in params:
+        for row in contrasts(doc, model, rule, count, params=[p]):
+            rows.append({"param": p, **{k: v for k, v in row.items() if k != "grid"}})
+    return rows
+
+
 def variance_table(doc: dict) -> list[dict]:
     by = defaultdict(lambda: defaultdict(dict))
     n = doc["config"]["n"]
@@ -131,7 +141,7 @@ def degenerate_cells(doc: dict) -> list[dict]:
         if np.mean(sizes >= 0.99 * n) == 1.0:
             reasons.append("every cascade reached >= 99 percent of nodes")
         elif np.mean(sizes == key[3]) >= 0.95:
-            reasons.append(f"{np.mean(sizes == key[3]):.0%} of cascades stayed at the seed set")
+            reasons.append(f"{np.mean(sizes == key[3]):.1%} of cascades stayed at the seed set")
         if reasons:
             out.append({"model": key[0], "param": key[1], "seed_rule": key[2], "seed_count": key[3], "topology": key[4], "reasons": reasons})
     return out

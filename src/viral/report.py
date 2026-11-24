@@ -117,9 +117,10 @@ def build_report(result_path: str | Path, project: ExperimentConfig | None = Non
     g_rows = analysis.graph_table(doc)
     c_rows = analysis.cell_table(doc)
     k_rows = analysis.contrasts(doc)
+    kp_rows = analysis.contrasts_by_param(doc)
     v_rows = analysis.variance_table(doc)
     d_rows = analysis.degenerate_cells(doc)
-    for name, rows in (("graphs", g_rows), ("cells", c_rows), ("contrasts", k_rows), ("variance", v_rows), ("degenerate", d_rows)):
+    for name, rows in (("graphs", g_rows), ("cells", c_rows), ("contrasts", k_rows), ("contrasts_by_param", kp_rows), ("variance", v_rows), ("degenerate", d_rows)):
         _write_csv(rows, tables / f"{name}.csv")
     figs = _figures(doc, figs_dir)
 
@@ -163,6 +164,9 @@ def build_report(result_path: str | Path, project: ExperimentConfig | None = Non
         "`R needed` is the replicate count for a 95 percent half-width of 0.01 under a normal approximation; the Holm column uses the first Holm step over two contrasts (z = 2.24).",
         "",
         _md_table(k_rows, [("contrast", "contrast"), ("replicates", "R"), ("mean_diff", "mean diff"), ("sd_diff", "sd_diff"), ("min_diff", "min"), ("max_diff", "max"), ("half_width_at_R30_z95", "half-width at R=30"), ("R_needed_z95", "R needed"), ("R_needed_holm_first_step", "R needed (Holm)")], 4),
+        "Per parameter value (same contrast, one p at a time; descriptive):",
+        "",
+        _md_table(kp_rows, [("param", "p"), ("contrast", "contrast"), ("replicates", "R"), ("mean_diff", "mean diff"), ("sd_diff", "sd_diff"), ("min_diff", "min"), ("max_diff", "max")], 4),
         "## Variance decomposition of S (shares of total variance)",
         "",
         _md_table(v_rows, [("model", "model"), ("param", "p or phi"), ("seed_rule", "rule"), ("seed_count", "seeds"), ("total_variance", "total var"), ("share_topology", "topology"), ("share_replicate", "replicate"), ("share_within_graph", "within graph")], 4),

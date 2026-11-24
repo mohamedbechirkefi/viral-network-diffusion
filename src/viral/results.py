@@ -61,7 +61,7 @@ def make_run_id(experiment_id: str, started_utc: str, cfg_hash: str) -> str:
 
 def build_manifest(cfg: ExperimentConfig, repo: Path, started_utc: str, finished_utc: str, runtime_s: float) -> dict:
     rev = _git(repo, "rev-parse", "HEAD")
-    status = _git(repo, "status", "--porcelain")
+    status = _git(repo, "status", "--porcelain", "--", ".", ":(exclude)results")
     return {
         "run_id": make_run_id(cfg.experiment_id, started_utc, cfg.hash),
         "experiment_id": cfg.experiment_id,
@@ -86,6 +86,7 @@ def build_manifest(cfg: ExperimentConfig, repo: Path, started_utc: str, finished
         "runtime_seconds": runtime_s,
         "peak_rss_bytes": peak_rss_bytes(),
         "peak_memory_note": "process peak RSS from getrusage; includes interpreter and imports",
+        "git_dirty_scope": "working tree excluding results/",
     }
 
 
