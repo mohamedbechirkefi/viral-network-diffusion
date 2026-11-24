@@ -1,0 +1,19 @@
+{
+  "config_schema_version": "1.0.0",
+  "experiment_id": "EXP-002",
+  "mode": "confirmatory",
+  "label": "DRAFT confirmatory matrix of research/protocol.md section 6.2; cannot run until the owner freezes the protocol",
+  "notes": "master_seed is a placeholder; the owner fixes it at the freeze (EXP-002 protocol item 11). Used now only for runtime projection and to test that 'viral run' refuses it.",
+  "master_seed": 0,
+  "n": 1000,
+  "mean_degree": 6,
+  "ws_beta": 0.1,
+  "topologies": ["er", "ws", "ba"],
+  "models": {"ic": {"p": [0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]}},
+  "seed_rules": ["random", "highest_degree"],
+  "seed_counts": [1, 10],
+  "replicates": 30,
+  "cascades": 200,
+  "verify": false,
+  "engine": "vectorised"
+}

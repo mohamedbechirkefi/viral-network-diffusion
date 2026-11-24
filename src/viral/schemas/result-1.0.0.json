@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "viral/result-1.0.0",
+  "title": "VIRAL experiment result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result_schema_version", "kind", "experiment_id", "run_id", "mode", "label", "config", "config_hash", "manifest", "graphs", "cells", "failures", "verification"],
+  "properties": {
+    "result_schema_version": {"const": "1.0.0"},
+    "kind": {"const": "viral.result"},
+    "experiment_id": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "run_id": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["exploratory", "confirmatory"]},
+    "label": {"type": "string"},
+    "config": {"type": "object"},
+    "config_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "manifest": {"$ref": "#/$defs/manifest"},
+    "graphs": {"type": "array", "items": {"$ref": "#/$defs/graph"}},
+    "cells": {"type": "array", "items": {"$ref": "#/$defs/cell"}},
+    "failures": {"type": "array", "items": {"type": "object", "required": ["kind", "messages"]}},
+    "verification": {
+      "type": "object",
+      "required": ["cascades_checked", "cascade_failures", "graphs_checked", "graph_failures"],
+      "properties": {
+        "cascades_checked": {"type": "integer", "minimum": 0},
+        "cascade_failures": {"type": "integer", "minimum": 0},
+        "graphs_checked": {"type": "integer", "minimum": 0},
+        "graph_failures": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "$defs": {
+    "manifest": {
+      "type": "object",
+      "required": ["run_id", "experiment_id", "mode", "config_hash", "master_seed", "git_revision", "git_dirty", "versions", "os", "cpu", "started_utc", "finished_utc", "runtime_seconds", "peak_rss_bytes"],
+      "properties": {
+        "git_revision": {"type": "string"},
+        "git_dirty": {"type": ["boolean", "null"]},
+        "versions": {"type": "object", "required": ["python", "numpy", "networkx", "jsonschema", "viral"]},
+        "runtime_seconds": {"type": "number", "minimum": 0},
+        "peak_rss_bytes": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "graph": {
+      "type": "object",
+      "required": ["topology", "replicate", "networkx_seed", "params", "stats"],
+      "properties": {
+        "topology": {"enum": ["er", "ws", "ba"]},
+        "replicate": {"type": "integer", "minimum": 0},
+        "stats": {"type": "object", "required": ["n", "m", "mean_degree", "second_moment_degree", "p_c", "n_components", "giant_component_fraction"]}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "required": ["topology", "replicate", "model", "param", "seed_rule", "seed_count", "n_cascades", "runtime_seconds", "per_cascade", "summary"],
+      "properties": {
+        "topology": {"enum": ["er", "ws", "ba"]},
+        "replicate": {"type": "integer", "minimum": 0},
+        "model": {"enum": ["ic", "lt"]},
+        "param": {"type": "number", "minimum": 0},
+        "seed_rule": {"enum": ["random", "highest_degree"]},
+        "seed_count": {"type": "integer", "minimum": 1},
+        "n_cascades": {"type": "integer", "minimum": 1},
+        "runtime_seconds": {"type": "number", "minimum": 0},
+        "per_cascade": {
+          "type": "object",
+          "required": ["size", "depth", "duration", "t50", "structural_virality"],
+          "properties": {
+            "size": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+            "depth": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+            "duration": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+            "t50": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+            "structural_virality": {"type": "array", "items": {"type": ["number", "null"], "minimum": 0}}
+          }
+        },
+        "summary": {
+          "type": "object",
+          "required": ["mean_S", "sd_S", "mean_depth", "mean_duration", "mean_t50", "gini_size", "large_cascade_share"],
+          "properties": {
+            "mean_S": {"type": "number", "minimum": 0, "maximum": 1},
+            "large_cascade_share": {"type": "number", "minimum": 0, "maximum": 1},
+            "gini_size": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    }
+  }
+}

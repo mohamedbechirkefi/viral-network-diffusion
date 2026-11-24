@@ -1,0 +1,19 @@
+{
+  "config_schema_version": "1.0.0",
+  "experiment_id": "EXP-001",
+  "mode": "exploratory",
+  "label": "EXPLORATORY smoke matrix (EXP-001 protocol item 8 and 10); engine verification, not a finding",
+  "notes": "Matrix from research/experiments/EXP-001/protocol.md: p in {0, 0.05, 0.20, 1}, phi in {0, 0.18, 1.01}, one random seed, R = 5, C = 50, master seed 20261124. Every cascade passes through the verification checks.",
+  "master_seed": 20261124,
+  "n": 1000,
+  "mean_degree": 6,
+  "ws_beta": 0.1,
+  "topologies": ["er", "ws", "ba"],
+  "models": {"ic": {"p": [0.0, 0.05, 0.2, 1.0]}, "lt": {"phi": [0.0, 0.18, 1.01]}},
+  "seed_rules": ["random"],
+  "seed_counts": [1],
+  "replicates": 5,
+  "cascades": 50,
+  "verify": true,
+  "engine": "vectorised"
+}

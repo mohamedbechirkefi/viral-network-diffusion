@@ -1,0 +1,19 @@
+{
+  "config_schema_version": "1.0.0",
+  "experiment_id": "EXP-001",
+  "mode": "exploratory",
+  "label": "EXPLORATORY planning probe: full EXP-002 and EXP-003 parameter grids at reduced replicates, for runtime projection and seed-spread estimation; not a finding",
+  "notes": "Added in session M2 to measure what the owner needs before the freeze (runtime per cell over the whole draft grid, sd_diff over the full p grid). Master seed differs from any confirmatory seed, which the owner fixes at the freeze.",
+  "master_seed": 20261124,
+  "n": 1000,
+  "mean_degree": 6,
+  "ws_beta": 0.1,
+  "topologies": ["er", "ws", "ba"],
+  "models": {"ic": {"p": [0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5]}, "lt": {"phi": [0.1, 0.14, 0.18, 0.22, 0.26]}},
+  "seed_rules": ["random", "highest_degree"],
+  "seed_counts": [1, 10],
+  "replicates": 10,
+  "cascades": 200,
+  "verify": false,
+  "engine": "vectorised"
+}
