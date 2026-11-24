@@ -84,3 +84,12 @@ Append-only. Each entry: id, date, decision, decided by, rationale, alternatives
 - **Decided by:** the owner ("yes for all others"; "Approve all").
 - **Decision.** `research/protocol.md` and the EXP-001 to EXP-005 protocols are frozen at version 1.0; the confirmatory configs of EXP-002 to EXP-005 are frozen. Hashes, the git revision, the data manifest hash, C1 to C4 and the C4 disclosure are in `research/freeze.json`. `viral run` accepts exactly the frozen configs and refuses changed ones (tested).
 - **Consequences.** Registry statuses are "frozen (owner-approved 2026-11-24), not yet run". M3 confirmatory runs are scheduled by the coordinator; none was run in this session. Any later change is a dated post-freeze amendment.
+
+## D-011 (2026-11-24): Owner ratification of the real network and the D-009 session choices (round 3)
+
+- **Decided by:** the owner, "Approve all" (2026-11-24, round 3; `../_shared/owner-approvals-2026-11-24c.md` section 3, outside this repository).
+- **Items ratified, quoted from the approvals file:**
+  - "Keep the MIT-licensed real friendship graph for EXP-005. It is pseudonymous and git-ignored." (D-008; protocol section 11.5.)
+  - "Ratify the session choices recorded in D-009: the interval construction, the per-multiplier S1 criterion, and the new EXP-003 and EXP-004 configs." (Protocol section 11.3; EXP-004 protocol; `experiments/EXP-003/config.json` and `experiments/EXP-004/S1` to `S4` configs.)
+- **Effect.** Ratification only. The frozen protocol texts and configs already contain these choices, so no frozen file changed and no hash changed. The items are listed under `ratifications` in `research/freeze.json`. The choices made by the session at the freeze (D-009) are now owner decisions.
+- **Consequences.** None for the M3 schedule. No confirmatory run was made.

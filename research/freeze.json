@@ -148,5 +148,18 @@
   "commit": "9049861e73406aa9fa00e558732dc9e10b5bcea6",
   "note": "freeze-prep commit holding the frozen protocol, configs and code; this record is committed on top of it"
  },
- "guard": "viral run accepts a confirmatory config only if its file SHA-256 is listed here for its experiment and the study protocol, experiment protocol and data manifest hashes match (src/viral/protocol_gate.py; tests/test_realdata_freeze.py)."
+ "guard": "viral run accepts a confirmatory config only if its file SHA-256 is listed here for its experiment and the study protocol, experiment protocol and data manifest hashes match (src/viral/protocol_gate.py; tests/test_realdata_freeze.py).",
+ "ratifications": {
+  "round": "third round, 2026-11-24",
+  "source": "../_shared/owner-approvals-2026-11-24c.md (labs workspace, outside this repository), section 3",
+  "owner_answer_quoted": "Approve all",
+  "items": {
+   "R-1": "Keep the MIT-licensed real friendship graph for EXP-005. It is pseudonymous and git-ignored. (D-008; protocol 11.5; EXP-005 protocol)",
+   "R-2": "Interval construction of protocol section 11.3 (D-009), now an owner decision.",
+   "R-3": "Per-multiplier reading of the EXP-004 S1 criterion (D-009; EXP-004 protocol), now an owner decision.",
+   "R-4": "The EXP-003 and EXP-004 configs created at the freeze (D-009), now owner decisions."
+  },
+  "effect": "Ratification only. The frozen texts and configs already contain these choices; no file was changed and no hash changed. The note under amendments_applied that these choices were made by the AI assistant remains true as history; they are now owner-ratified (D-011).",
+  "decision_log": "D-011"
+ }
 }

@@ -193,3 +193,25 @@ Graph construction check only (no cascades) for EXP-005 replicate 0: real, real_
 
 ### Next action
 Coordinator: schedule M3. No confirmatory run was made in this session.
+
+## 2026-11-24, session ROUND3 (owner ratification, round 3)
+
+**Milestone:** M1 gate passed; M3 not started. **Starting state:** `c477c99`, tree clean. **Authority:** `../_shared/owner-approvals-2026-11-24c.md` section 3 ("Approve all").
+
+### Changes
+- `research/decision_log.md`: D-011 records the ratification of the MIT-licensed real network for EXP-005 and of the D-009 session choices (interval construction, per-multiplier S1 criterion, EXP-003 and EXP-004 configs).
+- `research/freeze.json`: new `ratifications` block (R-1 to R-4). No frozen protocol or config changed; all hashes unchanged.
+
+### Commands and actual outputs
+```
+$ ../.tools/py/bin/uv sync --frozen --all-groups --all-extras   -> Audited 25 packages
+$ .venv/bin/python -m pytest       -> 168 passed in 5.51s
+$ frozen_status on EXP-002, EXP-003, EXP-004 S1, EXP-005 configs -> (True, 'frozen') each
+$ shasum -a 256 research/protocol.md -> d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32 (unchanged)
+```
+
+### Failures and risks
+- None. No confirmatory run, no push.
+
+### Next action
+Coordinator: schedule M3.
