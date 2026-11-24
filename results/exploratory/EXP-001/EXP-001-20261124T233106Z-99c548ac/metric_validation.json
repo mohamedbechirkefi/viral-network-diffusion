@@ -1,0 +1,338 @@
+{
+ "label": "EXPLORATORY metric validation on known cases (M3 pre-run check); not a finding",
+ "smoke_run_id": "EXP-001-20261124T233106Z-99c548ac",
+ "n_checks": 54,
+ "n_failed": 0,
+ "checks": [
+  {
+   "check": "IC reference p=1 path from end: size",
+   "got": 5,
+   "expected": 5,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=1 path from end: depth",
+   "got": 4,
+   "expected": 4,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=1 path from end: duration",
+   "got": 4,
+   "expected": 4,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=1 path from end: T50 (ceil(5/2)=3 active at round 2)",
+   "got": 2,
+   "expected": 2,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=1 path from end: structural virality (Wiener 20 / C(5,2) = 2)",
+   "got": 2.0,
+   "expected": 2.0,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=1 path S",
+   "got": 1.0,
+   "expected": 1.0,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=0 star: size",
+   "got": 1,
+   "expected": 1,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=0 star: depth",
+   "got": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=1 star from leaf: depth",
+   "got": 2,
+   "expected": 2,
+   "pass": true
+  },
+  {
+   "check": "IC reference p=1 star from leaf: structural virality (Wiener 16 / 10)",
+   "got": 1.6,
+   "expected": 1.6,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 path from end: size",
+   "got": 5,
+   "expected": 5,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 path from end: depth",
+   "got": 4,
+   "expected": 4,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 path from end: duration",
+   "got": 4,
+   "expected": 4,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 path from end: T50 (ceil(5/2)=3 active at round 2)",
+   "got": 2,
+   "expected": 2,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 path from end: structural virality (Wiener 20 / C(5,2) = 2)",
+   "got": 2.0,
+   "expected": 2.0,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 path S",
+   "got": 1.0,
+   "expected": 1.0,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=0 star: size",
+   "got": 1,
+   "expected": 1,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=0 star: depth",
+   "got": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 star from leaf: depth",
+   "got": 2,
+   "expected": 2,
+   "pass": true
+  },
+  {
+   "check": "IC vectorised p=1 star from leaf: structural virality (Wiener 16 / 10)",
+   "got": 1.6,
+   "expected": 1.6,
+   "pass": true
+  },
+  {
+   "check": "LT reference phi=0.5 star from hub: size",
+   "got": 5,
+   "expected": 5,
+   "pass": true
+  },
+  {
+   "check": "LT reference phi=0.5 star from leaf: size",
+   "got": 1,
+   "expected": 1,
+   "pass": true
+  },
+  {
+   "check": "LT reference phi=1 path from end: size (node 1 sees 1 of 2)",
+   "got": 1,
+   "expected": 1,
+   "pass": true
+  },
+  {
+   "check": "LT vectorised phi=0.5 star from hub: size",
+   "got": 5,
+   "expected": 5,
+   "pass": true
+  },
+  {
+   "check": "LT vectorised phi=0.5 star from leaf: size",
+   "got": 1,
+   "expected": 1,
+   "pass": true
+  },
+  {
+   "check": "LT vectorised phi=1 path from end: size (node 1 sees 1 of 2)",
+   "got": 1,
+   "expected": 1,
+   "pass": true
+  },
+  {
+   "check": "Gini of equal sizes",
+   "got": 0.0,
+   "expected": 0.0,
+   "pass": true
+  },
+  {
+   "check": "Gini of [0,0,0,1] = 0.75",
+   "got": 0.75,
+   "expected": 0.75,
+   "pass": true
+  },
+  {
+   "check": "large-cascade share [0.05, 0.1, 0.5, 0.09]",
+   "got": 0.5,
+   "expected": 0.5,
+   "pass": true
+  },
+  {
+   "check": "p_c of a cycle (<k>=2, <k^2>=4) = 1",
+   "got": 1.0,
+   "expected": 1.0,
+   "pass": true
+  },
+  {
+   "check": "p_c of K4 (<k>=3, <k^2>=9) = 0.5",
+   "got": 0.5,
+   "expected": 0.5,
+   "pass": true
+  },
+  {
+   "check": "Holm a rejected at 0.05/3",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "Holm c not rejected at 0.05/2 (stops)",
+   "got": false,
+   "expected": false,
+   "pass": true
+  },
+  {
+   "check": "Holm adjusted p of a = 0.03",
+   "got": 0.03,
+   "expected": 0.03,
+   "pass": true
+  },
+  {
+   "check": "bootstrap family: constant 0 difference p = 1",
+   "got": 1.0,
+   "expected": 1.0,
+   "pass": true
+  },
+  {
+   "check": "bootstrap family: constant 0.1 difference p = 0",
+   "got": 0.0,
+   "expected": 0.0,
+   "pass": true
+  },
+  {
+   "check": "bootstrap family: constant difference interval",
+   "got": [
+    0.1,
+    0.1
+   ],
+   "expected": [
+    0.1,
+    0.1
+   ],
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 er r0: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 er r1: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 er r2: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 er r3: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 er r4: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ws r0: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ws r1: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ws r2: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ws r3: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ws r4: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ba r0: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ba r1: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ba r2: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ba r3: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=0 ba r4: every S = 1/N",
+   "got": true,
+   "expected": true,
+   "pass": true
+  },
+  {
+   "check": "smoke verification failures (p=1 sizes checked against seed component inside the runner)",
+   "got": 0,
+   "expected": 0,
+   "pass": true
+  },
+  {
+   "check": "smoke IC p=1 cascades present",
+   "got": true,
+   "expected": true,
+   "pass": true
+  }
+ ]
+}
