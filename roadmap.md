@@ -1,13 +1,13 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # VIRAL roadmap
 
-Updated 2026-11-24 (session M0). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
+Updated 2026-11-24 (session M2). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
 
 | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|
 | M0 Bootstrap and feasibility | none | P0 | 0.25 d | done (pending owner review of scope and cost) | none |
 | M1 Research and preregistration | M0 | P0 | 0.5 d | in progress: drafts written; freeze gated (owner) | G-FREEZE: owner must freeze `research/protocol.md` and EXP-001 to EXP-004 protocols |
-| M2 Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1.5 d | not started | none |
+| M2 Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1.5 d | done for the pre-freeze scope (see M2 section); EXP-001 report.md pending (M3) | none for implementation; owner decisions D-007 before the freeze |
 | M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | not started | G-FREEZE |
 | M4 Interpretation | M3 | P0 | 0.75 d | not started | none |
 | M5 Interactive experience | M3 results (sandbox can start at M2) | P1 | 0.75 d | not started | none |
@@ -32,6 +32,12 @@ Updated 2026-11-24 (session M0). Effort is a planning estimate in focused days (
 - Tests: no-transmission and all-transmission cases, disconnected components, duplicate activation, graph invariants, hand-computed examples, determinism, invalid inputs, extreme parameters.
 - 11.6 additions: versioned output schemas, reproducibility manifests and report generators built alongside the core.
 - Acceptance: tests executed with recorded counts; EXP-001 smoke run (exploratory) passes all checks. Gate: correctness before UI polish.
+- Status (2026-11-24, session M2):
+  - Done: generators with invariant checks; IC reference and vectorised engines (exact differential test); LT reference and vectorised engines; metrics S, D, T, T50, Gini, large-cascade share, structural virality; variance decomposition; paired cluster bootstrap and Holm; seeded runner with common random numbers; config and result JSON schemas (1.0.0) validated at export and import; run manifests; fail-closed protocol gate; CLI `smoke`, `run`, `report`, `test`; report generator (Markdown, CSV tables, PNG/SVG figures, PDF via pandoc to Typst); EXP-004 helpers (degree-preserving randomisation, edge trimming).
+  - Tests: 158 passed, 0 failed (`uv run --locked pytest`, 2026-11-24).
+  - EXP-001 smoke (exploratory): 15 graphs and 5,250 cascades, 0 verification failures, 3.3 s.
+  - Planning probe (exploratory): 288,000 cascades in 114.8 s; EXP-002 projected at about 142 s of engine time.
+  - Not done: the 12-part EXP-001 `report.md` (moved to M3 with the other reports); S1 to S4 runner wiring (the helpers exist, the configs do not); proposed amendments D-007 await the owner.
 
 ## M3 Experiments
 

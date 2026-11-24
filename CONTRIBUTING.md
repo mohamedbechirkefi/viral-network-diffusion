@@ -42,4 +42,8 @@ Never commit an e-mail address, a name or any other personal identifier in code,
 - Refresh the lockfile after a reviewed dependency change: `uv lock`.
 - Generate the manuscript LaTeX source: `pandoc research/paper/manuscript.md -s -t latex -o research/paper/manuscript.tex`.
 - Build a PDF without TeX: `pandoc <file>.md -s -t typst -V mainfont="Libertinus Serif" -o <file>.typ`, then `python -c "import typst; typst.compile('<file>.typ', output='<file>.pdf')"`.
-- Tests and experiment commands are added at milestone M2.
+- Install with figures: `uv sync --locked --all-groups`.
+- Tests: `uv run --locked pytest` or `uv run --locked viral test`.
+- Exploratory smoke run: `uv run --locked viral smoke` (writes `results/exploratory/EXP-001/<run_id>/`).
+- Any run: `uv run --locked viral run --config <config.json>`; confirmatory configs are refused until the protocol is frozen by the owner.
+- Report: `uv run --locked viral report <run_dir> [--project <config.json>] [--pdf]`; for `--pdf` set `VIRAL_PANDOC` (pandoc binary) and `VIRAL_TYPST_PYTHON` (a Python with the typst package).

@@ -1,0 +1,12 @@
+model,param,seed_rule,seed_count,topology,reasons
+ic,0.0,random,1,ba,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+ic,0.0,random,1,er,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+ic,0.0,random,1,ws,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+ic,1.0,random,1,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+ic,1.0,random,1,er,every cascade reached >= 99 percent of nodes
+ic,1.0,random,1,ws,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.0,random,1,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.0,random,1,ws,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,1.01,random,1,ba,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+lt,1.01,random,1,er,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+lt,1.01,random,1,ws,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set

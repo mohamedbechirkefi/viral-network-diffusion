@@ -18,7 +18,7 @@
 
 | Experiment | Purpose | Status |
 |---|---|---|
-| EXP-001 | Engine verification and smoke matrix (exploratory) | planned |
+| EXP-001 | Engine verification and smoke matrix (exploratory) | exploratory run (engine checks; not a finding) |
 | EXP-002 | Independent cascade: topology x transmission x initial exposure (primary) | planned |
 | EXP-003 | Fractional threshold: topology x threshold x initial exposure (secondary) | planned |
 | EXP-004 | Sensitivity analyses for EXP-002 | planned |
@@ -26,10 +26,13 @@
 ## Quick start (development environment)
 
 ```sh
-uv sync --locked          # installs the locked dependencies (uv.lock)
+uv sync --locked --all-groups   # installs the locked dependencies (uv.lock)
+uv run --locked viral test       # test suite
+uv run --locked viral smoke      # EXP-001 exploratory smoke run with verification checks
+uv run --locked viral report results/exploratory/EXP-001/<run_id> --project experiments/EXP-002/config.json
 ```
 
-Experiment commands will be added at M2.
+`viral run --config <file>` refuses a confirmatory configuration until the owner has frozen its protocol. Every output so far is exploratory and is not a finding.
 
 ## Data
 

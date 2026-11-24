@@ -1,0 +1,26 @@
+{
+  "run_id": "EXP-001-20261124T162117Z-99c548ac",
+  "experiment_id": "EXP-001",
+  "mode": "exploratory",
+  "label": "EXPLORATORY smoke matrix (EXP-001 protocol item 8 and 10); engine verification, not a finding",
+  "config_hash": "99c548ac3da117e55003d39e0fb70fa44ad73faaeac858992e8555a9f3b33f25",
+  "master_seed": 20261124,
+  "engine": "vectorised",
+  "git_revision": "6edd91e1d23537dae822553fd56edaf08a235545",
+  "git_dirty": false,
+  "versions": {
+    "python": "3.12.1",
+    "numpy": "2.5.4",
+    "networkx": "3.7",
+    "jsonschema": "4.26.0",
+    "viral": "0.1.0"
+  },
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "cpu": "Apple M1 Pro, 10 logical CPUs",
+  "started_utc": "2026-11-24T16:21:17Z",
+  "finished_utc": "2026-11-24T16:21:20Z",
+  "runtime_seconds": 3.2797139579997747,
+  "peak_rss_bytes": 60653568,
+  "peak_memory_note": "process peak RSS from getrusage; includes interpreter and imports",
+  "git_dirty_scope": "working tree excluding results/"
+}

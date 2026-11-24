@@ -1,0 +1,26 @@
+{
+  "run_id": "EXP-001-20261124T162121Z-d947f41d",
+  "experiment_id": "EXP-001",
+  "mode": "exploratory",
+  "label": "EXPLORATORY planning probe: full EXP-002 and EXP-003 parameter grids at reduced replicates, for runtime projection and seed-spread estimation; not a finding",
+  "config_hash": "d947f41d5aa9859419b9aadf92f017170fb470e0d93932f37d7af2c3e5189597",
+  "master_seed": 20261124,
+  "engine": "vectorised",
+  "git_revision": "6edd91e1d23537dae822553fd56edaf08a235545",
+  "git_dirty": false,
+  "versions": {
+    "python": "3.12.1",
+    "numpy": "2.5.4",
+    "networkx": "3.7",
+    "jsonschema": "4.26.0",
+    "viral": "0.1.0"
+  },
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "cpu": "Apple M1 Pro, 10 logical CPUs",
+  "started_utc": "2026-11-24T16:21:21Z",
+  "finished_utc": "2026-11-24T16:23:15Z",
+  "runtime_seconds": 114.82154570900093,
+  "peak_rss_bytes": 85884928,
+  "peak_memory_note": "process peak RSS from getrusage; includes interpreter and imports",
+  "git_dirty_scope": "working tree excluding results/"
+}
