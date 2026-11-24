@@ -1,0 +1,44 @@
+{
+  "config_schema_version": "1.1.0",
+  "experiment_id": "EXP-005",
+  "mode": "confirmatory",
+  "label": "Confirmatory second test on a real network (research/experiments/EXP-005/protocol.md, frozen v1.0, owner-approved 2026-11-24)",
+  "notes": "p grid = round(c p_c(G_real), 6) with c = 6 x EXP-002 grid and p_c = 0.0483851339839852 fitted on the degree sequence (protocol section 11.5; data/real_network_calibration.json). ws_beta is unused.",
+  "master_seed": 20261128,
+  "n": 362,
+  "mean_degree": 10.98342541436464,
+  "ws_beta": 0.0,
+  "topologies": [
+    "real",
+    "real_er",
+    "real_dpr"
+  ],
+  "models": {
+    "ic": {
+      "p": [
+        0.005806,
+        0.014516,
+        0.029031,
+        0.043547,
+        0.058062,
+        0.087093,
+        0.145155
+      ]
+    }
+  },
+  "real_graph": {
+    "path": "data/processed/maier_fb.json",
+    "sha256": "e286957db7367d10bf401217116787ee4a7ccef0fd6a70ebbcb20e427fc529cc"
+  },
+  "dpr_swaps_per_edge": 10,
+  "seed_rules": [
+    "random"
+  ],
+  "seed_counts": [
+    1
+  ],
+  "replicates": 120,
+  "cascades": 200,
+  "verify": false,
+  "engine": "vectorised"
+}

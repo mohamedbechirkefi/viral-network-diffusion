@@ -1,0 +1,30 @@
+{
+ "s1_inside_sesoi": {
+  "ws - er @ c=0.5": true,
+  "ws - er @ c=1": true,
+  "ws - er @ c=1.5": false,
+  "ws - er @ c=2": false,
+  "ws - er @ c=3": false,
+  "ba - er @ c=0.5": true,
+  "ba - er @ c=1": true,
+  "ba - er @ c=1.5": false,
+  "ba - er @ c=2": false,
+  "ba - er @ c=3": false
+ },
+ "exp002_rejected": [
+  "ws - er @ p=0.05",
+  "ws - er @ p=0.1",
+  "ws - er @ p=0.15",
+  "ws - er @ p=0.2",
+  "ws - er @ p=0.3",
+  "ws - er @ p=0.5",
+  "ba - er @ p=0.02",
+  "ba - er @ p=0.05",
+  "ba - er @ p=0.1",
+  "ba - er @ p=0.15",
+  "ba - er @ p=0.2",
+  "ba - er @ p=0.3",
+  "ba - er @ p=0.5"
+ ],
+ "verdict": "unresolved: some S1 intervals lie inside the SESOI and some do not; the reading depends on the p-to-c mapping, which the frozen texts do not define (owner decision)"
+}

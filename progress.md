@@ -215,3 +215,58 @@ $ shasum -a 256 research/protocol.md -> d984f2f8f2fba8f5ddabe097b0a82be8d17ab652
 
 ### Next action
 Coordinator: schedule M3.
+
+## 2026-11-25, session M3 (confirmatory runs)
+
+**Milestone:** M3. **Starting state:** `ceeee8c`, tree clean, every frozen hash matching (study protocol, five EXP protocols, eight configs, data manifest, raw and processed real-network files). **Authority:** the coordinator's M3 brief (the owner said "Start next" on 2026-11-25). Times below are UTC (2026-11-24 evening UTC is 2026-11-25 local).
+
+### Pre-run checks (all passed)
+```
+$ ../.tools/py/bin/uv sync --frozen --all-groups --all-extras   -> Audited 25 packages
+$ .venv/bin/python -m pytest                                     -> 168 passed in 6.10s
+$ hash check against research/freeze.json                        -> all True (protocols, configs, manifest, raw GML, processed JSON)
+$ nice .venv/bin/viral smoke --quiet --out <dir>                 -> EXP-001-20261124T233106Z-99c548ac (EXPLORATORY, seed 20261124)
+  runtime 3.50 s; graphs 15 (failures 0); cascades checked 5250 (failures 0)
+$ .venv/bin/python scripts/validate_metrics.py <smoke dir> <json> -> 54 checks, 0 failed (EXPLORATORY)
+```
+Then `viral.confirmatory`, `scripts/analyse_confirmatory.py` and `tests/test_confirmatory.py` (6 tests) were written and committed as `32961c3` before any confirmatory output: `pytest` 174 passed. The freeze guard accepted all eight frozen configs.
+
+### Confirmatory runs (revision 32961c3, clean tree, two workers under nice -n 10)
+| run id | config | runtime | graphs / cascades | exit |
+|---|---|---|---|---|
+| EXP-002-20261124T233447Z-2c7febb6 | EXP-002 | 1047.8 s | 360 / 2,016,000 | 0 |
+| EXP-003-20261124T234212Z-a2d668ab | EXP-003 | 502.4 s | 90 / 504,000 | 0 |
+| EXP-004-20261124T233447Z-de14a4b3 | S1 | 104.3 s | 90 / 90,000 | 0 |
+| EXP-004-20261124T233637Z-916e8d29 | S2 | 73.8 s | 60 / 84,000 | 0 |
+| EXP-004-20261124T233755Z-e1d24091 | S3 | 90.2 s | 90 / 126,000 | 0 |
+| EXP-004-20261124T235044Z-e31dba07 | S4 N=500 (optional) | 22.9 s | 90 / 126,000 | 0 |
+| EXP-004-20261124T235110Z-40385ec3 | S4 N=2000 (optional) | 60.0 s | 90 / 126,000 | 0 |
+| EXP-005-20261124T233932Z-d277f271 | EXP-005 | 138.3 s | 360 / 504,000 | 0 |
+
+Wall clock 23:34:46Z to 23:52:52Z. 0 graph-check failures; no retry; no dropped run. EXP-004 graphs verified identical (seed and degree second moment) to EXP-002 replicates 0 to 29 (210 of 210 graphs).
+
+### Frozen analysis (scripts/analyse_confirmatory.py; Holm, protocol 11.3 intervals)
+- EXP-002: 13 of 14 rejected; 7 intervals inside the SESOI. Not rejected: WS - ER at p = 0.02. Largest: WS - ER at p = 0.30, -0.3529 [-0.3601, -0.3456] (level 0.9833); BA - ER at p = 0.20, +0.0969 [+0.0921, +0.1018] (level 0.9950). Both contrasts change sign with p.
+- EXP-003 (grid mean, 10 random seeds): WS - ER +0.3664 [+0.3602, +0.3727] (level 0.95); BA - ER +0.0439 [+0.0366, +0.0498] (level 0.975); both rejected.
+- EXP-004 S1: 10 of 10 rejected; inside SESOI at c = 0.5 and 1, outside at 1.5, 2, 3. S1 cross-reading: unresolved (owner, D-012).
+- EXP-004 S2 (BA - ba_dpr): 3 of 7 rejected (p = 0.1: -0.0019; 0.3: +0.0276 [+0.0145, +0.0409]; 0.5: +0.0203 [+0.0116, +0.0295]); intervals inside SESOI for p = 0.02 to 0.20.
+- EXP-004 S3: 13 of 14 rejected, same signs and magnitudes as EXP-002. S4 (optional): 13 of 14 at N = 500 and at N = 2000, same pattern.
+- EXP-005: 11 of 14 rejected. real - real_er: 7 of 7 (+0.0385 at p = 0.087, -0.2080 at p = 0.145). real - real_dpr: 4 of 7, all negative (-0.0688 [-0.0724, -0.0653] at p = 0.087; -0.1317 [-0.1380, -0.1253] at p = 0.145); the three non-rejections have intervals inside the SESOI.
+
+### Records
+- `results/confirmatory/` (analysis JSON and CSV, figures, run manifests, logs, raw SHA-256; `MANIFEST.sha256`); raw `result.json` files git-ignored in `results/raw/confirmatory/`.
+- `research/experiments/EXP-00{2..5}/`: config copies, run manifests, `metrics.csv`, figures.
+- Journal (8 confirmatory entries, 2 exploratory), registry statuses, claims register (89 rows, `scripts/build_records.py`), `research/publication/artifact_manifest.json` (40 artifacts), limitations 12 to 17, decision log D-012, roadmap.
+
+### Failures and risks
+- **The 12-part experiment reports were not written:** the file tool refused to create `research/experiments/EXP-002/report.md`; per the coordinator's instruction they were left unwritten (EXP-001 to EXP-005). No PDFs were built.
+- S1 cross-reading needs an owner decision (D-012).
+
+### Final checks
+```
+$ .venv/bin/python -m pytest   -> 174 passed in 6.98s
+$ freeze guard on all eight frozen configs -> accepted (hashes unchanged)
+```
+
+### Next action
+Owner: decide the S1 cross-reading and how the experiment reports should be produced. Then M4 (interpretation, second review pass, manuscript).

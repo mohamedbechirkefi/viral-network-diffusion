@@ -1,0 +1,26 @@
+{
+  "run_id": "EXP-005-20261124T233932Z-d277f271",
+  "experiment_id": "EXP-005",
+  "mode": "confirmatory",
+  "label": "Confirmatory second test on a real network (research/experiments/EXP-005/protocol.md, frozen v1.0, owner-approved 2026-11-24)",
+  "config_hash": "d277f271e6863fba0f5a3ee24796b1e94e273c5c7f4a4276c20e8e7a651218ae",
+  "master_seed": 20261128,
+  "engine": "vectorised",
+  "git_revision": "32961c3c399263ff3e39a9dbd3f78be3ff934922",
+  "git_dirty": false,
+  "versions": {
+    "python": "3.12.1",
+    "numpy": "2.5.4",
+    "networkx": "3.7",
+    "jsonschema": "4.26.0",
+    "viral": "0.1.0"
+  },
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "cpu": "Apple M1 Pro, 10 logical CPUs",
+  "started_utc": "2026-11-24T23:39:32Z",
+  "finished_utc": "2026-11-24T23:41:50Z",
+  "runtime_seconds": 138.31453012499696,
+  "peak_rss_bytes": 96452608,
+  "peak_memory_note": "process peak RSS from getrusage; includes interpreter and imports",
+  "git_dirty_scope": "working tree excluding results/"
+}

@@ -14,3 +14,12 @@ No results exist yet. These are the limitations known by design.
 9. **Toolchain.** No TeX distribution; `manuscript.tex` is generated but not compiled locally (decision D-002).
 10. **Pre-freeze exposure.** The protocol was frozen on 2026-11-24 (v1.0), after exploratory pilot values of the primary contrast had been seen at R = 10 (disclosed in `research/freeze.json`, C4). The per-`p` primary analysis and R = 120 were chosen with knowledge of those values.
 11. **LT depth equals duration by construction** under the frozen definition (EXP-003 amendment); the two are not distinct outcomes in EXP-003.
+
+## Added after the confirmatory runs (M3, 2026-11-25)
+
+12. **High power, tiny effects.** With 120 matched replicates and common random numbers, differences far below the SESOI (for example 3e-05 in `S`) are rejected by Holm. A rejection is therefore not a practically important effect; every result is reported with whether its interval lies inside `[-0.02, 0.02]`.
+13. **Sign changes with `p`.** In EXP-002 both contrasts change sign across the `p` grid, so no single "topology effect" summarises the study; the grid mean (secondary) hides this.
+14. **S1 reading unresolved.** The EXP-004 S1 criterion refers to "corresponding multipliers" of each EXP-002 `p`, which the frozen texts do not define. The S1 intervals lie inside the SESOI at multipliers 0.5 and 1 and outside it at 1.5, 2 and 3, so the reading depends on the mapping and is left to the owner (D-012).
+15. **Saturated and flat cells in EXP-003.** At `phi` = 0.18 and 0.20 all three topologies saturate (mean `S` above 0.99 with ten random seeds); the mean `S` values at `phi` = 0.26 and 0.28 are identical to four decimals for ER and BA and nearly so for WS (0.5247 and 0.5212), because few nodes' activation requirements change between those thresholds. The EXP-003 grid mean is driven by `phi` 0.22 to 0.30.
+16. **EXP-005 is conditional on one network,** whose 14 isolated nodes and 20 components differ from its degree-preserving randomisations (giant component 0.909 versus 0.961 on average); part of the real minus `real_dpr` difference may come from component structure rather than clustering.
+17. **Experiment reports missing.** The 12-part `report.md` files for EXP-001 to EXP-005 were not written in M3: the file tool refused to create them, and the coordinator instructed that they be left unwritten. The machine-readable results, figures and claims exist.

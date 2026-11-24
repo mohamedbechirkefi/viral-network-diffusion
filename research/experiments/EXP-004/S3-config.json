@@ -1,0 +1,39 @@
+{
+  "config_schema_version": "1.1.0",
+  "experiment_id": "EXP-004",
+  "label": "Confirmatory sensitivity S3 (exact edge matching) of EXP-004 (frozen v1.0)",
+  "notes": "er_trim and ws_trim are ER and WS replicate r trimmed to the BA edge count 2991. Contrasts ws_trim minus er_trim and ba minus er_trim per p.",
+  "topologies": [
+    "er_trim",
+    "ws_trim",
+    "ba"
+  ],
+  "models": {
+    "ic": {
+      "p": [
+        0.02,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.3,
+        0.5
+      ]
+    }
+  },
+  "mode": "confirmatory",
+  "master_seed": 20261125,
+  "n": 1000,
+  "mean_degree": 6,
+  "ws_beta": 0.1,
+  "seed_rules": [
+    "random"
+  ],
+  "seed_counts": [
+    1
+  ],
+  "replicates": 30,
+  "cascades": 200,
+  "verify": false,
+  "engine": "vectorised"
+}

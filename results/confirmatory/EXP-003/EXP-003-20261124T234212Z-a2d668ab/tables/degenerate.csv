@@ -1,0 +1,22 @@
+model,param,seed_rule,seed_count,topology,reasons
+lt,0.18,highest_degree,1,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.18,highest_degree,10,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.18,highest_degree,10,er,every cascade reached >= 99 percent of nodes
+lt,0.18,highest_degree,10,ws,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.18,random,10,ws,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.2,highest_degree,1,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.2,highest_degree,10,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.2,highest_degree,10,er,every cascade reached >= 99 percent of nodes
+lt,0.2,highest_degree,10,ws,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.2,random,10,ws,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.22,highest_degree,10,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.24,highest_degree,10,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.26,highest_degree,1,ws,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+lt,0.26,highest_degree,10,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.26,random,1,ws,99.9% of cascades stayed at the seed set
+lt,0.28,highest_degree,1,ws,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+lt,0.28,highest_degree,10,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.28,random,1,ws,99.9% of cascades stayed at the seed set
+lt,0.3,highest_degree,1,ws,every cascade stayed at its seed set;zero variance across all cascades;100.0% of cascades stayed at the seed set
+lt,0.3,highest_degree,10,ba,zero variance across all cascades;every cascade reached >= 99 percent of nodes
+lt,0.3,random,1,ws,99.9% of cascades stayed at the seed set

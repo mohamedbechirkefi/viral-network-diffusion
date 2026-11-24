@@ -1,0 +1,3 @@
+contrast,param,grid,mean,sd,n_replicates,n_boot,p_boot,p_holm,holm_step,step_alpha,reject,interval_level,lo,hi,equivalent_within_sesoi
+ws - er,grid mean,0.18;0.2;0.22;0.24;0.26;0.28;0.3,0.3664201190476189,0.017878631135230836,30,10000,0.0,0.0,1,0.05,True,0.95,0.3601531232142857,0.3726688934523809,False
+ba - er,grid mean,0.18;0.2;0.22;0.24;0.26;0.28;0.3,0.0439430238095238,0.016426551524662037,30,10000,0.0,0.0,0,0.025,True,0.975,0.03657608184523807,0.049757214285714294,False

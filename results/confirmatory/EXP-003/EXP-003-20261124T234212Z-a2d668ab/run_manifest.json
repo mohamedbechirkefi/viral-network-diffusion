@@ -1,0 +1,26 @@
+{
+  "run_id": "EXP-003-20261124T234212Z-a2d668ab",
+  "experiment_id": "EXP-003",
+  "mode": "confirmatory",
+  "label": "Confirmatory fractional-threshold matrix of research/experiments/EXP-003/protocol.md (frozen v1.0, owner-approved 2026-11-24)",
+  "config_hash": "a2d668abb8f1dd40c442582d4276509c81040a95a47f2d00277abdc9f47a2abd",
+  "master_seed": 20261126,
+  "engine": "vectorised",
+  "git_revision": "32961c3c399263ff3e39a9dbd3f78be3ff934922",
+  "git_dirty": false,
+  "versions": {
+    "python": "3.12.1",
+    "numpy": "2.5.4",
+    "networkx": "3.7",
+    "jsonschema": "4.26.0",
+    "viral": "0.1.0"
+  },
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "cpu": "Apple M1 Pro, 10 logical CPUs",
+  "started_utc": "2026-11-24T23:42:12Z",
+  "finished_utc": "2026-11-24T23:50:34Z",
+  "runtime_seconds": 502.4403423749973,
+  "peak_rss_bytes": 97435648,
+  "peak_memory_note": "process peak RSS from getrusage; includes interpreter and imports",
+  "git_dirty_scope": "working tree excluding results/"
+}

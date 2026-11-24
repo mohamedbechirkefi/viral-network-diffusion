@@ -1,14 +1,14 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # VIRAL roadmap
 
-Updated 2026-11-24 (session DATA-FREEZE). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
+Updated 2026-11-25 (session M3). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
 
 | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|
 | M0 Bootstrap and feasibility | none | P0 | 0.25 d | done (pending owner review of scope and cost) | none |
 | M1 Research and preregistration | M0 | P0 | 0.5 d | done: gate passed, protocol v1.0 frozen (owner-approved 2026-11-24; `research/freeze.json`) | none |
 | M2 Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1.5 d | done for the pre-freeze scope (see M2 section); EXP-001 report.md pending (M3) | none for implementation; owner decisions D-007 before the freeze |
-| M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | not started; EXP-002 to EXP-005 frozen, not yet run | scheduling by the coordinator |
+| M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | done for the gate (2026-11-25): full frozen matrix of EXP-002 to EXP-005 run, 8 runs, none failed or dropped; 12-part reports not written (file tool refused; D-012) | owner: S1 cross-reading (D-012); reports outstanding |
 | M4 Interpretation | M3 | P0 | 0.75 d | not started | none |
 | M5 Interactive experience | M3 results (sandbox can start at M2) | P1 | 0.75 d | not started | none |
 | M6 Release candidate | M4, M5 | P0 | 0.25 d | not started | G-PUBLIC for any publication |
@@ -44,6 +44,7 @@ Updated 2026-11-24 (session DATA-FREEZE). Effort is a planning estimate in focus
 - Tasks: EXP-001 report; after the freeze, EXP-002 full matrix, EXP-004 (S1 to S3, S4 optional), EXP-003 (optional if the budget is threatened).
 - 11.6 additions: individual reports generated as experiments finish; unsuccessful experiments and deviations recorded; provenance captured at run time.
 - Acceptance: complete planned matrix or documented failure; no silently dropped runs; raw results retained.
+- Status (2026-11-25, session M3): gate holds. EXP-002 (2,016,000 cascades), EXP-003 (504,000), EXP-004 S1 to S3 and optional S4 (552,000), EXP-005 (504,000) all complete at revision `32961c3`; raw results git-ignored with committed SHA-256; analysis tables, figures, run manifests and logs in `results/confirmatory/`; 89 claim rows generated. Outstanding: the 12-part `report.md` of each experiment (file tool refused; coordinator instruction to leave them unwritten) and the owner's S1 cross-reading decision (D-012).
 
 ## M4 Interpretation
 

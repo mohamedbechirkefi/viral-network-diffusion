@@ -1,0 +1,20 @@
+{
+ "result_json": {
+  "path": "results/raw/confirmatory/EXP-002/EXP-002-20261124T233447Z-2c7febb6/result.json",
+  "sha256": "f6b8e03e0697e228988f01ff7130a0c9c8cafcc86fac26b43a8dac071a44af94"
+ },
+ "run_manifest": {
+  "path": "results/raw/confirmatory/EXP-002/EXP-002-20261124T233447Z-2c7febb6/run_manifest.json",
+  "sha256": "dba5ab82be66f98d10f62e206459d0c4abed218e12b755122cf80a760f07751c"
+ },
+ "outputs": {
+  "analysis.json": "a84ce71ad2e3679169a78378c83424e983c2d7f4af7eb1e3188d218f64b4ce30",
+  "figures/fig_mean_S_by_param.png": "09474a8a498167fa4e337b2e2b9b07b4d6389e81f44cf533f77f4df27b4d6bd3",
+  "figures/fig_mean_S_by_param.svg": "3a4316b9429bfb9ca933d0f4115b848093943e5c0a3ab0a175c34cfe0190fbcf",
+  "figures/fig_primary_contrasts.png": "b2de4bfc8e22f3f6ef0c1e09ff065d470a6cffacf25829f9b172ef8e95bff8b0",
+  "figures/fig_primary_contrasts.svg": "d7d938889cf07a6d9d32ba37f39f354fde905b9a518754cdd506ec97e074c3df",
+  "primary_contrasts.csv": "55bfc1ddb02bcff50efeea124a4db32048a734c72591a7e7b057e52f79da27c5",
+  "secondary_contrasts.csv": "3cabff3736e3d0fbe81a1a6725d1444d19e0fc542fd392b60b5bc32a1d195e78",
+  "topology_means.csv": "e4511c06f32d33a8f9bf5260f1f04cac6a417407723dcc81d0efce27646b7cf6"
+ }
+}

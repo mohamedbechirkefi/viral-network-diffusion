@@ -1,0 +1,26 @@
+{
+  "run_id": "EXP-004-20261124T233447Z-de14a4b3",
+  "experiment_id": "EXP-004",
+  "mode": "confirmatory",
+  "label": "Confirmatory sensitivity S1 (threshold rescaling, p = c p_c(G)) of EXP-004 (frozen v1.0)",
+  "config_hash": "de14a4b374f26f4a688857695c225e8ed7986296f8183a0aba343ac1e4d4148d",
+  "master_seed": 20261125,
+  "engine": "vectorised",
+  "git_revision": "32961c3c399263ff3e39a9dbd3f78be3ff934922",
+  "git_dirty": false,
+  "versions": {
+    "python": "3.12.1",
+    "numpy": "2.5.4",
+    "networkx": "3.7",
+    "jsonschema": "4.26.0",
+    "viral": "0.1.0"
+  },
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "cpu": "Apple M1 Pro, 10 logical CPUs",
+  "started_utc": "2026-11-24T23:34:47Z",
+  "finished_utc": "2026-11-24T23:36:31Z",
+  "runtime_seconds": 104.2917177499985,
+  "peak_rss_bytes": 69173248,
+  "peak_memory_note": "process peak RSS from getrusage; includes interpreter and imports",
+  "git_dirty_scope": "working tree excluding results/"
+}

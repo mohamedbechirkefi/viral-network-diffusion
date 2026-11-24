@@ -1,0 +1,41 @@
+{
+  "config_schema_version": "1.1.0",
+  "experiment_id": "EXP-003",
+  "mode": "confirmatory",
+  "label": "Confirmatory fractional-threshold matrix of research/experiments/EXP-003/protocol.md (frozen v1.0, owner-approved 2026-11-24)",
+  "notes": "phi grid 0.18 to 0.30 (protocol section 11.4); master seed 20261126 (section 11.2); R = 30 as in the EXP-003 protocol.",
+  "master_seed": 20261126,
+  "n": 1000,
+  "mean_degree": 6,
+  "ws_beta": 0.1,
+  "topologies": [
+    "er",
+    "ws",
+    "ba"
+  ],
+  "models": {
+    "lt": {
+      "phi": [
+        0.18,
+        0.2,
+        0.22,
+        0.24,
+        0.26,
+        0.28,
+        0.3
+      ]
+    }
+  },
+  "seed_rules": [
+    "random",
+    "highest_degree"
+  ],
+  "seed_counts": [
+    1,
+    10
+  ],
+  "replicates": 30,
+  "cascades": 200,
+  "verify": false,
+  "engine": "vectorised"
+}
