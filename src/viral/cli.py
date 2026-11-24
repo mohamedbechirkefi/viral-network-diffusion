@@ -28,7 +28,7 @@ DEFAULT_SMOKE = REPO / "experiments" / "EXP-001" / "config.json"
 def _execute(config_path: Path, out_root: Path | None, quiet: bool) -> int:
     cfg = load_config(config_path)
     if cfg.mode == "confirmatory":
-        ok, why = frozen_status(REPO, cfg.experiment_id)
+        ok, why = frozen_status(REPO, cfg.experiment_id, config_path)
         if not ok:
             print(f"REFUSED: {cfg.experiment_id} config is confirmatory but its protocol is not frozen: {why}.", file=sys.stderr)
             print("Freezing is the owner's decision (G-FREEZE). Use an exploratory config instead.", file=sys.stderr)

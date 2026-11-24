@@ -1,0 +1,38 @@
+{
+  "config_schema_version": "1.1.0",
+  "experiment_id": "EXP-004",
+  "label": "Confirmatory sensitivity S1 (threshold rescaling, p = c p_c(G)) of EXP-004 (frozen v1.0)",
+  "notes": "Multipliers c; each graph runs at p = min(1, c p_c(G)). EXP-002 master seed so the graphs are EXP-002 replicates 0 to 29.",
+  "p_scale": "pc_multiple",
+  "topologies": [
+    "er",
+    "ws",
+    "ba"
+  ],
+  "models": {
+    "ic": {
+      "p": [
+        0.5,
+        1,
+        1.5,
+        2,
+        3
+      ]
+    }
+  },
+  "mode": "confirmatory",
+  "master_seed": 20261125,
+  "n": 1000,
+  "mean_degree": 6,
+  "ws_beta": 0.1,
+  "seed_rules": [
+    "random"
+  ],
+  "seed_counts": [
+    1
+  ],
+  "replicates": 30,
+  "cascades": 200,
+  "verify": false,
+  "engine": "vectorised"
+}

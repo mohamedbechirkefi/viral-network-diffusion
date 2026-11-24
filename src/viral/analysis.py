@@ -185,3 +185,29 @@ def project_runtime(doc: dict, target: ExperimentConfig) -> dict:
                     total += s * target.cascades * target.replicates
     return {"projected_seconds": total, "cells_exact": exact, "cells_nearest_param": approx, "cells_missing": missing,
             "note": "engine time plus graph generation only; graph statistics, verification and serialisation excluded"}
+
+
+def confirmatory_contrasts(doc: dict, treatments: list[str], control: str, model: str = "ic", rule: str = "random", count: int = 1,
+                           n_boot: int = 10000, alpha: float = 0.05, sesoi: float = 0.02) -> list[dict]:
+    """Per-parameter paired contrasts (treatment minus control) with Holm over the whole family.
+
+    The family is every (treatment, parameter) pair: for EXP-002 2 topologies x 7 p = 14 tests.
+    Replicates enter only if present for the control and every treatment at every parameter.
+    The bootstrap stream is derived from the experiment's master seed (config.bootstrap_rng).
+    """
+    from .config import bootstrap_rng
+    from .stats import equivalence, holm_bootstrap_contrasts
+
+    cells = [c for c in doc["cells"] if c["model"] == model and c["seed_rule"] == rule and c["seed_count"] == count]
+    params = sorted({c["param"] for c in cells})
+    s = {(c["topology"], c["param"], c["replicate"]): c["summary"]["mean_S"] for c in cells}
+    reps = sorted({c["replicate"] for c in cells})
+    reps = [r for r in reps if all((t, p, r) in s for t in [control, *treatments] for p in params)]
+    diffs = {f"{t} - {control} @ {p:g}": [s[(t, p, r)] - s[(control, p, r)] for r in reps] for t in treatments for p in params}
+    res = holm_bootstrap_contrasts(diffs, n_boot, bootstrap_rng(doc["config"]["master_seed"]), alpha)
+    rows = []
+    for t in treatments:
+        for p in params:
+            k = f"{t} - {control} @ {p:g}"
+            rows.append({"contrast": f"{t} - {control}", "param": p, **res[k], "equivalent_within_sesoi": equivalence(res[k]["lo"], res[k]["hi"], sesoi)})
+    return rows

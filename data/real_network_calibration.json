@@ -1,0 +1,40 @@
+{
+ "label": "EXPLORATORY calibration fit (research/protocol.md section 11.5); degree sequence only, no diffusion outcome",
+ "dataset": "maier_fb",
+ "processed_sha256": "e286957db7367d10bf401217116787ee4a7ccef0fd6a70ebbcb20e427fc529cc",
+ "method": "p_c = <k> / (<k^2> - <k>) over all nodes (viral.graphs.percolation_threshold); p_j = min(1, round(c_j p_c, 6))",
+ "aggregate_statistics": {
+  "n": 362,
+  "m": 1988,
+  "mean_degree": 10.98342541436464,
+  "second_moment_degree": 237.98342541436463,
+  "max_degree": 63,
+  "min_degree": 0,
+  "p_c": 0.0483851339839852,
+  "n_components": 20,
+  "giant_component_fraction": 0.9088397790055248,
+  "n_isolated": 14,
+  "average_clustering": 0.5812389693504318
+ },
+ "fitted": {
+  "p_c": 0.0483851339839852,
+  "multipliers": [
+   0.12,
+   0.3,
+   0.6,
+   0.9,
+   1.2,
+   1.8,
+   3.0
+  ],
+  "exp005_p_grid": [
+   0.005806,
+   0.014516,
+   0.029031,
+   0.043547,
+   0.058062,
+   0.087093,
+   0.145155
+  ]
+ }
+}

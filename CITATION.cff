@@ -10,7 +10,7 @@ authors:
     given-names: Mohamed Bechir
 version: 0.0.1
 date-released: 2026-11-24
-abstract: "Independent research project in progress (M0). Simulation study of independent cascade and threshold diffusion on synthetic random, small-world and scale-free graphs. No findings yet."
+abstract: "Independent research project in progress (protocol v1.0 frozen 2026-11-24, not yet run). Simulation study of independent cascade and threshold diffusion on synthetic random, small-world and scale-free graphs, with a second test on one anonymized real friendship network. No findings yet. Developed with an AI research and development assistant (Claude, Anthropic), which is not an author."
 keywords:
   - network diffusion
   - independent cascade

@@ -1,8 +1,10 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
-<!-- Skeleton of headings only (M0, 2026-11-24). No content, results or claims yet. Working title from master prompt section 10; to be revised after results. -->
+<!-- Skeleton of headings plus author metadata (M0, 2026-11-24; authorship C3 added at the freeze). No results or claims yet. Working title from master prompt section 10; to be revised after results. -->
 # The mathematics of going viral (working title)
 
 ## Author and affiliation metadata
+
+Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) was used for code, analysis and drafting under the author's direction; it is not an author.
 
 ## Abstract
 

@@ -97,3 +97,52 @@ def required_replicates(sd_diff: float, half_width: float, z: float = 1.95996398
     if sd_diff == 0:
         return 2
     return max(2, math.ceil((z * sd_diff / half_width) ** 2))
+
+
+def holm_bootstrap_contrasts(diffs: Mapping[str, Sequence[float]], n_boot: int, rng: np.random.Generator, alpha: float = 0.05) -> dict:
+    """Confirmatory family: paired cluster bootstrap per contrast, Holm step-down, Holm-step intervals.
+
+    research/protocol.md section 11.3 (owner-approved amendment 2026-11-24, round 2):
+    - every contrast is a vector of paired replicate differences over the same R matched sets;
+      one (n_boot x R) matrix of resampling indices is drawn once from `rng` and shared by all
+      contrasts, so resamples stay paired across contrasts;
+    - p_boot = min(1, 2 min(P*(mean <= 0), P*(mean >= 0))); a zero-variance contrast stays in
+      the family (its p_boot is 1 if its constant difference is 0, else 0);
+    - Holm: sort by (p_boot, contrast name); step i (0-based) is tested at alpha / (m - i);
+      testing stops at the first non-rejection j*;
+    - interval: percentile bootstrap interval at level 1 - alpha / (m - i) for steps i <= j*,
+      and at level 1 - alpha / (m - j*) for steps after j* (every step uses its own level when
+      all are rejected). These intervals are reported; decisions use the Holm p-values.
+    """
+    if not diffs:
+        raise StatsError("no contrasts")
+    arrays = {k: np.asarray(v, dtype=float) for k, v in diffs.items()}
+    sizes = {a.size for a in arrays.values()}
+    if len(sizes) != 1 or any(a.ndim != 1 for a in arrays.values()):
+        raise StatsError("all contrasts must have the same number of paired replicates")
+    r = sizes.pop()
+    if r < 2 or n_boot < 1 or not (0 < alpha < 1):
+        raise StatsError("need R >= 2, n_boot >= 1 and 0 < alpha < 1")
+    idx = rng.integers(0, r, size=(n_boot, r))
+    boot = {k: a[idx].mean(axis=1) for k, a in arrays.items()}
+    pvals = {k: float(min(1.0, 2 * min(np.mean(b <= 0), np.mean(b >= 0)))) for k, b in boot.items()}
+    h = holm(pvals, alpha)
+    order = sorted(pvals, key=lambda k: (pvals[k], k))
+    m = len(order)
+    stop = next((i for i, k in enumerate(order) if not h[k]["reject"]), None)
+    out = {}
+    for i, k in enumerate(order):
+        step = i if (stop is None or i <= stop) else stop
+        level = 1 - alpha / (m - step)
+        lo, hi = np.quantile(boot[k], [(1 - level) / 2, 1 - (1 - level) / 2])
+        out[k] = {
+            "mean": float(arrays[k].mean()), "sd": float(arrays[k].std(ddof=1)), "n_replicates": r, "n_boot": int(n_boot),
+            "p_boot": pvals[k], "p_holm": h[k]["p_holm"], "holm_step": i, "step_alpha": h[k]["step_alpha"],
+            "reject": h[k]["reject"], "interval_level": float(level), "lo": float(lo), "hi": float(hi),
+        }
+    return out
+
+
+def equivalence(lo: float, hi: float, sesoi: float = 0.02) -> bool:
+    """Equivalence is claimed only if the reported interval lies entirely inside [-sesoi, +sesoi]."""
+    return -sesoi <= lo and hi <= sesoi

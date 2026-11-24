@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # EXP-001 protocol: engine verification and smoke matrix
 
-**Status: DRAFT, awaiting owner freeze. Exploratory by design: no confirmatory claim may come from EXP-001.**
-Version 0.1, 2026-11-24. Protocol hash: none (not frozen). Parent protocol: `research/protocol.md` (DRAFT).
+**Status: FROZEN text, version 1.0 (owner-approved 2026-11-24). Exploratory by design: no confirmatory claim may come from EXP-001; it has no confirmatory config.**
+Version 1.0, 2026-11-24. Protocol hash: in `research/freeze.json`. Parent protocol: `research/protocol.md` (frozen v1.0).
 
 1. **Precise question.** Does the diffusion engine implement IC and fractional-threshold diffusion correctly on the three graph families, and what are the runtime and the between-replicate variability needed to size EXP-002?
 2. **Mechanism.** Not a scientific mechanism test. Verifies that the code operationalises the models of Kempe, Kleinberg and Tardos (2003) and Watts (2002).
@@ -30,4 +30,8 @@ Version 0.1, 2026-11-24. Protocol hash: none (not frozen). Parent protocol: `res
 16. **Anticipated failure modes.** Off-by-one in round counting; reuse of RNG streams across arms; BA edge count differing from expectation; WS generator not connected.
 17. **Sensitivity tests.** None; this is a verification experiment.
 18. **What would contradict the hypothesis.** Any failed check above means the engine is not ready and EXP-002 cannot run.
-19. **Reproducibility commands (planned, not yet implemented).** `uv run python -m viral.cli smoke --config experiments/EXP-001/config.json` and `uv run pytest`.
+19. **Reproducibility commands.** `.venv/bin/viral smoke --config experiments/EXP-001/config.json`; planning probe `.venv/bin/viral run --config experiments/EXP-001/probe-config.json`; tests `.venv/bin/python -m pytest`.
+
+## Amendments before freeze (owner-approved 2026-11-24, round 2)
+
+- The two M2 runs (smoke `EXP-001-20261124T162117Z-99c548ac` and planning probe `EXP-001-20261124T162121Z-d947f41d`, both exploratory) informed the amendments of `research/protocol.md` section 11 and are disclosed in `research/freeze.json` (C4). No change to the EXP-001 design.

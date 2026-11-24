@@ -157,7 +157,9 @@ def _fake_repo(tmp_path, proto_text="# protocol\n", recorded=None, parent="Statu
 
 
 def test_protocol_gate(tmp_path):
-    assert frozen_status(_fake_repo(tmp_path / "a"), "EXP-002") == (True, "frozen")
+    # registry and parent checks pass, but without a freeze record the gate stays closed
+    ok, why = frozen_status(_fake_repo(tmp_path / "a"), "EXP-002")
+    assert not ok and "freeze record" in why
     assert not frozen_status(_fake_repo(tmp_path / "b", recorded="none (draft)"), "EXP-002")[0]
     assert not frozen_status(_fake_repo(tmp_path / "c", recorded="0" * 64), "EXP-002")[0]
     assert not frozen_status(_fake_repo(tmp_path / "d", parent="**Status: DRAFT, NOT FROZEN.**"), "EXP-002")[0]
@@ -165,17 +167,22 @@ def test_protocol_gate(tmp_path):
     assert not frozen_status(tmp_path / "nowhere", "EXP-002")[0]
 
 
-def test_real_repo_protocols_are_not_frozen():
-    for exp in ("EXP-001", "EXP-002", "EXP-003", "EXP-004"):
-        ok, why = frozen_status(REPO, exp)
-        assert not ok, why
+def test_real_repo_exploratory_experiment_is_not_frozen():
+    ok, why = frozen_status(REPO, "EXP-001", REPO / "experiments" / "EXP-001" / "config.json")
+    assert not ok, why
 
 
-def test_cli_run_refuses_confirmatory_config(capsys, tmp_path):
-    rc = cli.main(["run", "--config", str(REPO / "experiments" / "EXP-002" / "config.json"), "--out", str(tmp_path)])
+def test_cli_run_refuses_unfrozen_confirmatory_config(capsys, tmp_path):
+    # Never point this test at a frozen config: that would start a confirmatory run.
+    raw = json.loads((REPO / "experiments" / "EXP-002" / "config.json").read_text())
+    raw["master_seed"] += 1
+    cfg = tmp_path / "changed.json"
+    cfg.write_text(json.dumps(raw))
+    out = tmp_path / "out"
+    rc = cli.main(["run", "--config", str(cfg), "--out", str(out)])
     assert rc == 3
+    assert not out.exists()
     assert "REFUSED" in capsys.readouterr().err
-    assert list(tmp_path.iterdir()) == []
 
 
 def test_cli_smoke_refuses_confirmatory_and_reports_bad_config(tmp_path, capsys):

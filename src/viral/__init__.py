@@ -6,5 +6,7 @@ social platforms or real human behaviour.
 """
 
 __version__ = "0.1.0"
-RESULT_SCHEMA_VERSION = "1.0.0"
-CONFIG_SCHEMA_VERSION = "1.0.0"
+RESULT_SCHEMA_VERSION = "1.1.0"
+CONFIG_SCHEMA_VERSION = "1.1.0"
+RESULT_SCHEMA_VERSIONS = ("1.0.0", "1.1.0")  # 1.0.0 documents (M2 exploratory runs) still validate
+CONFIG_SCHEMA_VERSIONS = ("1.0.0", "1.1.0")

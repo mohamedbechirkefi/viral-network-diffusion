@@ -1,14 +1,122 @@
 {
-  "schema_version": "0.1",
-  "updated": "2026-11-24",
-  "note": "No dataset is downloaded or bundled. All experiments use synthetic graphs generated from recorded generator, parameters and seed (decision D-003). Licence of this file: see NOTICE.md.",
-  "synthetic_generators": [
-    {"id": "er_gnm", "generator": "networkx.gnm_random_graph", "planned_version": "networkx 3.7", "parameters": {"n": 1000, "m": 3000}, "seed": "derived per run from the experiment master seed", "status": "planned"},
-    {"id": "ws", "generator": "networkx.watts_strogatz_graph", "planned_version": "networkx 3.7", "parameters": {"n": 1000, "k": 6, "p": 0.1}, "seed": "derived per run", "status": "planned"},
-    {"id": "ba", "generator": "networkx.barabasi_albert_graph", "planned_version": "networkx 3.7", "parameters": {"n": 1000, "m": 3}, "seed": "derived per run", "status": "planned"}
-  ],
-  "external_datasets": [
-    {"name": "SNAP network datasets", "url": "https://snap.stanford.edu/data/", "accessed": "2026-11-24", "license": "not stated on the index page (citation request only)", "redistributable": "unknown", "used": false, "sha256": null, "status": "excluded; owner must resolve rights before any use"},
-    {"name": "Netzschleuder network catalogue", "url": "https://networks.skewed.de/", "accessed": "2026-11-24", "license": "not stated on the entry page opened (karate); footer AGPLv3 logo of unclear scope", "redistributable": "unknown", "used": false, "sha256": null, "status": "excluded; owner must resolve rights before any use"}
-  ]
+ "schema_version": "0.2",
+ "updated": "2026-11-24",
+ "note": "Synthetic graphs for EXP-001 to EXP-004 (generated from recorded generator, parameters and seed). One real network (maier_fb) for EXP-005 only, adopted after the licence recheck of 2026-11-24 (decision D-008). Its row-level files are git-ignored and never committed; only provenance, hashes and aggregate statistics are. Licence of this file: see NOTICE.md.",
+ "synthetic_generators": [
+  {
+   "id": "er_gnm",
+   "generator": "networkx.gnm_random_graph",
+   "planned_version": "networkx 3.7",
+   "parameters": {
+    "n": 1000,
+    "m": 3000
+   },
+   "seed": "derived per run from the experiment master seed",
+   "status": "in use (EXP-001 to EXP-004)"
+  },
+  {
+   "id": "ws",
+   "generator": "networkx.watts_strogatz_graph",
+   "planned_version": "networkx 3.7",
+   "parameters": {
+    "n": 1000,
+    "k": 6,
+    "p": 0.1
+   },
+   "seed": "derived per run",
+   "status": "in use (EXP-001 to EXP-004)"
+  },
+  {
+   "id": "ba",
+   "generator": "networkx.barabasi_albert_graph",
+   "planned_version": "networkx 3.7",
+   "parameters": {
+    "n": 1000,
+    "m": 3
+   },
+   "seed": "derived per run",
+   "status": "in use (EXP-001 to EXP-004)"
+  }
+ ],
+ "external_datasets": [
+  {
+   "name": "SNAP network datasets",
+   "url": "https://snap.stanford.edu/data/",
+   "accessed": "2026-11-24",
+   "license": "not stated on the index page or the dataset pages opened (citation request only); rechecked 2026-11-24",
+   "redistributable": "unknown",
+   "used": false,
+   "sha256": null,
+   "status": "not adopted: no explicit licence"
+  },
+  {
+   "name": "Netzschleuder network catalogue",
+   "url": "https://networks.skewed.de/",
+   "accessed": "2026-11-24",
+   "license": "no dataset licence; about page (https://networks.skewed.de/about): site code AGPLv3, data offered 'with the belief that this is not only permitted, but the expressed intent of the original authors'; JSON API entries (e.g. /api/net/karate, /api/net/facebook_friends) carry no licence field. Rechecked 2026-11-24",
+   "redistributable": "unknown",
+   "used": false,
+   "sha256": null,
+   "status": "not adopted as a source; one listed network with an explicit upstream licence adopted below"
+  },
+  {
+   "id": "maier_fb",
+   "name": "B. F. Maier anonymized Facebook friendship network (fall 2014); Netzschleuder entry facebook_friends",
+   "url": "https://github.com/benmaier/BFMaierFBnetwork",
+   "netzschleuder_api_url_opened": "https://networks.skewed.de/api/net/facebook_friends",
+   "pinned_commit": "d1446af55483c98d93f72015b6238200e1a30575",
+   "accessed": "2026-11-24",
+   "license": "MIT License, Copyright (c) 2014 Benjamin F. Maier (LICENSE file of the repository, downloaded and hashed below): permission granted free of charge to use, copy, modify, merge, publish and distribute, with the notice retained. Clearly permits non-commercial research use.",
+   "citation": "B. F. Maier and D. Brockmann, Cover time for random walks on arbitrary complex networks, Phys. Rev. E 96, 042307 (2017)",
+   "personal_data": "friendships between real people under pseudonymous integer ids, the account owner removed; GML variant only (no node attributes); the GraphML variant with relationship descriptors is not downloaded. Row-level data never committed (data/raw/ and data/processed/ are git-ignored).",
+   "redistributable": "yes under MIT, but not redistributed here (personal-type data; owner rule)",
+   "used": true,
+   "role": "EXP-005 calibration of the transmission grid (p_c, degree sequence only) and second test",
+   "download_script": "scripts/download_data.py",
+   "ingest_script": "scripts/ingest_data.py",
+   "calibration_script": "scripts/fit_calibration.py",
+   "files": [
+    {
+     "name": "bfmaier_anonymized_fb_network.gml",
+     "url": "https://raw.githubusercontent.com/benmaier/BFMaierFBnetwork/d1446af55483c98d93f72015b6238200e1a30575/bfmaier_anonymized_fb_network.gml",
+     "bytes": 97876,
+     "sha256": "cb94e2c6a02c4f8457730418fd4413d5abb75783f65c02b990eb1dade4a41aaa"
+    },
+    {
+     "name": "LICENSE",
+     "url": "https://raw.githubusercontent.com/benmaier/BFMaierFBnetwork/d1446af55483c98d93f72015b6238200e1a30575/LICENSE",
+     "bytes": 1074,
+     "sha256": "bc424e303eb0d4a656b9ce6cda8a67a20d355d6c3cff0bddb53703a60a5600e1"
+    },
+    {
+     "name": "README.md",
+     "url": "https://raw.githubusercontent.com/benmaier/BFMaierFBnetwork/d1446af55483c98d93f72015b6238200e1a30575/README.md",
+     "bytes": 788,
+     "sha256": "6260f8d817d96e92f9976b992f62d5bb15e3bec851ebe5de0eae5fb58536eb37"
+    }
+   ],
+   "total_bytes": 99738,
+   "processed": {
+    "path": "data/processed/maier_fb.json",
+    "sha256": "e286957db7367d10bf401217116787ee4a7ccef0fd6a70ebbcb20e427fc529cc",
+    "schema": "viral.realdata processed 1.0.0",
+    "ingestion_counts": {
+     "nodes_declared": 362,
+     "edges_declared": 1988,
+     "nodes_missing_id": 0,
+     "nodes_duplicate_id": 0,
+     "edges_missing_endpoint": 0,
+     "edges_unknown_endpoint": 0,
+     "edges_self_loop": 0,
+     "edges_duplicate": 0,
+     "nodes_kept": 362,
+     "edges_kept": 1988,
+     "edges_excluded": 0,
+     "nodes_isolated": 14
+    }
+   },
+   "aggregate_statistics": "data/real_network_calibration.json",
+   "status": "adopted (owner approval 2026-11-24 round 2, licence recheck clean)"
+  }
+ ]
 }

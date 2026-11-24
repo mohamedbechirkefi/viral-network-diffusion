@@ -14,7 +14,7 @@ from pathlib import Path
 
 import jsonschema
 
-from . import RESULT_SCHEMA_VERSION, __version__
+from . import RESULT_SCHEMA_VERSION, RESULT_SCHEMA_VERSIONS, __version__
 from .config import ExperimentConfig, _schema
 
 
@@ -109,8 +109,11 @@ def assemble(cfg: ExperimentConfig, run: dict, manifest: dict) -> dict:
 
 
 def validate_result(doc: dict) -> dict:
+    version = doc.get("result_schema_version") if isinstance(doc, dict) else None
+    if version not in RESULT_SCHEMA_VERSIONS:
+        raise ResultError(f"invalid result: unknown result_schema_version {version!r}")
     try:
-        jsonschema.validate(doc, _schema("result-1.0.0.json"))
+        jsonschema.validate(doc, _schema(f"result-{version}.json"))
     except jsonschema.ValidationError as exc:
         raise ResultError(f"invalid result: {exc.message} at {list(exc.absolute_path)}") from exc
     for cell in doc["cells"]:

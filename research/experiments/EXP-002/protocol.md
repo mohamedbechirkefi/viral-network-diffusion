@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # EXP-002 protocol: independent cascade, topology x transmission x initial exposure
 
-**Status: DRAFT, awaiting owner freeze. Planned confirmatory experiment; no run may be called confirmatory before the owner freezes this file.**
-Version 0.1, 2026-11-24. Protocol hash: none (not frozen). Depends on EXP-001 passing all verification checks.
+**Status: FROZEN, version 1.0 (owner-approved 2026-11-24), not yet run. Primary confirmatory experiment.**
+Version 1.0, 2026-11-24. Protocol hash: in `research/freeze.json`. Where the amendment section at the end and items 1 to 20 differ, the amendment section wins. Depends on EXP-001 passing all verification checks.
 
 1. **Precise question.** At matched node count, mean degree and transmission probability, does the expected final IC cascade fraction differ between small-world (WS) or scale-free (BA) graphs and Erdos-Renyi (ER) graphs, and how does initial exposure (seed rule, seed count) change it?
 2. **Mechanism.** On locally tree-like graphs, IC final size relates to bond percolation; the threshold depends on the first two degree moments (Newman, Strogatz and Watts 2001; Pastor-Satorras and Vespignani 2001). WS adds clustering and short paths (Watts and Strogatz 1998); BA adds hubs (Barabasi and Albert 1999).
@@ -23,4 +23,12 @@ Version 0.1, 2026-11-24. Protocol hash: none (not frozen). Depends on EXP-001 pa
 17. **Anticipated failure modes.** Runtime above budget at `p = 0.5` (large cascades): mitigate by vectorised frontier expansion, not by dropping cells. Bootstrap degenerate when all replicates are equal at `p = 0.5` near saturation: report exact values.
 18. **Sensitivity tests.** EXP-004 (S1 to S4).
 19. **What would contradict H1.** Both Holm-adjusted intervals contain 0. What would contradict the "topology" interpretation even if H1 holds: the S1 or S2 result in EXP-004.
-20. **Reproducibility commands (planned).** `uv run python -m viral.cli run --config research/experiments/EXP-002/config.json`; `uv run python -m viral.cli report EXP-002`.
+20. **Reproducibility commands.** `.venv/bin/viral run --config experiments/EXP-002/config.json`; `.venv/bin/viral report results/confirmatory/EXP-002/<run_id>`.
+
+## Amendments before freeze (owner-approved 2026-11-24, round 2)
+
+- **A-1 (items 5, 6, 15, 19).** Per-probability contrasts are primary: `Delta_T(p)` for `T` in {WS, BA} and each of the 7 `p`, 14 contrasts in one Holm family at familywise 0.05 (`research/protocol.md` section 11.1). H1 is not supported for `(T, p)` if Holm does not reject it; equivalence only if its Holm-adjusted interval lies inside `[-0.02, 0.02]`. The grid mean of item 6 is a secondary, unadjusted estimate.
+- **A-2 (items 11, 12, 13).** `R = 120` graph replicates per topology (2,016,000 cascades; budget unchanged at 4 hours, projected engine time about 9.5 minutes). Rationale in `research/protocol.md` section 11.2.
+- **A-3 (item 11).** Master seed **20261125**, fixed at the freeze, different from the pilot seed 20261124.
+- **A-4 (item 15).** Holm interval method as in `research/protocol.md` section 11.3: shared bootstrap index matrix (`B = 10000`, stream `SeedSequence(20261125, spawn_key=(2,))`), two-sided bootstrap p-values, Holm step-down, interval at level `1 - alpha/(m - i)` for step `i` up to the first non-rejection `j*`, and at `1 - alpha/(m - j*)` after it.
+- Config: `experiments/EXP-002/config.json` (hash in `research/freeze.json`). Exploratory per-p values of this contrast were seen before the freeze (planning probe, R = 10); they are disclosed in `research/freeze.json` (C4).

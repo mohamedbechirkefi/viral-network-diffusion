@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # VIRAL research protocol
 
-**Status: DRAFT, NOT FROZEN.** Proposed on 2026-11-24 in session M0. Freezing is the owner's decision (G-FREEZE). Until the owner records approval and a hash in `research/decision_log.md`, every run is exploratory. Numbers marked "planning value" are proposals, not measurements.
+**Status: FROZEN, version 1.0 (owner-approved 2026-11-24, G-FREEZE).** Drafted on 2026-11-24 in session M0; amended and frozen on 2026-11-24 (section 11). The SHA-256 of this file is recorded in `research/freeze.json`. Any later change is a dated post-freeze amendment, and the analyses it touches are exploratory. Where section 11 and sections 1 to 10 differ, section 11 wins. Numbers still marked "planning value" in sections 1 to 10 are superseded where section 11 fixes them.
 
 ## 1. Feasibility audit (2026-11-24)
 
@@ -138,3 +138,48 @@ Each has a draft `research/experiments/EXP-NNN/protocol.md`.
 1. The owner reviews this file and the four EXP protocols, and records approval or changes.
 2. The session computes `sha256` of each frozen file, writes the hashes into `research/experiment_registry.csv` and `research/decision_log.md`, and commits.
 3. From then on, any change is a dated amendment in a separate section, and analyses it touches are exploratory.
+
+## 11. Amendments before freeze (owner-approved 2026-11-24, round 2)
+
+Source: the owner's answer "Approve all" to the coordinator's list (second round, 2026-11-24), which approves real data for VIRAL only if a licence recheck is clean, and applies the VIRAL amendments approved earlier ("yes for all others"): "Per-probability contrasts are primary, R = 120, with Holm. Threshold grid 0.18 to 0.30. A new master seed. Specify the Holm interval method." These amendments were informed by exploratory pilot data (decision D-007, run `EXP-001-20261124T162121Z-d947f41d`), which is disclosed in `research/freeze.json` (C4).
+
+### 11.1 Primary analysis: per-probability contrasts (replaces the grid-mean estimand of sections 3 and 4)
+
+- **Estimand.** For topology `T` in {WS, BA} and each `p` in the frozen grid {0.02, 0.05, 0.10, 0.15, 0.20, 0.30, 0.50}: `Delta_T(p) = E_r[ Sbar_{T,r}(p) - Sbar_{ER,r}(p) ]`, where `Sbar_{T,r}(p)` is the mean of `S` over the `C = 200` cascades on replicate `r` of topology `T` at transmission probability `p`, one uniformly random seed. Replicates sharing index `r` form a matched set, as in section 5.
+- **Family.** The 14 contrasts (2 topologies x 7 probabilities) form one Holm family at familywise level 0.05.
+- **H0 and H1.** For each `(T, p)`: H0 `Delta_T(p) = 0`; H1 `Delta_T(p) != 0` (nondirectional). The directional expectations of section 3 (BA above ER at small `p`, a possible crossing at large `p`) are recorded but not tested.
+- **Contradiction criterion.** H1 is not supported for `(T, p)` if Holm does not reject it (section 11.3). Equivalence for `(T, p)` is claimed only if its reported interval (section 11.3) lies entirely inside `[-0.02, +0.02]` (smallest effect size of interest, now fixed).
+- **Grid mean.** The grid-mean contrast `Delta_T` of section 4 is reported as a secondary, unadjusted estimate with a 95 percent percentile bootstrap interval, labelled as such.
+
+### 11.2 Replicates, seeds and budget
+
+- **R = 120** graph replicates per topology in EXP-002 (was 30). Rationale (from the exploratory planning probe, D-007 A2): the largest per-`p` sd of paired differences was 0.037 (WS minus ER at `p = 0.30`, 10 replicates); a half-width of 0.01 at the first Holm step over 14 tests needs `R = 116`. `C = 200` is unchanged. EXP-002 therefore has 3 x 7 x 2 x 2 = 84 cells x 120 replicates x 200 cascades = 2,016,000 cascades; the 4-hour compute budget is unchanged (projected engine time about 9.5 minutes, four times the probe projection of 142 s).
+- **New master seeds**, fixed by the session at the freeze, before any confirmatory run, and different from the pilot seed 20261124: EXP-002 master seed **20261125**; EXP-003 master seed **20261126**; EXP-005 master seed **20261128**. EXP-004 uses the EXP-002 master seed 20261125 so that its BA, ER and WS graphs are the EXP-002 graphs with the same replicate index, as its protocol requires ("for each BA replicate", "trim ER and WS graphs").
+- No replicate is added or removed after results are seen.
+
+### 11.3 Holm procedure and interval method (now operational)
+
+1. For each contrast `k` of a family, compute the `R` paired replicate differences `d_{k,r}`.
+2. Draw one matrix of bootstrap resampling indices, `B = 10000` rows of `R` replicate indices drawn uniformly with replacement, from the stream `SeedSequence(master_seed, spawn_key=(2,))` (PCG64). The same matrix is used for every contrast of the family, so resamples stay paired across contrasts.
+3. Bootstrap means `m*_{k,b}`; two-sided bootstrap p-value `p_k = min(1, 2 min(P*(m* <= 0), P*(m* >= 0)))`. A contrast whose differences are all equal stays in the family; its `p_k` is 1 if the constant difference is 0, and 0 otherwise. The resolution of `p_k` is `1/B`; `p_k = 0` is reported as `< 1e-4`.
+4. Holm step-down: sort contrasts by `(p_k, contrast name)`; step `i = 0, 1, ...` is tested at `alpha / (m - i)` with `alpha = 0.05`; testing stops at the first non-rejection `j*`. Holm-adjusted p-values are reported.
+5. **Holm-adjusted interval.** For a contrast at step `i <= j*` (or any step if all are rejected), the reported interval is the percentile bootstrap interval at level `1 - alpha / (m - i)`. For a contrast after `j*`, it is the percentile interval at level `1 - alpha / (m - j*)`. Decisions use the Holm p-values; the intervals are reported with their levels. This definition is used for every Holm family of the study (EXP-002, EXP-003, EXP-004 per analysis, EXP-005). Implementation: `viral.stats.holm_bootstrap_contrasts`, `viral.analysis.confirmatory_contrasts`.
+
+### 11.4 EXP-003 threshold grid
+
+- `phi` in {0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30} (was {0.10, 0.14, 0.18, 0.22, 0.26}), moving the grid into the transition region (D-007 A3; the old values 0.10 and 0.14 saturated in the exploratory probe). No new probe was run on the new grid before the freeze.
+
+### 11.5 Real data: licence recheck and second test (EXP-005)
+
+- **Licence recheck (2026-11-24).** SNAP (https://snap.stanford.edu/data/) states no dataset licence on the pages opened. The Netzschleuder catalogue (https://networks.skewed.de/) states no dataset licence: its about page releases the site code under AGPLv3 and says the data are made available "with the belief that this is not only permitted, but the expressed intent of the original authors"; its JSON API entries carry no licence field. These sources are therefore not adopted as such. One network listed in Netzschleuder (`facebook_friends`) is published upstream with an explicit licence: B. F. Maier's anonymized Facebook friendship network (fall 2014), GitHub repository `benmaier/BFMaierFBnetwork`, MIT License ("Permission is hereby granted, free of charge, to any person obtaining a copy ... to deal in the Software without restriction"), which clearly permits non-commercial research use. It is adopted. Citation requested by its author: Maier and Brockmann, Phys. Rev. E 96, 042307 (2017).
+- **Personal data.** The network describes friendships between real people, recorded under pseudonymous integer ids, with the owner of the account removed. Only the GML file (ids and edges, no attributes) is downloaded; the GraphML variant with relationship descriptors is not. Row-level data (edges) are never committed: `data/raw/` and `data/processed/` are git-ignored; only aggregate statistics, the download script, URLs, SHA-256 and the licence summary are committed. Results never single out a node.
+- **Role.** The simulation stays the controlled part of the study. The real network is (a) used for one calibration that involves no diffusion outcome and (b) used as a second test. It does not enter EXP-002, EXP-003 or EXP-004, and nothing in this section uses the primary contrast in any way.
+- **Ingestion.** `viral.realdata.ingest_gml` (pure function): schema check (one undirected graph block, integer node ids, integer edge endpoints); exclusions: an edge with a missing endpoint, an endpoint that is not a declared node, a self-loop; a repeated undirected edge is kept once; isolated nodes are kept (section 5). Counts of each are recorded. Nodes are relabelled 0..n-1 in ascending order of their source id.
+- **Calibration (method fixed here, before fitting).** Quantity: the bond-percolation threshold estimate of the real network, `p_c(G_real) = <k> / (<k^2> - <k>)`, with degree moments over all nodes of the processed network (isolated nodes included), as computed by `viral.graphs.percolation_threshold`. Split: the whole network; there is no train/test split because the calibrated quantity is a function of the degree sequence only and involves no diffusion outcome, so no outcome is reused for testing. Use: the EXP-005 transmission grid is `p_j = round(c_j p_c(G_real), 6)`, capped at 1, with `c_j = 6 p_j^{EXP-002}` = {0.12, 0.30, 0.60, 0.90, 1.20, 1.80, 3.00}, so that the real-network grid sits at the same multiples of its own threshold as the EXP-002 grid sits relative to the ER planning threshold `1/<k> = 1/6`. The fit is a single deterministic computation, journaled as exploratory; the fitted values are written into the EXP-005 config and into `research/freeze.json`.
+- **Second test (EXP-005).** On the real network, at each calibrated `p_j`, one uniformly random seed, compare final cascade fraction `S` on the real network with two null ensembles of `R = 120` replicates each: `real_er`, G(n, M) with the real network's `n` and `M`; and `real_dpr`, the real network after `10 M` seeded double-edge swaps (degree sequence preserved). `C = 200` cascades per (graph, `p`). The real network is the same graph for every replicate index; replicate `r` of the real arm is an independent batch of 200 cascades whose random stream is shared with replicate `r` of the null arms (common random numbers, section 5). Contrasts: real minus `real_er` and real minus `real_dpr` at each `p_j` (14 contrasts, one Holm family, section 11.3). Interpretation: the inference is conditional on this one real network; it asks whether its structure, beyond size and density (`real_er`) or beyond its degree sequence (`real_dpr`), changes IC final size. It is not a sample of real networks, and no statement about real platforms follows (section 10 claims boundary). Master seed 20261128.
+- **C1 for VIRAL.** Real data as approved (this network, EXP-005 only); synthetic otherwise (EXP-001 to EXP-004).
+
+### 11.6 Implementation notes fixed at the freeze
+
+- Config schema 1.1.0 adds `p_scale` (EXP-004 S1: parameters are multipliers `c`, each graph runs at `p = min(1, c p_c(G))`), the topologies `er_trim`, `ws_trim`, `ba_dpr` (EXP-004 S3 and S2) and `real`, `real_er`, `real_dpr` (EXP-005), `dpr_swaps_per_edge` (default 10) and `real_graph` (path and pinned SHA-256 of the processed network). Result schema 1.1.0 allows these topologies and records `p_actual` under `p_scale = pc_multiple`. Version 1.0.0 documents still validate.
+- `viral run` accepts a confirmatory config only if the freeze record `research/freeze.json` lists its file SHA-256 for that experiment and the protocol, experiment protocol and data manifest hashes still match (fail closed).

@@ -47,3 +47,5 @@ Never commit an e-mail address, a name or any other personal identifier in code,
 - Exploratory smoke run: `uv run --locked viral smoke` (writes `results/exploratory/EXP-001/<run_id>/`).
 - Any run: `uv run --locked viral run --config <config.json>`; confirmatory configs are refused until the protocol is frozen by the owner.
 - Report: `uv run --locked viral report <run_dir> [--project <config.json>] [--pdf]`; for `--pdf` set `VIRAL_PANDOC` (pandoc binary) and `VIRAL_TYPST_PYTHON` (a Python with the typst package).
+- Real network for EXP-005 (git-ignored, never committed): `uv run --locked python scripts/download_data.py`, then `scripts/ingest_data.py`; the calibration fit is `scripts/fit_calibration.py` (already recorded in `data/real_network_calibration.json`).
+- Confirmatory configs run only if their SHA-256 is listed in `research/freeze.json`; a changed config is refused.

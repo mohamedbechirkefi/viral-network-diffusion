@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "viral/config-1.1.0",
+  "title": "VIRAL experiment configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "config_schema_version",
+    "experiment_id",
+    "mode",
+    "label",
+    "master_seed",
+    "n",
+    "mean_degree",
+    "ws_beta",
+    "topologies",
+    "models",
+    "seed_rules",
+    "seed_counts",
+    "replicates",
+    "cascades"
+  ],
+  "properties": {
+    "config_schema_version": {
+      "const": "1.1.0"
+    },
+    "experiment_id": {
+      "type": "string",
+      "pattern": "^EXP-[0-9]{3}$"
+    },
+    "mode": {
+      "enum": [
+        "exploratory",
+        "confirmatory"
+      ]
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "notes": {
+      "type": "string"
+    },
+    "master_seed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "n": {
+      "type": "integer",
+      "minimum": 3
+    },
+    "mean_degree": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "ws_beta": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "topologies": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "er",
+          "ws",
+          "ba",
+          "er_trim",
+          "ws_trim",
+          "ba_dpr",
+          "real",
+          "real_er",
+          "real_dpr"
+        ]
+      }
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "ic": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "p"
+          ],
+          "properties": {
+            "p": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "lt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "phi"
+          ],
+          "properties": {
+            "phi": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "seed_rules": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "random",
+          "highest_degree"
+        ]
+      }
+    },
+    "seed_counts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "replicates": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "cascades": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "verify": {
+      "type": "boolean"
+    },
+    "engine": {
+      "enum": [
+        "vectorised",
+        "reference"
+      ]
+    },
+    "p_scale": {
+      "enum": [
+        "absolute",
+        "pc_multiple"
+      ],
+      "description": "absolute: models.ic.p are probabilities in [0, 1]. pc_multiple: they are multipliers c, and each graph G runs at p = min(1, c * p_c(G)) (EXP-004 S1)."
+    },
+    "dpr_swaps_per_edge": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "double-edge swaps per edge for the *_dpr topologies (default 10)"
+    },
+    "real_graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "description": "processed real network (repository-relative path, pinned SHA-256) for the real, real_er and real_dpr topologies"
+    }
+  }
+}
