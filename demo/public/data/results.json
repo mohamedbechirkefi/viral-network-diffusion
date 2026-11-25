@@ -4,7 +4,7 @@
  "project": "VIRAL",
  "question": "How do network topology and initial exposure influence diffusion independently of content quality?",
  "status_label": "Simulation study. Confirmatory results under protocol v1.0, frozen 2026-11-24 with the owner's approval. Manuscript version 0.2, a preprint draft that is not peer-reviewed.",
- "code_revision": "79b87f8d5240e1ad7bc44e2857af264c722e4172",
+ "code_revision": "1679884676fb612aa83b0f802871d1aef2367b71",
  "sources": [
   {
    "path": "experiments/EXP-002/config.json",
