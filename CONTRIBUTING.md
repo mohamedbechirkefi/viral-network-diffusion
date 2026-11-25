@@ -49,3 +49,5 @@ Never commit an e-mail address, a name or any other personal identifier in code,
 - Report: `uv run --locked viral report <run_dir> [--project <config.json>] [--pdf]`; for `--pdf` set `VIRAL_PANDOC` (pandoc binary) and `VIRAL_TYPST_PYTHON` (a Python with the typst package).
 - Real network for EXP-005 (git-ignored, never committed): `uv run --locked python scripts/download_data.py`, then `scripts/ingest_data.py`; the calibration fit is `scripts/fit_calibration.py` (already recorded in `data/real_network_calibration.json`).
 - Confirmatory configs run only if their SHA-256 is listed in `research/freeze.json`; a changed config is refused.
+- Demo data: `.venv/bin/python scripts/export_demo_data.py` (writes `demo/public/data/results.json`; `--check` compares); sandbox fixture: `.venv/bin/python scripts/make_sandbox_fixture.py`.
+- Demo (Node 22): `cd demo && npm ci && npm test && npm run build && npm run preview`; offline and accessibility check: `node tools/a11y_check.mjs dist --screenshots <dir>`.

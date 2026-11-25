@@ -370,3 +370,59 @@ No other placeholder needing an owner-only fact was found in the manuscript, sup
 
 ### Next action
 M5 (interactive experience), then M6.
+
+## 2026-11-25, session M5 (interactive experience)
+
+**Milestone:** M5. **Starting state:** `5a5a9d9`, tree clean, protocol SHA-256 unchanged. **Authority:** owner, 2026-11-25, "Next" (`../_shared/owner-approvals-2026-11-25d.md`), stack named there: TypeScript, React and Vite from the shared template. Decision D-016.
+
+### What was built
+- `scripts/export_demo_data.py` writes `demo/public/data/results.json` (`lab-demo-results` 1.0.0, 158 KB, 28 source files with SHA-256, `code_revision` 79b87f8d5240, no timestamps): EXP-001 (0 estimates, verification counts), EXP-002 (14), EXP-003 (2 primary, 14 per-`phi` secondary), EXP-004 (59: S1 10, S2 7, S3 14, S4 28), EXP-005 (14), M4 exploratory (77). Extension keys `sesoi`, `levels`, `graph_stats`, validated fail-closed.
+- `demo/`: template copy; `src/App.tsx` (overview, published results, assumptions, method and limitations), `src/charts.tsx` (level curves with interval bands, forest plots with the SESOI band, tables), `src/Sandbox.tsx` and `src/sandbox.worker.ts` (animated cascade on a sandbox network, three cascade-size histograms, controls: model, `p` or `phi`, seed rule, seed count, N, cascades, topology to animate, random seed; run, cancel, reset, save as JSON; animation toggle defaulting to off under reduced motion), `src/engine.ts` (port of the reference engines and sandbox generators).
+- `scripts/make_sandbox_fixture.py` writes `demo/src/fixtures/engine_fixture.json` (35,552 bytes; under one second, one process; a test fixture, not a result).
+- `docs/demo.png` (92,212 bytes; sandbox view) with alt text in the README.
+- Text consistency: README rewritten (it still described M0), `CITATION.cff` abstract, `articles/medium.md` and `articles/linkedin.md` drafted, `demo/README.md`, `articles/README.md`, `experiments/README.md`, `results/README.md`, release and reproducibility checklist status lines, supplementary version line, one sentence on the demo in manuscript section 10 (same line). `author_review.md`: no agent-ticked box found; approval notes added beside two items, boxes left for the owner; full-text review item added.
+
+### Commands and actual outputs
+```
+$ ../.tools/py/bin/uv sync --frozen --all-groups --all-extras   -> Audited 25 packages
+$ .venv/bin/python scripts/export_demo_data.py                  -> wrote demo/public/data/results.json
+$ .venv/bin/python scripts/export_demo_data.py --check          -> results.json up to date
+$ .venv/bin/python scripts/make_sandbox_fixture.py              -> wrote demo/src/fixtures/engine_fixture.json (35552 bytes)
+$ /Users/bechir/research/labs/.tools/pandoc research/paper/manuscript.md -s -t latex -o research/paper/manuscript.tex   -> exit 0
+$ .venv/bin/python scripts/audit_evidence.py                    -> exit 0 (68 s)
+TRIPLES 370 estimate-interval triples matched jointly to one committed row; 0 unmatched
+COPIES 129 manifest entries and 56 experiment-folder copies checked, 0 failures
+RAW: every run 0 failures (EXP-002 25 checks, EXP-003 13, S1 21, S2 18, S3 25, S4-n500 25, S4-n2000 25, EXP-005 25)
+{"tokens": 2953, "decimal_traced": 2217, "decimal_traced_weak": 1392, "decimal_untraced": 0, "integer_traced": 556, "integer_constant_or_count": 180}
+$ .venv/bin/python -m pytest                                    -> 186 passed in 6.79s
+(demo, Node v22.23.3, npm cache in the session scratchpad)
+$ npm ci --prefer-offline                                       -> added 53 packages
+$ npm test                                                      -> Test Files 2 passed (2); Tests 30 passed (30)
+$ npm run build                                                 -> tsc and vite build; dist/index.html 0.94 kB, sandbox.worker 7.18 kB, index css 6.91 kB, index js 258.81 kB
+$ node tools/a11y_check.mjs dist --screenshots <scratchpad>/viral/shots
+PASS results render (no fail-closed panel): 6 experiment panels
+PASS text contrast, light scheme (WCAG AA)
+PASS text contrast, dark scheme (WCAG AA)
+PASS keyboard reaches every focusable element: 39 reached of 39
+PASS visible focus indicator
+PASS no horizontal page scroll at 360 px: overflow 0px
+PASS reduced motion: no running animations: 0 running
+PASS no request leaves the local origin
+PASS offline after first load: results stay, sandbox runs: Sandbox output (seed 1; IC, p = 0.3; N = 200; 300 cascades per topology; 1 rando
+A11Y-CHECK PASS
+$ grep -rn REPLACE demo/ --exclude-dir=node_modules             -> no match
+```
+- Fail-closed check: a copy of `dist` with `levels` removed from `results.json` gives `FAIL results render (no fail-closed panel): 0 experiment panels` and `A11Y-CHECK FAIL (2)`.
+- Failures met and fixed during the session: the keyboard check first reached 24 of 42, then 39 of 42 (identical keys for unnamed regions and inputs, buttons disabled mid-animation, tables inside closed `<details>` counted but not tabbable); fixed in the page (ids, no disabled animation buttons, tables rendered only when open). The checker was not changed.
+- Screenshots inspected (desktop light and dark, mobile; plus viewport shots of the mobile sandbox in both schemes): forest-plot ticks were too sparse, end labels collided with the last x tick, estimate tables hid intervals behind horizontal scroll at 360 px; all fixed (stacked rows on narrow screens). The full-page mobile capture repeats tiles (a capture artefact); viewport captures were used instead.
+
+### M5 status
+**Done.** The master prompt's gate holds: offline after the initial load, responsive (no horizontal scroll at 360 px), usable with the keyboard, no fabricated data (export from committed files, verbatim test), no runtime service.
+
+### Risks and owner items
+- Sandbox: the engine is an exact port, but sandbox graphs are browser reimplementations of the models, so sandbox numbers are not research numbers (labelled on the page).
+- Owner-only placeholders that remain: repository URL and demo URL. The author line and affiliation are as the owner set them; funding and competing interests as approved in D-015.
+- The owner's full-text review of manuscript version 0.2 and the article drafts is pending (M6). Nothing was pushed.
+
+### Next action
+M6 (release candidate).

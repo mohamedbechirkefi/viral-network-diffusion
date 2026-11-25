@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # Supplementary material
 
-Companion to `research/paper/manuscript.md` (version 0.1, M4, 2026-11-25). Independent research manuscript / preprint draft, not peer-reviewed. All results are simulations. Every number below is traced by `scripts/audit_evidence.py` (`research/publication/number_trace.csv`).
+Companion to `research/paper/manuscript.md` (version 0.2, M4, 2026-11-25). Independent research manuscript / preprint draft, not peer-reviewed. All results are simulations. Every number below is traced by `scripts/audit_evidence.py` (`research/publication/number_trace.csv`).
 
 ## S1. Complete experimental matrix
 

@@ -1,16 +1,16 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # VIRAL roadmap
 
-Updated 2026-11-25 (session M4). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
+Updated 2026-11-25 (session M5). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
 
 | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|
-| M0 Bootstrap and feasibility | none | P0 | 0.25 d | done (pending owner review of scope and cost) | none |
+| M0 Bootstrap and feasibility | none | P0 | 0.25 d | done: scope, cost and exclusions are in `research/protocol.md` section 1, frozen with the owner's approval on 2026-11-24 (D-010) | none |
 | M1 Research and preregistration | M0 | P0 | 0.5 d | done: gate passed, protocol v1.0 frozen (owner-approved 2026-11-24; `research/freeze.json`) | none |
-| M2 Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1.5 d | done for the pre-freeze scope (see M2 section); EXP-001 report.md pending (M3) | none for implementation; owner decisions D-007 before the freeze |
+| M2 Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1.5 d | done (see M2 section); the EXP-001 report was written at M3 (D-013); the D-007 amendments were decided before the freeze (D-009, D-010) | none |
 | M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | done (2026-11-25): full frozen matrix of EXP-002 to EXP-005 run, 8 runs, none failed or dropped; reports written (D-013) | none |
-| M4 Interpretation | M3 | P0 | 0.75 d | done (2026-11-25): gate holds (evidence audit; manuscript v0.2; second review pass) | owner review of title and manuscript (author_review.md) |
-| M5 Interactive experience | M3 results (sandbox can start at M2) | P1 | 0.75 d | not started | none |
+| M4 Interpretation | M3 | P0 | 0.75 d | done (2026-11-25): gate holds (evidence audit; manuscript v0.2; second review pass); title and statements owner-approved (D-015) | owner full-text review of the manuscript (M6; author_review.md) |
+| M5 Interactive experience | M3 results (sandbox can start at M2) | P1 | 0.75 d | done (2026-11-25): gate holds (offline, responsive, keyboard, no fabricated data, no runtime service; D-016) | none |
 | M6 Release candidate | M4, M5 | P0 | 0.25 d | not started | G-PUBLIC for any publication |
 
 ## M0 Bootstrap and feasibility
@@ -58,6 +58,7 @@ Updated 2026-11-25 (session M4). Effort is a planning estimate in focused days (
 - Tasks: static page (TypeScript, React, Vite, Web Worker) with animated cascades, seed controls, distribution plots; precomputed published results clearly separated from visitor sandbox results.
 - 11.6 additions: demo, paper, reports and articles use identical verified results, labels and scope.
 - Acceptance: offline after initial load, responsive, keyboard usable, reduced-motion option, no runtime service. Node 22.23.3 used read-only.
+- Status (2026-11-25, session M5): done. `demo/` (shared template stack: TypeScript, React, Vite, Web Worker; no added dependency) shows every registered experiment and the M4 checks with intervals, the level curves and forest plots, assumptions, method and limitations, and a sandbox with animated cascades, seed controls and distribution plots. Data exported by `scripts/export_demo_data.py`; `tests/test_demo_export.py` (8 tests) checks the export and that the page, README, CITATION.cff and article drafts print only manuscript numbers. Sandbox engine: exact port, zero-tolerance fixture test; sandbox graphs reimplemented (D-016). Checker: A11Y-CHECK PASS. Tests: 186 Python, 30 vitest. Article drafts `articles/medium.md` and `articles/linkedin.md` written.
 
 ## M6 Release candidate
 
