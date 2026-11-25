@@ -76,3 +76,22 @@ Export determinism: in the clone, `scripts/export_demo_data.py` and `scripts/mak
 ## 5. Environment
 
 Apple M1 Pro, arm64, macOS 15.3.1; Python 3.12.1; uv 0.9.5; networkx 3.7, numpy 2.5.4, jsonschema 4.26.0, matplotlib 3.11.2, pytest 9.2.0, hypothesis 6.170.15; pandoc 3.6.3; typst 0.15.0 (Python package), pypdf 6.20.0; Node v22.23.3, npm packages from `demo/package-lock.json`. Git revision of the first clone: `68a8fac`.
+
+## 6. Fresh-clone re-check of the M6 commits
+
+The first fresh clone of the M6 commit `1679884` found one failure: `tests/test_demo_export.py::test_export_reproduces_committed_file` (1 failed, 188 passed). The exporter records the last commit that touched a source file, and the M6 commit itself changed one source (`artifact_manifest.json`), so the committed export still named `79b87f8`. Fixed by re-exporting after the commit (`3385bd3`; only `code_revision` changed). The same clone showed that `scripts/build_pdfs.py` needs `VIRAL_PANDOC` and `VIRAL_TYPST_PYTHON` when the clone is not next to the shared tools folder (its default is `../.tools`).
+
+Fresh clone of `3385bd3`:
+
+```
+$ uv sync --frozen --all-groups --all-extras                 -> exit 0
+$ .venv/bin/python -m pytest                                 -> 189 passed in 12.28s
+$ .venv/bin/viral smoke --config experiments/EXP-001/config.json
+runtime 3.20 s; graphs 15 (failures 0); cascades checked 5250 (failures 0)
+  structural comparison with the committed M3 smoke: IDENTICAL after removing volatile fields
+$ .venv/bin/python scripts/check_links.py                    -> LINKS PASS (49 links, 14 bib entries)
+$ VIRAL_PANDOC=... VIRAL_TYPST_PYTHON=... scripts/build_pdfs.py   -> seven PDFs, same byte sizes as committed
+$ scripts/export_demo_data.py; scripts/make_sandbox_fixture.py; git status   -> only the seven PDFs listed
+```
+
+The rebuilt PDFs have the same size, page count and extracted text as the committed ones; they differ in 54 to 96 bytes, the creation and modification timestamps that Typst writes. The PDFs are therefore reproducible in content, not byte for byte. The demo export and the sandbox fixture are byte-identical. The clone was deleted.

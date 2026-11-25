@@ -473,3 +473,12 @@ $ npm test; npm run build; a11y check     -> Tests 30 passed (30); built; A11Y-C
 
 ### Next action
 Fresh-clone re-check of the M6 commit (appended below), then the owner's review (`research/publication/author_review.md`) and G-PUBLIC.
+
+## 2026-11-25, session M6, fresh-clone re-check
+
+- Fresh clone of `1679884`: `1 failed, 188 passed` (`test_export_reproduces_committed_file`): the M6 commit changed a demo-export source (`artifact_manifest.json`), so the exported `code_revision` was stale. Re-exported and committed (`3385bd3`, `code_revision` only).
+- Fresh clone of `3385bd3`: `uv sync` exit 0; `189 passed in 12.28s`; smoke `runtime 3.20 s; graphs 15 (failures 0); cascades checked 5250 (failures 0)`, identical to the committed M3 smoke apart from volatile fields; `LINKS PASS`; `scripts/build_pdfs.py` (with `VIRAL_PANDOC` and `VIRAL_TYPST_PYTHON` set, since the clone is not next to `../.tools`) rebuilt seven PDFs of the same size and extracted text, differing only in 54 to 96 timestamp bytes; demo export and sandbox fixture byte-identical. Clone deleted.
+- M6 status: release candidate prepared, awaiting owner review and G-PUBLIC. Nothing pushed, tagged or released.
+
+### Next action
+The owner's review (`research/publication/author_review.md`, section "Prepared for the owner (M6, 2026-11-25)") and the G-PUBLIC decision.
