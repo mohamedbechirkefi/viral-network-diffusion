@@ -161,5 +161,32 @@
   },
   "effect": "Ratification only. The frozen texts and configs already contain these choices; no file was changed and no hash changed. The note under amendments_applied that these choices were made by the AI assistant remains true as history; they are now owner-ratified (D-011).",
   "decision_log": "D-011"
+ },
+ "post_freeze_record": {
+  "note": "Execution notes and owner decisions after the freeze. No frozen protocol, config or analysis changed; no hash changed.",
+  "deviations": [
+   {
+    "id": "M3-1",
+    "date": "2026-11-25",
+    "what": "Raw result.json files stored in git-ignored results/raw/confirmatory/ (each experiment > 20 MB) instead of the default results/confirmatory/; SHA-256 committed.",
+    "kind": "storage, not design or analysis",
+    "decision_log": "D-012"
+   },
+   {
+    "id": "M3-2",
+    "date": "2026-11-25",
+    "what": "EXP-004 S1 cross-reading against EXP-002 undefined in the frozen texts. Owner decision: S1 reported per multiplier, no overall verdict, no multiplier picked after the data.",
+    "owner_quote": "approve all recommendations, RIGGED A",
+    "source": "../_shared/owner-approvals-2026-11-25.md item 12 (outside this repository)",
+    "decision_log": "D-013"
+   },
+   {
+    "id": "M3-3",
+    "date": "2026-11-25",
+    "what": "Experiment reports written after the runs from committed files only (owner-approved, item 4).",
+    "decision_log": "D-013"
+   }
+  ],
+  "confirmatory_runs_revision": "32961c3c399263ff3e39a9dbd3f78be3ff934922"
  }
 }

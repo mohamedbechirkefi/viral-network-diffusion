@@ -270,3 +270,20 @@ $ freeze guard on all eight frozen configs -> accepted (hashes unchanged)
 
 ### Next action
 Owner: decide the S1 cross-reading and how the experiment reports should be produced. Then M4 (interpretation, second review pass, manuscript).
+
+## 2026-11-25, session M3-close (owner decisions of 2026-11-25)
+
+**Authority:** `../_shared/owner-approvals-2026-11-25.md` items 4 and 12; owner, 2026-11-25, "approve all recommendations, RIGGED A".
+
+### Done
+- `research/decision_log.md` D-013: S1 reported per multiplier, no overall verdict, no multiplier picked after the data; owner approval of the experiment reports.
+- `research/limitations.md` items 14 and 17 updated; claims register regenerated (`scripts/build_records.py`; the 10 S1 rows now carry the D-013 note); `research/freeze.json` gains a `post_freeze_record` block (M3-1 storage, M3-2 S1 decision, M3-3 reports). Freeze guard still accepts all eight frozen configs (hashes unchanged).
+
+### Failed
+- The file tool again refused to create `research/experiments/EXP-002/report.md` ("Subagents should return findings as text, not write report files"). Per the brief, report writing stopped there; no workaround was used. No `report.md` or `reproduction.md` exists for EXP-001 to EXP-005.
+
+### M3 status
+Not done: the run matrix is complete, but the reports required for closing M3 are missing.
+
+### Next action
+Coordinator or owner: have the reports written by a session whose file tool permits it.

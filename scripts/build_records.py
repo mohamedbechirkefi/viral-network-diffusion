@@ -55,7 +55,7 @@ def main() -> int:
                 "claim_id": f"{tag}-R{i:02d}", "text": text, "type": "confirmatory result" + (" (optional)" if optional else ""),
                 "evidence_path_or_source": f"{rel} (run {a['run_id']}; config {a['config_hash'][:12]}; rev {a['git_revision'][:12]})",
                 "scope": SCOPE[base], "status": "verified against raw result (generated)",
-                "limitations": "research/limitations.md; nonrejection is not equivalence; simulation only",
+                "limitations": "research/limitations.md; nonrejection is not equivalence; simulation only" + ("; S1 is reported per multiplier with no overall verdict (owner, 2026-11-25, D-013)" if "S1" in exp else ""),
             })
         for f in ["primary_contrasts.csv", "secondary_contrasts.csv", "topology_means.csv", *a["figures"]]:
             p = path.parent / f
