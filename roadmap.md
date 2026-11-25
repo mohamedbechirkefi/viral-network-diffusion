@@ -1,15 +1,15 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # VIRAL roadmap
 
-Updated 2026-11-25 (session M3). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
+Updated 2026-11-25 (session M4). Effort is a planning estimate in focused days (total target: five). Status values: not started, in progress, done, blocked, gated (owner).
 
 | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|
 | M0 Bootstrap and feasibility | none | P0 | 0.25 d | done (pending owner review of scope and cost) | none |
 | M1 Research and preregistration | M0 | P0 | 0.5 d | done: gate passed, protocol v1.0 frozen (owner-approved 2026-11-24; `research/freeze.json`) | none |
 | M2 Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1.5 d | done for the pre-freeze scope (see M2 section); EXP-001 report.md pending (M3) | none for implementation; owner decisions D-007 before the freeze |
-| M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | done for the gate (2026-11-25): full frozen matrix of EXP-002 to EXP-005 run, 8 runs, none failed or dropped; 12-part reports not written (file tool refused; D-012) | owner: S1 cross-reading (D-012); reports outstanding |
-| M4 Interpretation | M3 | P0 | 0.75 d | not started | none |
+| M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | done (2026-11-25): full frozen matrix of EXP-002 to EXP-005 run, 8 runs, none failed or dropped; reports written (D-013) | none |
+| M4 Interpretation | M3 | P0 | 0.75 d | done (2026-11-25): gate holds (evidence audit; manuscript v0.2; second review pass) | owner review of title and manuscript (author_review.md) |
 | M5 Interactive experience | M3 results (sandbox can start at M2) | P1 | 0.75 d | not started | none |
 | M6 Release candidate | M4, M5 | P0 | 0.25 d | not started | G-PUBLIC for any publication |
 
@@ -51,6 +51,7 @@ Updated 2026-11-25 (session M3). Effort is a planning estimate in focused days (
 - Tasks: confounder inspection; sensitivity analyses; expected versus observed; claims register; limitations; second review pass challenging the preferred hypothesis.
 - 11.6 additions: finish experiment reports and evidence audit; synthesise into the manuscript including contradictory results.
 - Acceptance: every numerical claim maps to result id, config and figure; every external claim to a verified source.
+- Status (2026-11-25, session M4): done. Exploratory confounder checks X1 to X3 (`results/exploratory/M4/`); claims register extended to 575 rows with result id, config hash, figure or table and section; evidence audit (`research/publication/evidence_audit.md`: 177 raw recomputation checks, 0 failures; 0 untraced decimals; 370 interval triples matched; one runtime mismatch and four over-stated citations fixed); manuscript and supplementary synthesised, revised after `research/publication/review_pass_2.md` (version 0.2); limitations 18 to 24; D-014. Tests 178 passed.
 
 ## M5 Interactive experience
 

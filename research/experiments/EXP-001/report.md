@@ -5,7 +5,7 @@
 
 ## 1. Identification
 
-- Experiment: EXP-001 (exploratory by design). Report version 1.0, 2026-11-25. Status: **exploratory runs complete; every verification check passed.**
+- Experiment: EXP-001 (exploratory by design). Report version 1.1, 2026-11-25 (M4: evidence-audit corrections and addendum; version 1.0 of the same date was the M3 report). Status: **exploratory runs complete; every verification check passed.**
 - Authorship: Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) ran the checks and drafted this report under the owner's direction; it is not an author.
 - Protocol `research/experiments/EXP-001/protocol.md`, text frozen v1.0, SHA-256 `e65cf620d66b6fd8cf98815f626693b7744dc7d801f30bdbdd55875da14f9ff0` (`research/freeze.json`). Study protocol SHA-256 `d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32`.
 - Code revisions: `6edd91e1d23537dae822553fd56edaf08a235545` (M2 smoke run and planning probe) and `ceeee8c13d460f6772a5a09f392c114884b1b1bf` (M3 pre-run smoke).
@@ -20,7 +20,7 @@
 
 ## 3. Rationale
 
-The IC and LT definitions follow Kempe, Kleinberg and Tardos (2003), doi:10.1145/956750.956769, and Watts (2002). The generators are from networkx 3.7. Verification levels are in `research/literature_review.md`. Before any confirmatory run, a topology difference has to be shown to come from structure and not from a bug, such as duplicate activation.
+The IC definition is the standard one studied by Kempe, Kleinberg and Tardos (2003), doi:10.1145/956750.956769 (journal-version abstract read at M4; the abstract refers to "several of the most widely studied models" without naming them, so the definition used here is stated in full in `research/protocol.md` and does not rest on the citation). The fractional-threshold rule follows Watts (2002), whose full text was opened at M4. The generators are from networkx 3.7. Verification levels are in `research/literature_review.md`. Before any confirmatory run, a topology difference has to be shown to come from structure and not from a bug, such as duplicate activation.
 
 ## 4. Checks (pass/fail, protocol item 5)
 
@@ -83,3 +83,8 @@ The engine and metrics are verified to the level the protocol requires. EXP-001 
 ## 12. Reproduction appendix
 
 See `reproduction.md` in this folder.
+
+## Addendum (M4, 2026-11-25)
+
+- **Evidence audit.** The citation of Kempe, Kleinberg and Tardos in section 3 now states what was read: the abstract of the journal version, which does not name the IC model. The IC and LT definitions used here are stated in full in `research/protocol.md` and in manuscript section 3. Watts (2002) was opened in full text at M4. Every number in this report was traced to a committed file by `scripts/audit_evidence.py` (`research/publication/number_trace.csv`); no mismatch was found in this report.
+- No result of this report changed.

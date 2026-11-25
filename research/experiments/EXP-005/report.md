@@ -3,7 +3,7 @@
 
 ## 1. Identification
 
-- Experiment: EXP-005 (secondary, confirmatory second test). Report version 1.0, 2026-11-25. Status: **complete. The full frozen matrix ran, with no failed or dropped run.**
+- Experiment: EXP-005 (secondary, confirmatory second test). Report version 1.1, 2026-11-25 (M4: evidence-audit corrections and addendum; version 1.0 of the same date was the M3 report). Status: **complete. The full frozen matrix ran, with no failed or dropped run.**
 - Authorship: Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) ran the experiment and drafted this report under the owner's direction; it is not an author.
 - Experiment protocol v1.0, SHA-256 `ba77b7ef31cb7ed864a6bf0bdbe9910ec88c36399e479a9d5a56314d773847a3`. Study protocol SHA-256 `d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32`. Data manifest SHA-256 `ffb8eaf7b0d0beb556649e4bbc64ee9f16de43f5eb66ff8ea81d5ec8f5e2af23`.
 - Provenance revision `32961c3c399263ff3e39a9dbd3f78be3ff934922`, clean tree.
@@ -136,3 +136,16 @@ No generalisation beyond this network follows.
 ## 12. Reproduction appendix
 
 See `reproduction.md`.
+
+## Addendum (M4, 2026-11-25): component structure, an exploratory check
+
+**This addendum does not change the frozen verdict of section 9.**
+
+- **Competing explanation (limitation 16).** The real network has a smaller giant component than its degree-preserving randomisations (0.9088 against 0.9608). Part of the real - real_dpr deficit could come from component structure rather than clustering.
+- **Exploratory check X2 (post hoc, master seed 20261202, R = 30, unadjusted 95 percent intervals).**
+  - The check records whether each seed lies in the giant component of its graph, and the cascade size divided by the giant-component size.
+  - Over all cascades, real - real_dpr at `p = 0.145155` is -0.1309 [-0.1387, -0.1231], close to the confirmatory -0.1317.
+  - Restricted to giant-seeded cascades and normalised by giant-component size, the deficit is -0.1177 [-0.1259, -0.1100] at `p = 0.145155` and -0.0687 [-0.0748, -0.0625] at `p = 0.087093`.
+  - The component difference therefore explains only a small part of the deficit. Most of it remains attributable to other structure beyond the degree sequence, such as clustering or degree correlations, which X2 does not separate.
+  - Rows: claims M4-X2-01 to M4-X2-14.
+- **Evidence audit.** Every number in this report was traced to a committed file, and the frozen analysis was recomputed from the raw result with no difference.

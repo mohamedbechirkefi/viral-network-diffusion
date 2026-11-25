@@ -3,7 +3,7 @@
 
 ## 1. Identification
 
-- Experiment: EXP-004 (confirmatory sensitivity analyses; S4 optional). Report version 1.0, 2026-11-25. Status: **complete. Five runs (S1, S2, S3, S4 at N = 500 and N = 2000), none failed or dropped.**
+- Experiment: EXP-004 (confirmatory sensitivity analyses; S4 optional). Report version 1.1, 2026-11-25 (M4: evidence-audit corrections and addendum; version 1.0 of the same date was the M3 report). Status: **complete. Five runs (S1, S2, S3, S4 at N = 500 and N = 2000), none failed or dropped.**
 - Authorship: Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) ran the analyses and drafted this report under the owner's direction; it is not an author.
 - Experiment protocol v1.0, SHA-256 `bc3746ae7ac7f1eb6b65dbe502ad3fb3d50ec45869a893689f5c9b734e959a44`. Study protocol SHA-256 `d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32`.
 - Provenance revision `32961c3c399263ff3e39a9dbd3f78be3ff934922`, clean tree.
@@ -22,7 +22,7 @@
 
 ## 3. Rationale
 
-Under the locally tree-like approximation, the IC threshold is `p_c = <k>/(<k^2> - <k>)`. BA has a larger `<k^2>` than ER at the same `<k>` (Newman, Strogatz and Watts 2001; Pastor-Satorras et al. 2015). The analyses were fixed before any result.
+Under the locally tree-like approximation, the IC threshold estimate is `p_c = <k>/(<k^2> - <k>)`. BA has a larger `<k^2>` than ER at the same `<k>` (measured: `tables/graphs.csv`). The cited sources (Newman, Strogatz and Watts 2001; Pastor-Satorras et al. 2015) were read at abstract level only, and the expression was not checked against their full text (evidence audit, M4). The analyses were fixed before any result.
 
 ## 4. Hypotheses and decision rules
 
@@ -43,7 +43,7 @@ Under the locally tree-like approximation, the IC threshold is `p_c = <k>/(<k^2>
 - S3: ER and WS are trimmed to 2991 edges.
 - S4: N = 500 and N = 2000.
 - Code: `viral.confirmatory.per_param_family`.
-- Hardware as in EXP-002. Budget 3 hours; total runtime 351.2 s over the five runs (104.3 + 73.8 + 90.2 + 22.9 + 60.0 s).
+- Hardware as in EXP-002. Budget 3 hours; total runtime 351.1 s over the five runs (104.3, 73.8, 90.2, 22.9 and 60.0 s; the sum of the unrounded run times, corrected at M4: version 1.0 printed the sum of the rounded values, one tenth of a second higher).
 
 ## 6. Implementation verification
 
@@ -165,3 +165,9 @@ Each analysis has `figures/S*-fig_primary_contrasts.png` (forest plot with Holm-
 ## 12. Reproduction appendix
 
 See `reproduction.md`.
+
+## Addendum (M4, 2026-11-25)
+
+- **Evidence audit correction.** Version 1.0 of section 5 gave the total runtime of the five runs as the sum of the rounded run times. The sum of the unrounded run times, from the five run manifests, is 351.1 s; section 5 now prints it. The literature sentence of section 3 now states the verification level of its sources (abstract only).
+- **What S1 to S4 leave open.** S2 tests BA only, so the confirmatory programme does not test whether the WS deficit is a degree effect. An exploratory check (X1; EXP-002 report addendum; manuscript section 5.5) finds that the WS deficit at `p = 0.30` is almost entirely structure beyond the degree sequence. That check is post hoc, and it does not change any S1 to S4 verdict.
+- The frozen analysis of each of the five runs was recomputed from the raw results with no difference (`research/publication/evidence_audit.md`).

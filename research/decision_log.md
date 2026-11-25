@@ -111,3 +111,29 @@ Append-only. Each entry: id, date, decision, decided by, rationale, alternatives
 - **Effect.** EXP-004 S1 is reported per multiplier: Holm-adjusted intervals inside the SESOI at c = 0.5 and 1, outside at c = 1.5, 2 and 3 (`results/confirmatory/EXP-004/S1/EXP-004-20261124T233447Z-de14a4b3/primary_contrasts.csv`). No overall S1 verdict is stated, and no EXP-002 effect is reclassified as a degree-heterogeneity effect through S1. The committed `s1_reading.json` ("unresolved") is kept as the record of the pre-decision state.
 - **Experiment reports (item 4), quoted:** "The owner approves writing the missing 11.3/11.6 experiment reports (`report.md`, and `reproduction.md` where the repo uses it). They are written from the committed results, tables and figures only." "Nothing is recomputed and no numbers change."
 - **Effect.** The 12-part reports and `reproduction.md` files of EXP-001 to EXP-005 are written with the file tool from committed files only. This closes the second open item of D-012.
+
+## D-014 (2026-11-25): M4 interpretation, exploratory confounder checks and evidence-audit corrections
+
+- **Decided by:** the session (M4), under the coordinator's M4 brief. The owner said "Approve all recommendations, push then next" on 2026-11-25 (`../_shared/owner-approvals-2026-11-25b.md`, outside this repository), which starts M4. No owner decision is taken here. The proposed manuscript title is the session's, and the owner may change it.
+- **Exploratory confounder checks (X1 to X3).**
+  - *Why.* Three competing explanations named in the protocols were left open by the confirmatory design:
+    - degree homogeneity versus structure for the WS deficit (EXP-002 item 4a; S2 tests BA only);
+    - component structure in EXP-005 (limitation 16);
+    - degree heterogeneity under LT (EXP-003 item 4).
+  - *Design and labelling.* `scripts/exploratory_m4.py` ran one cheap exploratory simulation for each of the three. Each used fresh master seeds 20261201, 20261202 and 20261203, R = 30, C = 200, B = 10000 and unadjusted 95 percent intervals. The checks were designed after the confirmatory results were seen. They are labelled exploratory everywhere and never change or replace a frozen verdict.
+  - *Execution.* One process. Total runtime about 162 s. Outputs are in `results/exploratory/M4/`.
+  - *Superseded executions.* The script was executed three times. The first execution ran X1 and X2 only, before X3 was added. The second ran with the untracked outputs of the first in the tree. Both sets of outputs were deleted by the session that created them. The committed outputs come from the third execution, at revision `4ed1942` with a clean tree. The checks are deterministic, and the X1 and X2 values of the first and third executions agree.
+- **Claims register schema.** New columns: `result_id`, `config_hash`, `figure_or_table` and `section`. New row types: secondary (unadjusted), descriptive levels, graph statistics, exploratory, synthesis and external. `scripts/build_records.py` generates every row except the synthesis and external rows, which are listed in that script with the result ids or sources they rest on (575 rows).
+- **Evidence audit.** `scripts/audit_evidence.py` does four things:
+  - recomputes every confirmatory table from the raw results;
+  - checks committed copies against their originals;
+  - traces every number in the manuscript, the supplementary file and the five reports to a committed file;
+  - checks every printed "estimate [lo, hi]" jointly against one committed row.
+  Findings are in `research/publication/evidence_audit.md`.
+- **Corrections made (reporting only; no frozen file, number of a verdict or analysis changed).**
+  - (1) The EXP-004 report's total runtime is now 351.1 s. Version 1.0 summed the rounded run times.
+  - (2) The literature sentences of the EXP-001 to EXP-004 reports now state the verification level of each source. Three sources were re-read (Newman et al. 2001 abstract; Watts 2002 full text; Kempe et al. 2015 abstract), and the threshold expression is presented as a definition.
+  - (3) The registry statuses still said "report.md not written" and "S1 unresolved". They now reflect M3 closure and D-013.
+  - (4) `research/publication/claims_audit.md` was an M0 checklist and is now completed.
+- **Second review pass** (`research/publication/review_pass_2.md`). Eight challenges hold in full or in part. The manuscript changed from version 0.1 to 0.2 accordingly: descriptive title, SESOI-first counts, the pilot-replication caveat, the S2 bound, the S2 and S3 reuse note, a narrower WS mechanism statement, a narrower generalisation and per-family error control.
+- **Consequences.** M4 is closed if the gate holds (`progress.md`). The owner may revise the manuscript title and the authorship metadata. Report PDFs and the manuscript PDF remain for M6.

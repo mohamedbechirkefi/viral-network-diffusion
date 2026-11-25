@@ -3,7 +3,7 @@
 
 ## 1. Identification
 
-- Experiment: EXP-003 (secondary, confirmatory). Report version 1.0, 2026-11-25. Status: **complete. The full frozen matrix ran, with no failed or dropped run.**
+- Experiment: EXP-003 (secondary, confirmatory). Report version 1.1, 2026-11-25 (M4: evidence-audit corrections and addendum; version 1.0 of the same date was the M3 report). Status: **complete. The full frozen matrix ran, with no failed or dropped run.**
 - Authorship: Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) ran the experiment and drafted this report under the owner's direction; it is not an author.
 - Experiment protocol v1.0, SHA-256 `55ed5cb330f1fafc2f764949375fb6c8b070ceef007172ecb66641fcdd8280ac`. Study protocol SHA-256 `d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32` (`research/freeze.json`).
 - Provenance revision `32961c3c399263ff3e39a9dbd3f78be3ff934922`, clean tree.
@@ -21,7 +21,7 @@
 
 ## 3. Rationale
 
-Threshold (complex) contagion needs several exposures. Hubs are hard to activate, and clustering supplies redundant exposure (Granovetter 1978; Watts 2002; Centola and Macy 2007; verification levels in `research/literature_review.md`). The experiment tests whether the EXP-002 ordering depends on the contagion model.
+Under a fractional threshold, a node activates only when a fraction `phi` of its neighbours is active (Watts 2002, full text opened at M4: a node adopts when "at least a threshold fraction" of its neighbours have adopted). High-degree nodes therefore need more active neighbours, and clustering can supply repeated exposure. The term "complex contagion" and the clustering argument are attributed to Centola and Macy (2007) and the threshold idea to Granovetter (1978); both were verified at metadata level only and their texts were not read, so they are cited as attributions, not as evidence (evidence audit, M4). The experiment tests whether the EXP-002 ordering depends on the contagion model.
 
 ## 4. Hypotheses and definitions
 
@@ -126,3 +126,17 @@ Under fractional-threshold diffusion with ten random seeds, WS graphs reach far 
 ## 12. Reproduction appendix
 
 See `reproduction.md`. Raw result SHA-256 `3f9b6c0b74a86c3f08c5d0538dd93e4b3cc30c5b57aceec4808a92a82e1a5778`. Committed outputs are in `results/confirmatory/EXP-003/EXP-003-20261124T234212Z-a2d668ab/`.
+
+## Addendum (M4, 2026-11-25): competing explanations and an exploratory check
+
+**This addendum does not change the frozen verdict of section 9.**
+
+- **Competing explanations named in the protocol (item 4).**
+  - *Seed count dominating.* The secondary estimates address it in part. With one random seed, WS - ER stays positive (+0.1233 [+0.1150, +0.1316]) while BA - ER is not distinguishable from 0 (-0.0083 [-0.0185, +0.0021]). The BA result therefore depends on exposure; the WS result does not.
+  - *Degree heterogeneity alone.* No confirmatory analysis addressed it.
+- **Exploratory check X3 (post hoc, master seed 20261203, R = 30, LT with ten random seeds, unadjusted 95 percent intervals).**
+  - For WS, structure beyond the degree sequence carries the advantage. At `phi = 0.22`, WS - ws_dpr is +0.7420 [+0.7229, +0.7614], while ws_dpr - ER is -0.2117 [-0.2351, -0.1904].
+  - For BA, the degree-preserving randomisation spreads far more than BA itself: BA - ba_dpr -0.4450 [-0.4761, -0.4126] and ba_dpr - ER +0.5773 [+0.5385, +0.6148] at `phi = 0.22`. The direction of the BA advantage goes with the degree sequence, but other BA structure strongly restrains threshold cascades. The mechanism was not identified.
+  - On fresh seeds, BA - ER at `phi = 0.22` is +0.1323 [+0.1031, +0.1601], close to the confirmatory per-`phi` secondary +0.1372.
+  - Rows: claims M4-X3-01 to M4-X3-42.
+- **Evidence audit.** Section 3 now states that Watts (2002) was opened in full text at M4, and that Granovetter (1978) and Centola and Macy (2007) were verified at metadata level only and are cited as attributions.

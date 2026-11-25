@@ -3,7 +3,7 @@
 
 ## 1. Identification
 
-- Experiment: EXP-002 (primary, confirmatory). Report version 1.0, 2026-11-25. Status: **complete. The full frozen matrix ran, with no failed or dropped run.**
+- Experiment: EXP-002 (primary, confirmatory). Report version 1.1, 2026-11-25 (M4: evidence-audit corrections and addendum; version 1.0 of the same date was the M3 report). Status: **complete. The full frozen matrix ran, with no failed or dropped run.**
 - Authorship: Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) ran the experiment and drafted this report under the owner's direction; it is not an author.
 - Study protocol `research/protocol.md` v1.0, SHA-256 `d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32`. Experiment protocol v1.0, SHA-256 `2b21902acfdedd2acb9395633e2ae28ddffb3f8dba1927e8f2a05cd0fd58272c`. Both are in `research/freeze.json`, owner-approved 2026-11-24.
 - Provenance revision `32961c3c399263ff3e39a9dbd3f78be3ff934922`. The tree was clean at run time (`git_dirty: false`).
@@ -22,7 +22,7 @@
 
 ## 3. Rationale and literature
 
-On locally tree-like graphs, IC final size is related to bond percolation. Its threshold depends on the first two degree moments (Newman, Strogatz and Watts 2001; Pastor-Satorras and Vespignani 2001). WS graphs add clustering and short paths (Watts and Strogatz 1998), and BA graphs add hubs (Barabasi and Albert 1999). Verification levels are in `research/literature_review.md`.
+On locally tree-like graphs, IC final size is related to bond percolation, and the threshold estimate used in this study, `p_c = <k>/(<k^2> - <k>)`, depends on the first two degree moments. The abstract of Newman, Strogatz and Watts (2001; abstract read) states that the giant-component transition of random graphs is derived for arbitrary degree distributions, and the abstract of Pastor-Satorras and Vespignani (2001; abstract read) reports the absence of an epidemic threshold on scale-free networks. The expression itself was not checked against either paper's full text (evidence audit, M4). WS graphs add clustering and short paths (Watts and Strogatz 1998; metadata only, text not read), and BA graphs add hubs (Barabasi and Albert 1999; abstract read). Verification levels are in `research/literature_review.md`.
 
 The gap addressed is a small, fully reproducible, matched comparison with replicate-level uncertainty and a pre-registered sensitivity programme (EXP-004). This is a replication-and-integration study, not a novelty claim.
 
@@ -182,3 +182,22 @@ See `reproduction.md`.
 - Raw result: `results/raw/confirmatory/EXP-002/EXP-002-20261124T233447Z-2c7febb6/result.json` (git-ignored), SHA-256 `f6b8e03e0697e228988f01ff7130a0c9c8cafcc86fac26b43a8dac071a44af94`, result schema 1.1.0.
 - Committed outputs: `results/confirmatory/EXP-002/EXP-002-20261124T233447Z-2c7febb6/` and `results/confirmatory/MANIFEST.sha256`.
 - References: `research/literature_review.md` and `research/paper/references.bib`.
+
+## Addendum (M4, 2026-11-25): competing explanations and an exploratory check
+
+**This addendum does not change the frozen verdict of section 9.**
+
+- **Competing explanations named in the protocol (item 4) and what addresses them.**
+  - (a) Degree heterogeneity alone. S2 addresses it for BA: the BA advantage at `p` 0.15 and 0.20 is a degree-sequence effect. S1 gives no overall verdict (D-013). For WS no confirmatory analysis addresses it.
+  - (b) Edge-count mismatch. S3 rules it out.
+  - (c) Finite size. S4 rules it out for `N` from 500 to 2000 only.
+  - (d) Cascade-level noise. Replicate-level inference addresses it.
+- **Exploratory check X1 (post hoc, `scripts/exploratory_m4.py`, master seed 20261201, R = 30, unadjusted 95 percent intervals).**
+  - The check adds a degree-preserving randomisation of every WS graph (`ws_dpr`). It keeps the WS degree sequence and removes its clustering: average clustering 0.0043 against 0.4410 for WS on the same seeds.
+  - On fresh seeds, WS - ER at `p = 0.30` is -0.3524 [-0.3619, -0.3426], close to the confirmatory -0.3529.
+  - Nearly all of that difference is structure beyond the degree sequence: WS - ws_dpr is -0.3662 [-0.3750, -0.3573], while ws_dpr - ER is +0.0137 [+0.0030, +0.0246].
+  - At `p = 0.20`, both parts contribute: WS - ws_dpr -0.0212 [-0.0224, -0.0199] and ws_dpr - ER -0.0699 [-0.0742, -0.0657].
+  - At `p = 0.50`, the WS advantage goes with its degree sequence: ws_dpr - ER is +0.0709 [+0.0634, +0.0779].
+  - The randomisation removes clustering and ring order together, so it cannot separate them.
+  - Rows: `results/exploratory/M4/m4_exploratory_contrasts.csv`; claims M4-X1-01 to M4-X1-21.
+- **Evidence audit.** The literature sentence of section 3 now states the verification level of each source. Every number in this report was traced to a committed file, and the frozen analysis was recomputed from the raw result with no difference (`research/publication/evidence_audit.md`).

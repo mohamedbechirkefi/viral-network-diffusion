@@ -291,3 +291,60 @@ Coordinator or owner: have the reports written by a session whose file tool perm
 ## 2026-11-25: M3 done (coordinator)
 
 The owner approved the experiment reports (owner, 2026-11-25, "approve all recommendations, RIGGED A", item 4). Subagents may not write report files, so the reports were composed by the M3 session from committed results only and written by the coordinator: 5 report(s). The coordinator checked that every decimal number in them appears in a committed file. With the complete matrices (or documented failures) recorded above, the M3 gate holds. M3 is **done**. Next: M4 (interpretation), not started.
+
+## 2026-11-25, session M4 (interpretation, evidence audit, manuscript)
+
+**Milestone:** M4. **Starting state:** `b5210e0`, tree clean, protocol SHA-256 `d984f2f8...` unchanged. **Authority:** the coordinator's M4 brief. The owner said "Approve all recommendations, push then next" on 2026-11-25 (`../_shared/owner-approvals-2026-11-25b.md`). That file has no VIRAL-specific item.
+
+### Confounder inspection and exploratory checks
+- The competing explanations named in the protocols are listed against the results that address them in manuscript Table 9.
+- Three were open: WS degree versus structure, EXP-005 component structure, and degree heterogeneity under LT. Each got a cheap exploratory check in `scripts/exploratory_m4.py` (committed as `3ac1b8a` and `4ed1942` before the kept run). The checks used fresh seeds 20261201 to 20261203, one worker, R = 30, C = 200 and unadjusted intervals.
+```
+$ nice -n 10 .venv/bin/python scripts/exploratory_m4.py results/exploratory/M4   (third execution, clean tree at 4ed1942)
+runtime_seconds X1 22.2, X2 8.6, X3 131.5; tree_dirty_at_start false; 77 contrast rows
+X1 ws - er p=0.3 -0.3524 [-0.3619, -0.3426]; ws - ws_dpr -0.3662 [-0.3750, -0.3573]; ws_dpr - er +0.0137 [+0.0030, +0.0246]
+X2 real - real_dpr p=0.145155: S -0.1309 [-0.1387, -0.1231]; giant-seeded, giant-normalised -0.1177 [-0.1259, -0.1100]
+X3 phi=0.22: ws - ws_dpr +0.7420; ws_dpr - er -0.2117; ba - ba_dpr -0.4450; ba_dpr - er +0.5773
+```
+- Two earlier executions were superseded and their outputs deleted: the first before X3 existed, the second with untracked outputs in the tree. The X1 and X2 values of the kept run are identical to those of the first. No frozen verdict changed.
+
+### Evidence audit
+```
+$ .venv/bin/python scripts/build_records.py      -> 575 claim rows; 43 artifacts
+$ .venv/bin/python scripts/audit_evidence.py     -> exit 0
+TRIPLES 370 estimate-interval triples matched jointly to one committed row; 0 unmatched
+COPIES 129 manifest entries and 56 experiment-folder copies checked, 0 failures
+RAW: 8 runs, 177 checks, 0 failures (frozen analysis recomputed from raw results)
+{"tokens": 2953, "decimal_traced": 2217, "decimal_traced_weak": 1392, "decimal_untraced": 0, "integer_traced": 556, "integer_constant_or_count": 180}
+```
+- **Fixed.** The EXP-004 total runtime is now 351.1 s; the earlier 351.2 s summed the rounded values. Four citations overstated what had been read, and they are now qualified. Sources re-read: the Newman et al. 2001 abstract, the Watts 2002 full text and the Kempe et al. 2015 abstract. Stale registry statuses were updated, and the claims audit checklist was completed. Details: `research/publication/evidence_audit.md`.
+
+### Manuscript and second pass
+- `research/paper/manuscript.md`: version 0.2, about 5,700 words outside tables and references, abstract 242 words. `research/paper/supplementary.md` is complete. `research/paper/references.bib` holds 14 entries with their verification levels. `manuscript.tex` was regenerated with pandoc 3.6.3 and not compiled (D-002).
+- `research/publication/review_pass_2.md`: 13 challenges; 8 hold in full or in part. The changes they led to are listed in its section B. Among them: a descriptive title replaces the mechanism title, and the abstract and conclusion lead with the count outside the SESOI.
+
+### Records
+- Reports EXP-001 to EXP-005 are now version 1.1, each with an M4 addendum. Updated: limitations 18 to 24, `literature_review.md` verification update, decision D-014, journal (2 entries), registry statuses, `author_review.md` owner items and roadmap.
+- New tests: `tests/test_audit.py` (4 tests).
+
+### Final checks
+```
+$ ../.tools/py/bin/uv sync --frozen --all-groups --all-extras   -> Audited 25 packages
+$ .venv/bin/python -m pytest                                     -> 178 passed in 6.90s
+$ frozen_status on all eight frozen configs                      -> (True, 'frozen') each
+$ shasum -a 256 research/protocol.md                             -> d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32 (unchanged)
+```
+
+### M4 status
+**Done.** The gate holds:
+- every numerical claim maps to a result id, config hash and figure or table (claims register and `number_trace.csv`, 0 untraced decimals);
+- every external claim maps to a source read at its stated level;
+- unsupported attributions were qualified.
+
+### Risks and owner items
+- The owner may revise the proposed title and should review manuscript version 0.2 (`research/publication/author_review.md`).
+- The X1 to X3 findings are exploratory. A confirmatory version would need a new registered experiment.
+- No PDF has been built (M6). Nothing was pushed.
+
+### Next action
+M5 (interactive experience), then M6.
