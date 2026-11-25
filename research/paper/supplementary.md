@@ -6,7 +6,7 @@ Companion to `research/paper/manuscript.md` (version 0.2, M4, 2026-11-25). Indep
 ## S1. Complete experimental matrix
 
 | experiment | model | topologies | parameter grid | exposure (seed rule x count) | R | C | master seed | cascades |
-|---|---|---|---|---|---|---|---|---|
+|------------|------|----------|--------------------------|--------------|-----|-----|----------|------------|
 | EXP-001 smoke (exploratory) | IC, LT | ER, WS, BA | IC `p` in {0, 0.05, 0.20, 1}; LT `phi` in {0, 0.18, 1.01} | random x 1 | 5 | 50 | 20261124 | 5,250 per smoke run |
 | EXP-002 | IC | ER, WS, BA | `p` in {0.02, 0.05, 0.10, 0.15, 0.20, 0.30, 0.50} | {random, highest degree} x {1, 10} | 120 | 200 | 20261125 | 2,016,000 |
 | EXP-003 | LT | ER, WS, BA | `phi` in {0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30} | {random, highest degree} x {1, 10} | 30 | 200 | 20261126 | 504,000 |
@@ -68,7 +68,7 @@ Secondary grid means (unadjusted 95 percent): real - real_er -0.0221 [-0.0228, -
 ## S3. Configurations and hashes
 
 | item | path | file SHA-256 (prefix) | canonical config hash (prefix) | run id |
-|---|---|---|---|---|
+|-----------|-----------------------|---------------|---------------|----------------------------------|
 | study protocol v1.0 | `research/protocol.md` | d984f2f8f2fb | not applicable | not applicable |
 | EXP-002 config | `experiments/EXP-002/config.json` | 3a1cd795beb8 | 2c7febb68d11 | EXP-002-20261124T233447Z-2c7febb6 |
 | EXP-003 config | `experiments/EXP-003/config.json` | 728f9a314357 | a2d668abb8f1 | EXP-003-20261124T234212Z-a2d668ab |
@@ -206,12 +206,12 @@ Source: `results/exploratory/M4/m4_exploratory_contrasts.csv` (generator `script
 | EXP-004 | `research/experiments/EXP-004/report.md` | `research/experiments/EXP-004/reproduction.md` | confirmatory, complete (S4 optional, run) |
 | EXP-005 | `research/experiments/EXP-005/report.md` | `research/experiments/EXP-005/reproduction.md` | confirmatory, complete |
 
-No report PDF has been built yet (M6).
+Each report also exists as `report.pdf` in the same folder, built at M6 by `scripts/build_pdfs.py`.
 
 ## S6. Deviations from the frozen protocol and owner decisions
 
 | id | date | what | kind | record |
-|---|---|---|---|---|
+|-------------|-----------|-------------------------------------------|---------------|--------------------|
 | C4 | 2026-11-24 | Pilot values of the primary contrast were seen at R = 10 before the freeze; they motivated the per-`p` primary analysis, R = 120 and the EXP-003 grid | disclosure (pre-freeze) | `research/freeze.json`; D-007, D-009 |
 | amendments | 2026-11-24 | Per-`p` primary family, R = 120, new master seeds, threshold grid 0.18 to 0.30, Holm interval method, real-network second test | owner-approved pre-freeze amendments | protocol section 11; D-009, D-010 |
 | ratification | 2026-11-24 | Real network and the session's interval construction, per-multiplier S1 criterion and configs ratified | owner decision | D-011 |

@@ -12,6 +12,7 @@ import csv
 import os
 import shutil
 import subprocess
+import tempfile
 from pathlib import Path
 
 from . import analysis
@@ -197,7 +198,40 @@ def build_report(result_path: str | Path, project: ExperimentConfig | None = Non
     return report
 
 
-def build_pdf(md: Path, pandoc: str | None = None, typst_python: str | None = None) -> Path:
+# Tables may break across pages, so a long table follows its caption instead of floating to
+# the next page and leaving a blank half page; table cells are not justified, so narrow
+# columns do not show wide word gaps (M6 visual inspection). pandoc runs with --wrap=none: a wrapped line that starts with
+# "2." would otherwise be read by Typst as a numbered list item.
+_TYPST_HEADER = ("#show figure.where(kind: table): set block(breakable: true)\n"
+                 "#show table: set par(justify: false)\n"
+                 "#show table: set text(size: 0.9em)")
+
+# Drop a level-1 heading that repeats the metadata title (the title block already prints it).
+# A document without a metadata title takes its first level-1 heading as the title, so the
+# PDF title metadata is always set.
+_DROP_TITLE_HEADING_LUA = """
+function Pandoc(doc)
+  local title = pandoc.utils.stringify(doc.meta.title or "")
+  for i, b in ipairs(doc.blocks) do
+    if b.t == "Header" and b.level == 1 then
+      if title == "" then
+        doc.meta.title = pandoc.MetaInlines(b.content)
+        table.remove(doc.blocks, i)
+      elseif pandoc.utils.stringify(b) == title then
+        table.remove(doc.blocks, i)
+      end
+      break
+    end
+  end
+  return doc
+end
+"""
+
+
+def build_pdf(md: Path, pandoc: str | None = None, typst_python: str | None = None,
+              root: Path | None = None) -> Path:
+    """Compile md to PDF. root is the Typst project root (default: md's folder); pass the
+    repository root when the Markdown references figures outside its own folder."""
     pandoc = pandoc or os.environ.get("VIRAL_PANDOC") or shutil.which("pandoc")
     typst_python = typst_python or os.environ.get("VIRAL_TYPST_PYTHON")
     if not pandoc:
@@ -206,6 +240,12 @@ def build_pdf(md: Path, pandoc: str | None = None, typst_python: str | None = No
         raise RuntimeError("no Python with the typst package; set VIRAL_TYPST_PYTHON")
     typ = md.with_suffix(".typ")
     out = md.with_suffix(".pdf")
-    subprocess.run([pandoc, md.name, "-s", "-t", "typst", "-V", 'mainfont=Libertinus Serif', "-o", typ.name], cwd=md.parent, check=True)
-    subprocess.run([typst_python, "-c", f"import typst; typst.compile({typ.name!r}, output={out.name!r})"], cwd=md.parent, check=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        lua = Path(tmp) / "drop_title_heading.lua"
+        lua.write_text(_DROP_TITLE_HEADING_LUA)
+        subprocess.run([pandoc, md.name, "-s", "-t", "typst", "--wrap=none", "-V", 'mainfont=Libertinus Serif',
+                        "-V", f"header-includes={_TYPST_HEADER}", "--lua-filter", str(lua),
+                        "-o", typ.name], cwd=md.parent, check=True)
+    root_arg = f", root={str(Path(root).resolve())!r}" if root is not None else ""
+    subprocess.run([typst_python, "-c", f"import typst; typst.compile({typ.name!r}, output={out.name!r}{root_arg})"], cwd=md.parent, check=True)
     return out

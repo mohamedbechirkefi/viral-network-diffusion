@@ -17,7 +17,7 @@ The IC and fractional-threshold rules in `src/engine.ts` are line-by-line ports 
 
 ## Commands
 
-Node 22 (`/Users/bechir/research/helix/.tools/node/bin` on the development machine).
+Node 22 (`../../helix/.tools/node/bin` relative to the repository root, on the development machine).
 
 ```sh
 npm ci && npm run build && npm run preview   # quick start

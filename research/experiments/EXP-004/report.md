@@ -52,7 +52,7 @@ The suite passed 174 tests before the runs. All 450 graphs across the five runs 
 ## 7. Execution record
 
 | analysis | run id | config file SHA-256 (prefix) | start to finish (UTC) | runtime | graphs / cascades | exit |
-|---|---|---|---|---|---|---|
+|--------|------------------------------------|-------------|----------------|--------|-------------|-----|
 | S1 | EXP-004-20261124T233447Z-de14a4b3 | 17f64abe4ef7 | 23:34:47 to 23:36:31 | 104.3 s | 90 / 90,000 | 0 |
 | S2 | EXP-004-20261124T233637Z-916e8d29 | 42fd53afd45e | 23:36:37 to 23:37:50 | 73.8 s | 60 / 84,000 | 0 |
 | S3 | EXP-004-20261124T233755Z-e1d24091 | 9d0aaf2b4e76 | 23:37:55 to 23:39:25 | 90.2 s | 90 / 126,000 | 0 |

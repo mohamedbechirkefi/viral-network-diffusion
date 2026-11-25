@@ -661,12 +661,12 @@
    "research/experiments/EXP-005/report.md"
   ],
   "counts": {
-   "tokens": 2953,
+   "tokens": 2952,
    "decimal_traced": 2217,
    "decimal_traced_weak": 1392,
    "decimal_untraced": 0,
    "integer_traced": 556,
-   "integer_constant_or_count": 180
+   "integer_constant_or_count": 179
   },
   "trace_file": "research/publication/number_trace.csv"
  },

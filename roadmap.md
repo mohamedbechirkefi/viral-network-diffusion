@@ -11,7 +11,7 @@ Updated 2026-11-25 (session M5). Effort is a planning estimate in focused days (
 | M3 Experiments | M2; M1 freeze for confirmatory runs | P0 | 1 d | done (2026-11-25): full frozen matrix of EXP-002 to EXP-005 run, 8 runs, none failed or dropped; reports written (D-013) | none |
 | M4 Interpretation | M3 | P0 | 0.75 d | done (2026-11-25): gate holds (evidence audit; manuscript v0.2; second review pass); title and statements owner-approved (D-015) | owner full-text review of the manuscript (M6; author_review.md) |
 | M5 Interactive experience | M3 results (sandbox can start at M2) | P1 | 0.75 d | done (2026-11-25): gate holds (offline, responsive, keyboard, no fabricated data, no runtime service; D-016) | none |
-| M6 Release candidate | M4, M5 | P0 | 0.25 d | not started | G-PUBLIC for any publication |
+| M6 Release candidate | M4, M5 | P0 | 0.25 d | release candidate prepared, awaiting owner review and G-PUBLIC (2026-11-25; D-017) | owner sign-off of author_review.md; G-PUBLIC for any publication |
 
 ## M0 Bootstrap and feasibility
 
@@ -65,3 +65,4 @@ Updated 2026-11-25 (session M5). Effort is a planning estimate in focused days (
 - Tasks: clean clone, `uv sync --locked`, tests, smoke reproduction, demo build, manifest and link checks, secret and licence scan.
 - 11.6 additions: compile and visually inspect manuscript and report PDFs (pandoc to Typst); verify references, cross-links, equations, figures, metadata; owner review checklist.
 - Acceptance: actual command outputs recorded. No publication or push without owner approval (G-PUBLIC).
+- Status (2026-11-25, session M6): release candidate prepared, awaiting owner review and G-PUBLIC. Clean clone: 186 tests passed, smoke run identical to the committed M3 smoke apart from volatile fields, demo `A11Y-CHECK PASS`, demo export deterministic; fresh clone of the M6 commit re-checked. Seven PDFs built (`scripts/build_pdfs.py`) and inspected page by page; builder fixes recorded in `research/publication/reproducibility_report.md`. Links and references: `scripts/check_links.py` `LINKS PASS`. Manifests: 4 of 4 data hashes, 43 of 43 artifacts. Scan: 0 secrets; dependency licences without flag. Not done until the owner signs off.

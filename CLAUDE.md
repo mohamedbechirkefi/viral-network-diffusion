@@ -25,10 +25,10 @@ Then inspect `git status` and `git log`. Do not overwrite changes made by the ow
 
 ## 3. Toolchain (zero cost, decided 2026-11-24, see decision_log D-002)
 
-- Python 3.12.1 at `/usr/local/bin/python3`; project environment managed by uv 0.9.5 at `/Users/bechir/research/labs/.tools/py/bin/uv`, locked in `uv.lock`.
-- pandoc 3.6.3 at `/Users/bechir/research/labs/.tools/pandoc`; typst 0.15.0 (Python package), pypdf and pillow in `/Users/bechir/research/labs/.tools/py/bin/python`.
+- Python 3.12.1 at `/usr/local/bin/python3`; project environment managed by uv 0.9.5 at `../.tools/py/bin/uv` (relative to the repository root), locked in `uv.lock`.
+- pandoc 3.6.3 at `../.tools/pandoc`; typst 0.15.0 (Python package), pypdf and pillow in `../.tools/py/bin/python`.
 - No TeX distribution. PDFs: pandoc Markdown to Typst, compiled with the typst Python package. `manuscript.tex` is generated from Markdown with pandoc and is not compiled locally.
-- Node 22.23.3 at `/Users/bechir/research/helix/.tools/node/bin` may be used read-only for the demo. Never modify that folder.
+- Node 22.23.3 at `../../helix/.tools/node/bin` may be used read-only for the demo. Never modify that folder.
 
 ## 4. Rules
 
@@ -40,7 +40,7 @@ Then inspect `git status` and `git log`. Do not overwrite changes made by the ow
 
 ### Scope
 - Work only inside this repository, except read-only use of the tools listed in section 3.
-- Do not touch any other folder under `/Users/bechir/research` (hive, helix, cogkt, trading, the other labs).
+- Do not touch any other folder under the parent research folder (`../..`) (hive, helix, cogkt, trading, the other labs).
 - Never kill processes you did not start. Never delete anything you did not create in the current session.
 
 ### Truthfulness

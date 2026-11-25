@@ -133,3 +133,18 @@ The re-reads used a summarising web fetch. Quotations are limited to short phras
 - **Unsupported claims.** Unsupported external attributions were qualified (section 4, items 2 to 4).
 
 The M4 gate holds.
+
+## 8. M6 update (2026-11-25): literature levels, references and links
+
+Free arXiv or author copies of four sources were downloaded and their text extracted locally with pypdf (no paid access, no login). Levels in section 5 change as follows; the manuscript section 2, its reference list, `references.bib` and `research/literature_review.md` (M6 update) record them.
+
+| source | level now | what was checked | where |
+|---|---|---|---|
+| Kempe, Kleinberg and Tardos 2003 (conference version) | full text | the Independent Cascade model: a newly active node "is given a single chance to activate each currently inactive neighbor" with a given probability; matches the study's IC with one common `p` | section 1, page 2 |
+| Pastor-Satorras et al. 2015 | section IV.C in full, rest at abstract level | `p_c = <k>/(<k^2> - <k>)` for bond percolation on degree-uncorrelated networks without loops; the manuscript now cites this section for the expression | Eq. (18), page 15 of the arXiv preprint |
+| Newman, Strogatz and Watts 2001 | full text | giant component exists if and only if the sum of `k(k - 2) p_k` is positive; the paper does not state the bond-percolation threshold, so the expression is not attributed to it | section II.D, Eq. (33), page 6 of the arXiv preprint |
+| Barabasi and Albert 1999 | full text (arXiv preprint) | preferential attachment gives a power-law degree distribution, exponent 2.9 plus or minus 0.1 | page 5, Fig. 2A |
+
+Unchanged: Watts 2002 (full text); Pastor-Satorras and Vespignani 2001 and Kitsak et al. 2010 (abstract); Watts and Strogatz 1998, Gilbert 1959 (Project Euclid returned no text to the fetch tool), Granovetter 1978, Centola and Macy 2007, Goel et al. 2016 and Salganik et al. 2006 (metadata only, attributions); Maier and Brockmann 2017 (not read, data citation). Totals for the 14 entries of `references.bib`: 5 read in full (one of them for the cited section only), 2 abstract only, 7 metadata only or not read (unverified for content). No claim depends on an unverified source beyond attribution.
+
+`scripts/check_links.py` checks that every `references.bib` entry is in the manuscript reference list and the reverse (14 of 14), and that every relative Markdown link resolves (49 links, 0 broken). After the manuscript edits, `scripts/audit_evidence.py` traced every number again: `decimal_untraced` 0. An arXiv identifier written in the reference list was first reported as an untraced decimal and was replaced by a pointer to `references.bib`.

@@ -54,3 +54,14 @@ During the M4 evidence audit, three sources were opened again:
 The fetches went through a summarising web tool. Quotations are short phrases only.
 
 Granovetter (1978), Watts and Strogatz (1998), Centola and Macy (2007), Gilbert (1959), Goel et al. (2016), Salganik et al. (2006) and Cheng et al. (2014) remain at metadata level. The manuscript cites them as attributions only.
+
+## Verification update (M6, 2026-11-25)
+
+At M6, the free arXiv or author copies of four cited sources were downloaded and their text extracted locally (pypdf). No paid access, login or shadow library was used.
+
+- **Kempe, Kleinberg and Tardos (2003), conference version** (author copy, https://www.cs.cornell.edu/home/kleinber/kdd03-inf.pdf). Level F. Section 1 (page 2) defines the Independent Cascade Model: a node that first becomes active "is given a single chance to activate each currently inactive neighbor", with probability `p_{v,w}`. The study's IC model is this model with one common `p`. The Linear Threshold model of that paper draws node thresholds uniformly at random; the study's fractional-threshold rule fixes one threshold `phi`, the "hard-wired" class the paper mentions, and rests on Watts (2002).
+- **Pastor-Satorras et al. (2015)** (arXiv 1408.2701). Section IV.C "Generating function approach" read in full (level F for that section; the rest of the review at abstract level). Eq. (18), page 15 of the preprint, gives the bond-percolation threshold `p_c = <k>/(<k^2> - <k>)` for degree-uncorrelated networks without loops. The manuscript now cites this section for the expression.
+- **Newman, Strogatz and Watts (2001)** (arXiv cond-mat/0007235). Level F. Section II.D, Eq. (33), page 6 of the preprint: the giant component exists if and only if the sum of `k(k - 2) p_k` is positive. The paper does not state the bond-percolation threshold itself.
+- **Barabasi and Albert (1999)** (arXiv cond-mat/9910332). Level F (preprint). Page 5: growth with preferential attachment gives a power-law degree distribution with exponent 2.9 plus or minus 0.1 (Fig. 2A).
+
+Tried without success: Gilbert (1959) at Project Euclid (no text returned to the fetch tool). Kitsak et al. (2010) remains at abstract level (arXiv 1001.5285, abstract re-read at M6). Watts and Strogatz (1998), Granovetter (1978), Centola and Macy (2007), Goel et al. (2016), Salganik et al. (2006), Maier and Brockmann (2017) and Gilbert (1959) remain at metadata level; each is cited as an attribution or a data citation only, and no conclusion depends on its content.

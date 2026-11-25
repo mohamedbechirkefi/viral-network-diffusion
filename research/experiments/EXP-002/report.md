@@ -170,6 +170,7 @@ Source: `secondary_contrasts.csv`. These are 95 percent percentile intervals, no
 ## 11. Conclusion and next experiment
 
 Within this simulation, topology changes the expected IC final cascade fraction in 13 of 14 tested conditions, at matched size, density and transmission probability.
+
 - The largest difference is WS minus ER at `p = 0.30`: -0.3529 [-0.3601, -0.3456].
 - The direction depends on `p`.
 - The BA advantage near threshold is carried by the degree sequence (S2).
@@ -179,6 +180,7 @@ Next: M4 interpretation, a second review pass that challenges the preferred read
 ## 12. Reproduction appendix
 
 See `reproduction.md`.
+
 - Raw result: `results/raw/confirmatory/EXP-002/EXP-002-20261124T233447Z-2c7febb6/result.json` (git-ignored), SHA-256 `f6b8e03e0697e228988f01ff7130a0c9c8cafcc86fac26b43a8dac071a44af94`, result schema 1.1.0.
 - Committed outputs: `results/confirmatory/EXP-002/EXP-002-20261124T233447Z-2c7febb6/` and `results/confirmatory/MANIFEST.sha256`.
 - References: `research/literature_review.md` and `research/paper/references.bib`.

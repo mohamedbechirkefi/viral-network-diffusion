@@ -42,7 +42,7 @@ The IC definition is the standard one studied by Kempe, Kleinberg and Tardos (20
 ## 7. Execution record
 
 | run id | purpose | revision | started (UTC) | runtime | graphs / cascades | verification failures |
-|---|---|---|---|---|---|---|
+|--------------------------------|---------|--------|----------------------|--------|----------|-----------|
 | EXP-001-20261124T162117Z-99c548ac | M2 smoke | 6edd91e | 2026-11-24T16:21:17Z | 3.28 s | 15 / 5,250 | 0 |
 | EXP-001-20261124T162121Z-d947f41d | M2 planning probe | 6edd91e | 2026-11-24T16:21:21Z | 114.82 s | 288,000 cascades | not applicable (probe) |
 | EXP-001-20261124T233106Z-99c548ac | M3 pre-run smoke | ceeee8c | 2026-11-24T23:31:06Z | 3.50 s | 15 / 5,250 | 0 |

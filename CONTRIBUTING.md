@@ -40,7 +40,8 @@ Never commit an e-mail address, a name or any other personal identifier in code,
 
 - Install the locked environment: `uv sync --locked` (uv 0.9.5 or later).
 - Refresh the lockfile after a reviewed dependency change: `uv lock`.
-- Generate the manuscript LaTeX source: `pandoc research/paper/manuscript.md -s -t latex -o research/paper/manuscript.tex`.
+- Generate the manuscript LaTeX source: `pandoc research/paper/manuscript.md -s -t latex -V header-includes='% SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0' -o research/paper/manuscript.tex`.
+- Publication PDFs (manuscript, supplementary, every experiment report): `.venv/bin/python scripts/build_pdfs.py`.
 - Build a PDF without TeX: `pandoc <file>.md -s -t typst -V mainfont="Libertinus Serif" -o <file>.typ`, then `python -c "import typst; typst.compile('<file>.typ', output='<file>.pdf')"`.
 - Install with figures: `uv sync --locked --all-groups`.
 - Tests: `uv run --locked pytest` or `uv run --locked viral test`.

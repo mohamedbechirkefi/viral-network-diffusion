@@ -27,7 +27,7 @@ Within these models, topology effects are large but are not one effect: their si
 
 | Item | Location | Status |
 |---|---|---|
-| Manuscript | [research/paper/manuscript.md](research/paper/manuscript.md), [supplementary.md](research/paper/supplementary.md) | version 0.2, not peer-reviewed; PDF at M6 |
+| Manuscript | [research/paper/manuscript.md](research/paper/manuscript.md), [supplementary.md](research/paper/supplementary.md) | version 0.2, not peer-reviewed; PDFs: [manuscript.pdf](research/paper/manuscript.pdf), [supplementary.pdf](research/paper/supplementary.pdf) |
 | Protocol | [research/protocol.md](research/protocol.md), [research/freeze.json](research/freeze.json) | v1.0, frozen 2026-11-24 (owner-approved) |
 | Experiment registry | [research/experiment_registry.csv](research/experiment_registry.csv) | 5 registered experiments |
 | Claims register | [research/claims_register.csv](research/claims_register.csv) | 575 rows |

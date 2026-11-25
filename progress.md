@@ -426,3 +426,50 @@ $ grep -rn REPLACE demo/ --exclude-dir=node_modules             -> no match
 
 ### Next action
 M6 (release candidate).
+
+## 2026-11-25, session M6 (release candidate)
+
+**Milestone:** M6. **Starting state:** `68a8fac`, tree clean. **Authority:** owner, 2026-11-25, "Next" (second) (`../_shared/owner-approvals-2026-11-25e.md`). Decision D-017.
+
+### Clean clone of `68a8fac` (session scratchpad, deleted at the end)
+```
+$ git clone -q <repo> <scratch>/clone; ../.tools/py/bin/uv sync --frozen --all-groups --all-extras   -> exit 0
+$ .venv/bin/python -m pytest                                        -> 186 passed in 7.35s
+$ .venv/bin/viral smoke --config experiments/EXP-001/config.json    -> runtime 3.47 s; graphs 15 (failures 0); cascades checked 5250 (failures 0)
+  comparison with committed M3 smoke EXP-001-20261124T233106Z-99c548ac: identical after removing run_id, git_revision, timestamps, *_seconds, peak_rss_bytes
+$ .venv/bin/python scripts/validate_metrics.py <run> <json>         -> 54 checks, 0 failed
+$ npm ci --prefer-offline / npm test / npm run build                -> added 53 packages; Tests 30 passed (30); built
+$ node tools/a11y_check.mjs dist                                    -> A11Y-CHECK PASS (39 of 39 focusable reached)
+$ scripts/export_demo_data.py; scripts/make_sandbox_fixture.py; git status --short   -> (empty)
+```
+
+### PDFs
+- First attempt: `build_pdf` failed on the manuscript (`typst.TypstError: path "../experiments/EXP-002/figures/fig_primary_contrasts.png" would escape the project root`). Fixed (D-017).
+- `.venv/bin/python scripts/build_pdfs.py`: manuscript.pdf 23 pages, supplementary.pdf 13, EXP-001 to EXP-005 report.pdf 4, 9, 6, 8 and 7 pages (largest 617,690 bytes). Every page of all seven documents rendered at 60 ppi and inspected. Fixes (builder and Markdown only): duplicated title, floating tables and half-blank pages, justified narrow cells, a wrapped "2." read as a list item, overlapping run-id and hash columns (four tables), three lists printed as raw "- " text. pypdf: title set in all seven, no e-mail address, no local path. `manuscript.tex` regenerated (with an SPDX line through `header-includes`).
+
+### References, links, numbers, manifests
+- Full texts read (free arXiv or author copies; text extracted with pypdf): Kempe et al. 2003 (IC defined, section 1, page 2), Pastor-Satorras et al. 2015 (Eq. 18, section IV.C, page 15), Newman et al. 2001 (Eq. 33, section II.D, page 6), Barabasi and Albert 1999 (page 5, Fig. 2A). Gilbert 1959: no text returned. Totals over 14 bib entries: 5 read in full, 2 abstract only, 7 metadata only or not read.
+- `scripts/check_links.py` (new; `tests/test_links.py`, 3 tests): `49 relative links checked, 0 broken; 14 bib entries checked, 0 reference mismatches`, `LINKS PASS`.
+- `scripts/audit_evidence.py` (about 70 s, run twice): first run `decimal_untraced` 1 (an arXiv identifier in the reference list), replaced; second run `{"tokens": 2952, "decimal_traced": 2217, "decimal_traced_weak": 1392, "decimal_untraced": 0, "integer_traced": 556, "integer_constant_or_count": 179}`, all RAW checks 0 failures.
+- `data/manifest.json`: 4 of 4 hashes match. `artifact_manifest.json`: 43 of 43 paths and SHA-256 match; 43 of 43 raw result hashes match.
+
+### Scan and licences
+- 366 tracked files: 0 tokens or keys, 0 private-key headers, 0 `.env`; e-mail-like strings: 1 (`noreply@anthropic.com` in `CLAUDE.md`, a role address); home-directory paths in 5 files: `CLAUDE.md` (4) and `demo/README.md` (1) made relative; `research/protocol.md` (5, frozen) left as is; `research/literature_review.md` (1) is a URL. This journal keeps its 8 earlier absolute paths (append-only; they name the local tool folders and are noted here instead of edited).
+- `research/publication/dependency_licences.md`: no flag (MPL-2.0 for hypothesis and lightningcss, MIT-CMU for pillow, noted).
+- SPDX: missing on `demo/.npmrc` and `manuscript.tex` (added) and on nine raw `run.log` files (left unedited).
+
+### CITATION.cff
+`date-released` removed; version `0.1.0-rc1`; title equal to the manuscript title; structural check against CFF 1.2.0 keys and types: `CFF STRUCTURE PASS`.
+
+### Owner review checklist
+No box was ticked by an agent; none unticked. Section "Prepared for the owner (M6, 2026-11-25)" added with what to read per item, eight open decisions and the placeholder list.
+
+### Working-repository checks before commit
+```
+$ .venv/bin/python -m pytest              -> 189 passed in 7.46s
+$ scripts/export_demo_data.py --check     -> results.json up to date (re-exported once: the artifact-manifest hash changed with the audit counts)
+$ npm test; npm run build; a11y check     -> Tests 30 passed (30); built; A11Y-CHECK PASS
+```
+
+### Next action
+Fresh-clone re-check of the M6 commit (appended below), then the owner's review (`research/publication/author_review.md`) and G-PUBLIC.

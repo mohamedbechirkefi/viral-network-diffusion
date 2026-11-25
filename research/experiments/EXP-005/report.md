@@ -128,6 +128,7 @@ Secondary grid means (unadjusted 95 percent): real - real_er -0.0221 [-0.0228, -
 ## 11. Conclusion
 
 On this one anonymized friendship network:
+
 - IC final size differs from size- and density-matched random graphs in a `p`-dependent way, up to -0.2080 [-0.2141, -0.2018] at the largest calibrated `p`.
 - With the degree sequence held fixed, the network's other structure lowers final size, by up to -0.1317 [-0.1380, -0.1253].
 
