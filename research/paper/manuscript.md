@@ -10,7 +10,7 @@ status: "Independent research manuscript / preprint draft, not peer-reviewed"
 
 # Topology and initial exposure in simulated diffusion: preregistered matched comparisons of independent-cascade and threshold models on random, small-world and scale-free graphs
 
-**Status.** Independent research manuscript / preprint draft, not peer-reviewed. Version 0.2 (M4, after the second review pass), 2026-11-25. All results are simulations of stylised models. Nothing in this manuscript describes a real social platform, its algorithms, or any guarantee of virality.
+**Status.** Independent research manuscript / preprint draft, not peer-reviewed. Version 0.2 (M4, after the second review pass), 2026-11-25. The title was approved by the owner on 2026-11-25 (decision log D-015). All results are simulations of stylised models. Nothing in this manuscript describes a real social platform, its algorithms, or any guarantee of virality.
 
 ## Author and affiliation metadata
 

@@ -137,3 +137,10 @@ Append-only. Each entry: id, date, decision, decided by, rationale, alternatives
   - (4) `research/publication/claims_audit.md` was an M0 checklist and is now completed.
 - **Second review pass** (`research/publication/review_pass_2.md`). Eight challenges hold in full or in part. The manuscript changed from version 0.1 to 0.2 accordingly: descriptive title, SESOI-first counts, the pilot-replication caveat, the S2 bound, the S2 and S3 reuse note, a narrower WS mechanism statement, a narrower generalisation and per-family error control.
 - **Consequences.** M4 is closed if the gate holds (`progress.md`). The owner may revise the manuscript title and the authorship metadata. Report PDFs and the manuscript PDF remain for M6.
+
+## D-015 (2026-11-25): Owner approval of the manuscript title and of the funding, competing-interest and AI-use wording (post-M4)
+
+- **Decided by:** the owner, 2026-11-25, "Approve all" (post-M4) (`../_shared/owner-approvals-2026-11-25c.md`, items 1 and 2). Applied by the AI assistant under the shared post-M4 brief.
+- **Item 1, title.** The title proposed in M4 (D-014; `research/publication/review_pass_2.md`, challenge A1), "Topology and initial exposure in simulated diffusion: preregistered matched comparisons of independent-cascade and threshold models on random, small-world and scale-free graphs", is approved. It was already the manuscript title; the status line now records the approval. `manuscript.tex` was regenerated with the CONTRIBUTING pandoc command; the only difference is that sentence. No PDF was built (M6). The owner review checklist (`research/publication/author_review.md`) is left for the owner to tick.
+- **Item 2, statements.** The wording of `research/paper/manuscript.md` section 11 (funding, competing interests and AI assistance) is owner-approved as drafted, including "No funding." and "No competing interests." No wording was changed. The remaining placeholders that need a fact only the owner knows are listed in `progress.md` under "Owner placeholders for M5".
+- **Unchanged.** No frozen protocol, config, seed, result or number was touched. The evidence audit still passes with 0 untraced numbers.
