@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 -->
 # Reproducibility report
 
-Status at M6 (2026-11-25): checked in a clean local clone of revision `68a8fac` (the M5 commit), then re-checked in a fresh clone of the M6 commit after the fixes listed in section 4. Every line below is an actual command output. Nothing was pushed.
+Status at M6 (2026-11-25): checked in a clean local clone of revision `68a8fac` (the M5 commit), then re-checked in a fresh clone of the M6 commit after the fixes listed in section 4. Every line below is an actual command output. Nothing was pushed in the M6 session; the repository was pushed and has been public on GitHub since 2026-11-25 (correction of 2026-11-26).
 
 - [x] Clean clone into a separate directory (`git clone -q <working repository> <session scratchpad>/clone`; local clone, no network).
 - [x] `uv sync --frozen --all-groups --all-extras` succeeds (uv 0.9.5; 25 packages plus the project).
@@ -95,3 +95,14 @@ $ scripts/export_demo_data.py; scripts/make_sandbox_fixture.py; git status   -> 
 ```
 
 The rebuilt PDFs have the same size, page count and extracted text as the committed ones; they differ in 54 to 96 bytes, the creation and modification timestamps that Typst writes. The PDFs are therefore reproducible in content, not byte for byte. The demo export and the sandbox fixture are byte-identical. The clone was deleted.
+
+## 7. Local home paths remaining (B9, 2026-11-26)
+
+Owner, 2026-11-26, decision sheet, B9: local home paths are removed from editable files in a new commit; frozen, append-only and checksummed files are untouched and history is not rewritten. A search of the tracked files for absolute home-directory paths after the 2026-11-26 changes finds them in two files only, both left unchanged on purpose:
+
+| file | occurrences | why it is kept |
+|---|---|---|
+| `research/protocol.md` | 5 | frozen protocol (version 1.0, hash in `research/freeze.json`); editing it would change the freeze hash |
+| `progress.md` | 8 lines, all in entries before 2026-11-26 | append-only journal; its dated entries stay true for their date |
+
+`CLAUDE.md`, the README files, docs, scripts, source code and demo files carry no absolute home path (they were made relative at M6). The committed PDFs were checked at M6 with pypdf and contain no local path.

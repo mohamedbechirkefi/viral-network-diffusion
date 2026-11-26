@@ -8,8 +8,10 @@ type: software
 authors:
   - family-names: Kefi
     given-names: Mohamed Bechir
+    affiliation: "Independent researcher"
 version: "0.1.0-rc1"
-abstract: "Independent simulation study of independent-cascade and fractional-threshold diffusion on Erdos-Renyi, Watts-Strogatz and Barabasi-Albert graphs of matched size and mean degree, with a second test on one anonymized real friendship network. Protocol v1.0 frozen 2026-11-24 with the owner's approval; all five registered experiments complete. Under independent cascade, Holm rejects 13 of 14 topology contrasts, 7 of 14 lie outside the smallest effect size of interest, and both contrasts change sign with the transmission probability. Manuscript version 0.2 is a preprint draft, not peer-reviewed. All results are simulations; no claim concerns real platforms or people. Developed with an AI research and development assistant (Claude, Anthropic), which is not an author. Repository URL: placeholder, not published."
+repository-code: "https://github.com/mohamedbechirkefi/viral-network-diffusion"
+abstract: "Independent simulation study of independent-cascade and fractional-threshold diffusion on Erdos-Renyi, Watts-Strogatz and Barabasi-Albert graphs of matched size and mean degree, with a second test on one anonymized real friendship network. Protocol v1.0 frozen 2026-11-24 with the owner's approval; all five registered experiments complete. Under independent cascade, Holm rejects 13 of 14 topology contrasts, 7 of 14 lie outside the smallest effect size of interest, and both contrasts change sign with the transmission probability. Manuscript version 0.2 is a preprint draft, not peer-reviewed. All results are simulations; no claim concerns real platforms or people. Developed with an AI research and development assistant (Claude, Anthropic), which is not an author."
 keywords:
   - network diffusion
   - independent cascade

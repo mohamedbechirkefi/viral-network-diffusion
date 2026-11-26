@@ -3,7 +3,7 @@
 
 # Same content, different networks: a preregistered simulation of how far things spread
 
-*Draft. Independent research, not peer-reviewed. Every result below is a simulation of a stylised model; none of it describes a real social platform, its ranking algorithm, real people, or a recipe for "going viral".*
+*By Mohamed Bechir Kefi, independent researcher. Draft. Independent research, not peer-reviewed. Every result below is a simulation of a stylised model; none of it describes a real social platform, its ranking algorithm, real people, or a recipe for "going viral".*
 
 ## Two identical posts
 
@@ -66,6 +66,6 @@ Three small checks were designed after the main results were seen, so they are e
 
 ## Reproduce it
 
-Code, frozen protocols, every experiment report, the claims register and an offline interactive page are in the repository: [repository link: placeholder, not published]. Interactive page: [demo link: placeholder, not published]. Manuscript: `research/paper/manuscript.md` (version 0.2).
+Code, frozen protocols, every experiment report, the claims register and an offline interactive page are in the repository: <https://github.com/mohamedbechirkefi/viral-network-diffusion>. Interactive page: <https://viral-network-diffusion.kefimohamedbechir.workers.dev>. Manuscript: `research/paper/manuscript.md` (version 0.2).
 
 *An AI research and development assistant (Claude, Anthropic) wrote the code, ran the experiments and drafted the text under the author's direction. It is not an author.*

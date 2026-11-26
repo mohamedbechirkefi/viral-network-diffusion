@@ -482,3 +482,32 @@ Fresh-clone re-check of the M6 commit (appended below), then the owner's review 
 
 ### Next action
 The owner's review (`research/publication/author_review.md`, section "Prepared for the owner (M6, 2026-11-25)") and the G-PUBLIC decision.
+
+## 2026-11-26, owner answers to the decision sheet applied
+
+**Starting state:** `41c4d4c`, tree clean. **Authority:** owner, 2026-11-26, decision sheet (`../_shared/owner-approvals-2026-11-26.md`). Decision D-018. Wording and configuration only.
+
+### Changes
+- A1: status sentences corrected (README, `release_checklist.md`, `reproducibility_report.md`, `author_review.md` open decisions): public on GitHub since 2026-11-25.
+- B1, B2: repository and demo URLs filled (README, `CITATION.cff` `repository-code`, manuscript section 10, articles, `demo/README.md`); `demo/wrangler.jsonc` added (assets `./dist`).
+- B3: "Mohamed Bechir Kefi, independent researcher" in manuscript, supplementary, five reports, `CITATION.cff` (`affiliation`), README, articles, demo footer (`demo/src/App.tsx`) and demo README.
+- B4: manuscript section 11 funding and competing-interest sentences.
+- B8, B11, B13: release step and "Release notes (draft)" in `release_checklist.md`. B9: no home path in editable files; `reproducibility_report.md` section 7 lists the two kept files. `author_review.md`: section "Owner answers recorded (2026-11-26)"; no box ticked.
+
+### Commands and outputs
+```
+$ ../.tools/pandoc research/paper/manuscript.md -s -t latex ... -o research/paper/manuscript.tex   -> regenerated
+$ .venv/bin/python scripts/build_pdfs.py   -> manuscript.pdf 619162 bytes (23 pages), supplementary.pdf 250229 (13),
+     EXP-001 to EXP-005 report.pdf 84451, 310064, 219725, 264869, 284929 bytes (4, 9, 6, 8, 7 pages)
+$ gs -r70 (manuscript pages 1 and 22, supplementary page 1, EXP-002 page 1) -> PNG, inspected: author line, URLs and statements render correctly
+$ pypdf: manuscript /Author "Mohamed Bechir Kefi, independent researcher"; author line on page 1 of each report
+$ .venv/bin/python -m pytest              -> 189 passed in 7.37s
+$ .venv/bin/python scripts/check_links.py -> 49 relative links checked, 0 broken; 14 bib entries checked, 0 reference mismatches; LINKS PASS
+$ .venv/bin/python scripts/export_demo_data.py --check -> results.json up to date
+$ .venv/bin/python scripts/audit_evidence.py -> {"tokens": 2952, "decimal_traced": 2217, "decimal_traced_weak": 1392, "decimal_untraced": 0, "integer_traced": 556, "integer_constant_or_count": 179}; number_trace.csv and artifact_manifest.json unchanged
+$ (demo) npm ci --prefer-offline; npm test; npm run build -> added 53 packages; Tests 30 passed (30); built
+$ node tools/a11y_check.mjs dist -> A11Y-CHECK PASS (39 of 39 reached; no request leaves the local origin)
+```
+
+### Next action
+The owner's B15 (articles), B16 (full-text review and sign-off) and B18 (release). The coordinator pushes and deploys on the owner's word.

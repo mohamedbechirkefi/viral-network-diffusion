@@ -4,7 +4,7 @@
 ## 1. Identification
 
 - Experiment: EXP-002 (primary, confirmatory). Report version 1.1, 2026-11-25 (M4: evidence-audit corrections and addendum; version 1.0 of the same date was the M3 report). Status: **complete. The full frozen matrix ran, with no failed or dropped run.**
-- Authorship: Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) ran the experiment and drafted this report under the owner's direction; it is not an author.
+- Authorship: Mohamed Bechir Kefi, independent researcher. An AI research and development assistant (Claude, Anthropic) ran the experiment and drafted this report under the owner's direction; it is not an author.
 - Study protocol `research/protocol.md` v1.0, SHA-256 `d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32`. Experiment protocol v1.0, SHA-256 `2b21902acfdedd2acb9395633e2ae28ddffb3f8dba1927e8f2a05cd0fd58272c`. Both are in `research/freeze.json`, owner-approved 2026-11-24.
 - Provenance revision `32961c3c399263ff3e39a9dbd3f78be3ff934922`. The tree was clean at run time (`git_dirty: false`).
 - Written after the run from committed result files only, with the owner's approval of 2026-11-25 (D-013). No number was recomputed.

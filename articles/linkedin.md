@@ -11,7 +11,7 @@ Caveat: these are simulations of stylised models, not evidence about any real pl
 
 What is in the repository: frozen protocols, five experiment reports (including null and negligible results), a claims register tracing every number, a preprint draft that is not peer-reviewed, and an offline interactive page.
 
-Repository: [placeholder, not published]
-Interactive page: [placeholder, not published]
+Repository: https://github.com/mohamedbechirkefi/viral-network-diffusion
+Interactive page: https://viral-network-diffusion.kefimohamedbechir.workers.dev
 
-Developed with an AI research and development assistant (Claude, Anthropic), disclosed; it is not an author.
+Mohamed Bechir Kefi, independent researcher. Developed with an AI research and development assistant (Claude, Anthropic), disclosed; it is not an author.

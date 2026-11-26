@@ -52,6 +52,7 @@ export function App() {
             are simulations of stylised models; nothing here describes a real social platform, its algorithms, real
             people or any guarantee of virality.
           </p>
+          <p>Mohamed Bechir Kefi, independent researcher.</p>
         </div>
       </footer>
     </>

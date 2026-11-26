@@ -5,11 +5,11 @@
 
 **Why it matters.** Two pieces of content of identical appeal can reach very different audiences. In observational data, content and network co-vary, so their roles are hard to separate. In a simulation, content quality can be held fixed by construction and the structural question asked directly.
 
-**Status, 2026-11-25 (M5).** Simulation study. The protocol (v1.0) was frozen on 2026-11-24 with the owner's approval, before any confirmatory run. All five registered experiments are complete, each with a standalone report. The integrated manuscript is at version 0.2, an independent preprint draft that is not peer-reviewed; the owner approved its title and its funding, competing-interest and AI-use statements on 2026-11-25, and the owner's full-text review is pending (M6). Nothing has been published. All results are simulations of stylised models; nothing in this repository describes a real social platform, its algorithms, real people or any guarantee of virality.
+**Status, 2026-11-25 (M5).** Simulation study. The protocol (v1.0) was frozen on 2026-11-24 with the owner's approval, before any confirmatory run. All five registered experiments are complete, each with a standalone report. The integrated manuscript is at version 0.2, an independent preprint draft that is not peer-reviewed; the owner approved its title and its funding, competing-interest and AI-use statements on 2026-11-25, and the owner's full-text review is pending (M6). The repository has been public on GitHub since 2026-11-25; no release, tag, DOI or preprint exists, and the article drafts are not published. All results are simulations of stylised models; nothing in this repository describes a real social platform, its algorithms, real people or any guarantee of virality.
 
 ![The VIRAL demo page: one independent-cascade run animated on a sandbox small-world graph, beside the distribution of final cascade fraction S over 300 sandbox cascades on ER, WS and BA graphs. Sandbox output, computed in the browser; not a research result.](docs/demo.png)
 
-*The interactive page (`demo/`): published results with their intervals, and a sandbox that runs the ported engine in the browser. Demo URL: [placeholder, not published].*
+*The interactive page (`demo/`): published results with their intervals, and a sandbox that runs the ported engine in the browser. Demo: <https://viral-network-diffusion.kefimohamedbechir.workers.dev> (Cloudflare Workers static assets, free plan).*
 
 ## Key findings (verified; from manuscript version 0.2)
 
@@ -87,4 +87,4 @@ VIRAL Source-Available Non-Commercial Research License v1.0 (`LicenseRef-VIRAL-N
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff). Repository URL: [placeholder, not published].
+Mohamed Bechir Kefi, independent researcher. See [CITATION.cff](CITATION.cff). Repository: <https://github.com/mohamedbechirkefi/viral-network-diffusion>.

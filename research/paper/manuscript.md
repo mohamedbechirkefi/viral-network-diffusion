@@ -3,7 +3,7 @@
 
 ---
 title: "Topology and initial exposure in simulated diffusion: preregistered matched comparisons of independent-cascade and threshold models on random, small-world and scale-free graphs"
-author: "Mohamed Bechir Kefi (no affiliation)"
+author: "Mohamed Bechir Kefi, independent researcher"
 date: "2026-11-25"
 status: "Independent research manuscript / preprint draft, not peer-reviewed"
 ---
@@ -14,7 +14,7 @@ status: "Independent research manuscript / preprint draft, not peer-reviewed"
 
 ## Author and affiliation metadata
 
-Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) was used for code, analysis and drafting under the author's direction; it is not an author (section 11).
+Author: Mohamed Bechir Kefi. Affiliation: Independent researcher. An AI research and development assistant (Claude, Anthropic) was used for code, analysis and drafting under the author's direction; it is not an author (section 11).
 
 ## Abstract
 
@@ -354,11 +354,11 @@ Feasible extensions include several WS `beta` and BA `m` values, a clustering-aw
 
 ## 10. Data, code and artifact availability
 
-The repository contains the engine (`src/viral/`), frozen configs (`experiments/`), protocols and reports (`research/experiments/EXP-NNN/`), committed analysis tables and figures (`results/confirmatory/`, `results/exploratory/`), and the freeze record. Raw `result.json` files (up to 100 MB) are git-ignored and regenerated deterministically by `viral run`; their SHA-256 values are committed. Reproduction: `uv sync --locked`, `.venv/bin/viral run --config experiments/EXP-002/config.json`, then `scripts/analyse_confirmatory.py`. `scripts/audit_evidence.py` recomputes every confirmatory table from the raw results and traces every number in this manuscript to its source (`research/publication/number_trace.csv`, `research/publication/evidence_audit.md`). Public repository URL: [placeholder, not published]. An offline interactive page (`demo/`) shows the same results, exported from the committed files by `scripts/export_demo_data.py`, together with a browser sandbox that is not part of the evidence; demo URL: [placeholder, not published].
+The repository contains the engine (`src/viral/`), frozen configs (`experiments/`), protocols and reports (`research/experiments/EXP-NNN/`), committed analysis tables and figures (`results/confirmatory/`, `results/exploratory/`), and the freeze record. Raw `result.json` files (up to 100 MB) are git-ignored and regenerated deterministically by `viral run`; their SHA-256 values are committed. Reproduction: `uv sync --locked`, `.venv/bin/viral run --config experiments/EXP-002/config.json`, then `scripts/analyse_confirmatory.py`. `scripts/audit_evidence.py` recomputes every confirmatory table from the raw results and traces every number in this manuscript to its source (`research/publication/number_trace.csv`, `research/publication/evidence_audit.md`). Public repository: <https://github.com/mohamedbechirkefi/viral-network-diffusion>. An offline interactive page (`demo/`) shows the same results, exported from the committed files by `scripts/export_demo_data.py`, together with a browser sandbox that is not part of the evidence; demo: <https://viral-network-diffusion.kefimohamedbechir.workers.dev>.
 
 ## 11. Funding, competing interests and AI assistance
 
-No funding. No competing interests. An AI research and development assistant (Claude, Anthropic) wrote the code, ran the experiments and drafted the protocols, reports and this manuscript under the author's direction. The author approved the protocol freeze, the real-data choice and every recorded decision (`research/decision_log.md`). Machine checks verified the numbers: an independent recomputation of every confirmatory table from the raw results, and a trace of every number in this text to a committed file. An internal second review pass (`research/publication/review_pass_2.md`) argued against the preferred reading. This is internal quality control, not peer review.
+No funding was received. The author declares no competing interests. An AI research and development assistant (Claude, Anthropic) wrote the code, ran the experiments and drafted the protocols, reports and this manuscript under the author's direction. The author approved the protocol freeze, the real-data choice and every recorded decision (`research/decision_log.md`). Machine checks verified the numbers: an independent recomputation of every confirmatory table from the raw results, and a trace of every number in this text to a committed file. An internal second review pass (`research/publication/review_pass_2.md`) argued against the preferred reading. This is internal quality control, not peer review.
 
 ## References
 

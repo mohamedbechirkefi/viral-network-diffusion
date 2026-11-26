@@ -27,4 +27,6 @@ node tools/a11y_check.mjs dist --screenshots <dir>   # offline and accessibility
 
 The data file `public/data/results.json` is written by `../scripts/export_demo_data.py` from committed results only; `../tests/test_demo_export.py` checks that it is up to date and that every displayed number is printed verbatim in the manuscript or its supplementary tables. The loader fails closed: a missing or malformed field shows an error panel and no numbers.
 
-Demo URL: [placeholder, not published].
+Demo: <https://viral-network-diffusion.kefimohamedbechir.workers.dev>. The built page (`dist/`) is hosted as Cloudflare Workers static assets on the free plan, configured by `wrangler.jsonc` (assets only, no Worker script). It is deployed by the lab coordinator, not by any script of this repository.
+
+Author: Mohamed Bechir Kefi, independent researcher.

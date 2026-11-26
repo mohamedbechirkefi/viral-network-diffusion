@@ -6,7 +6,7 @@
 ## 1. Identification
 
 - Experiment: EXP-001 (exploratory by design). Report version 1.1, 2026-11-25 (M4: evidence-audit corrections and addendum; version 1.0 of the same date was the M3 report). Status: **exploratory runs complete; every verification check passed.**
-- Authorship: Mohamed Bechir Kefi (no affiliation). An AI research and development assistant (Claude, Anthropic) ran the checks and drafted this report under the owner's direction; it is not an author.
+- Authorship: Mohamed Bechir Kefi, independent researcher. An AI research and development assistant (Claude, Anthropic) ran the checks and drafted this report under the owner's direction; it is not an author.
 - Protocol `research/experiments/EXP-001/protocol.md`, text frozen v1.0, SHA-256 `e65cf620d66b6fd8cf98815f626693b7744dc7d801f30bdbdd55875da14f9ff0` (`research/freeze.json`). Study protocol SHA-256 `d984f2f8f2fba8f5ddabe097b0a82be8d17ab652422769f9c22cc442f1a17b32`.
 - Code revisions: `6edd91e1d23537dae822553fd56edaf08a235545` (M2 smoke run and planning probe) and `ceeee8c13d460f6772a5a09f392c114884b1b1bf` (M3 pre-run smoke).
 - Written after the runs from committed files only, with the owner's approval of 2026-11-25 (D-013).
