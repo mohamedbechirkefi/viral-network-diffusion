@@ -539,3 +539,26 @@ Brief: `labs/_shared/DEMO-BRAND-brief.md` (each demo its own brand, motion and p
 
 ### Next action
 Coordinator: push and redeploy `demo/dist`.
+
+## 2026-11-26: unique typeface pair across the labs (owner request)
+
+Brief: `labs/_shared/FONT-UNIQUE-brief.md` (no two lab demos share a type family). VIRAL row: display face changes, Familjen Grotesk with Newsreader.
+
+### Decisions
+- Archivo replaced by Familjen Grotesk variable (`@fontsource-variable/familjen-grotesk` 5.3.0, OFL 1.1, resolved with `npm_config_before=2026-11-12`, saved exact; latin weight file only). Newsreader 5.3.0 kept. Familjen has `tnum`, so figures stay in the display face with tabular figures.
+- Type scale re-tuned: no width axis, so every `font-stretch` was removed; weights capped at the face's 700; hero 32 to 58 px tracked -0.024 em, headings 27 to 37 px tracked -0.012 em; phone navigation padding 0.4 rem and 0.88 rem so the four links fit at 390 px without scrolling (nav scroll width 245 of 245).
+- Wordmark redrawn from Familjen Grotesk 700 outlines (fontTools instancer); lockups (`lockup.svg`, `-mono`, `-dark`), inline `Brand.tsx` paths and the Open Graph image re-exported; the mark and favicon carry no type and are byte-identical. `svg_audit.py`: mark 100/100; lockup 91/100 with one WARN for the near-miss angles of the V glyph (type design, left as drawn).
+- `DESIGN.md`, `README.md` third-party font notes and the footer font line updated.
+
+### Commands and actual outputs
+- `npm test`: Test Files 2 passed, Tests 30 passed (no test changed).
+- `npm run build`: index JS 267.61 kB (gzip 84.36 kB), CSS 13.97 kB, fonts 18.91 kB (Familjen) + 58.08 kB (Newsreader) woff2; `dist/` 637102 bytes.
+- `node tools/a11y_check.mjs dist`: keyboard 44 of 44, `A11Y-CHECK PASS`.
+- `uv run --locked pytest tests/test_demo_export.py`: 8 passed.
+- Screenshots in real time over the DevTools protocol on 127.0.0.1:5245, desktop 1440 and phone 390, checked for wrapping, overflow and clipped labels.
+
+### Deviations and incidents
+- None. No number, data, fixture, test expectation, accessible name or scientific wording changed. Nothing pushed or deployed.
+
+### Next action
+Coordinator: push and redeploy `demo/dist`.

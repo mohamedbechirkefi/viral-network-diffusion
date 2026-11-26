@@ -1,13 +1,13 @@
 /* SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0 */
 /* VIRAL: a field epidemiologist's map sheet. Sage map paper with a faint
    graticule, survey ink, contour grey for what has not been reached, incidence
-   red for what has, amber for the newest round. Archivo (condensed) for map
+   red for what has, amber for the newest round. Familjen Grotesk for map
    lettering and figures, Newsreader for reading. Light scheme only (see
    DESIGN.md). Fonts are bundled; nothing is fetched. */
 @font-face {
-  font-family: "Archivo Variable";
-  font-style: normal; font-display: swap; font-weight: 100 900; font-stretch: 62% 125%;
-  src: url("../node_modules/@fontsource-variable/archivo/files/archivo-latin-standard-normal.woff2") format("woff2-variations");
+  font-family: "Familjen Grotesk Variable";
+  font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url("../node_modules/@fontsource-variable/familjen-grotesk/files/familjen-grotesk-latin-wght-normal.woff2") format("woff2-variations");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -24,7 +24,7 @@
   --sesoi: rgba(95, 127, 18, 0.16); --edge: rgba(20, 38, 43, 0.22); --node-off: #b3c1bc;
   --measured: #1f5878; --assumption: #6b4e00; --sandbox: #8e2a17;
   --error-bg: #fdecec; --error-fg: #8a1111; --focus: #c2361f;
-  --display: "Archivo Variable", "Arial Narrow", sans-serif;
+  --display: "Familjen Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
   --text: "Newsreader Variable", Charter, Georgia, serif;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light;
@@ -38,10 +38,10 @@ h1, h2, h3, h4, nav, .controls, .buttons, .legend, .meta, table, .badge, .label,
 .byline, .sandbox-out, .note-ui { font-family: var(--display); }
 .wrap { max-width: 72rem; margin: 0 auto; padding: 0 16px; }
 @media (min-width: 48rem) { .wrap { padding: 0 32px; } }
-h1, h2, h3, h4 { font-stretch: 78%; letter-spacing: -0.005em; }
-h2 { font-size: clamp(1.75rem, 3.6vw, 2.4rem); font-weight: 720; line-height: 1.08; margin: 0 0 0.8rem; max-width: 26ch; }
+h1, h2, h3, h4 { letter-spacing: -0.012em; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 700; line-height: 1.1; margin: 0 0 0.8rem; max-width: 26ch; }
 h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.2; margin: 0 0 0.5rem; }
-h4 { font-size: 1.08rem; font-weight: 680; margin: 1.2rem 0 0.4rem; }
+h4 { font-size: 1.08rem; font-weight: 650; margin: 1.2rem 0 0.4rem; }
 p, li, dd { max-width: 68ch; }
 a { color: var(--harbour); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
@@ -60,18 +60,18 @@ code { overflow-wrap: anywhere; font-size: 0.86em; }
 nav { display: flex; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
 nav::-webkit-scrollbar { display: none; }
 nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.75rem; color: var(--ink); text-decoration: none;
-        font-size: 0.98rem; font-weight: 560; font-stretch: 88%; white-space: nowrap; border-bottom: 2px solid transparent;
+        font-size: 0.98rem; font-weight: 560; letter-spacing: -0.005em; white-space: nowrap; border-bottom: 2px solid transparent;
         transition: border-color 160ms ease; }
 @media (hover: hover) and (pointer: fine) { nav a:hover { border-bottom-color: var(--red); } }
-@media (max-width: 30rem) { nav a { padding: 0 0.45rem; font-size: 0.9rem; } }
+@media (max-width: 30rem) { nav a { padding: 0 0.4rem; font-size: 0.88rem; } }
 @media (max-width: 24rem) { .wordmark { display: none; } }
 
 /* hero */
 .hero { padding: clamp(2rem, 5vw, 3.75rem) 0 clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--line); }
 .hero-copy { display: grid; gap: 1rem 3rem; align-items: end; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
 @media (min-width: 60rem) { .hero-copy { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); } }
-.hero h1 { font-size: clamp(2.1rem, 5vw, 3.9rem); font-weight: 760; font-stretch: 74%; line-height: 1; margin: 0; max-width: 20ch;
-           text-wrap: balance; letter-spacing: -0.01em; }
+.hero h1 { font-size: clamp(2rem, 4.6vw, 3.6rem); font-weight: 700; line-height: 1.02; margin: 0; max-width: 21ch;
+           text-wrap: balance; letter-spacing: -0.024em; }
 .answer { font-size: clamp(1.15rem, 1.7vw, 1.3rem); line-height: 1.5; margin: 0 0 0.75rem; }
 .byline { color: var(--muted); font-size: 0.95rem; margin: 0; }
 .hero-copy > div > :last-child { margin-bottom: 0; }
@@ -87,7 +87,7 @@ nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 
 @media (max-width: 40rem) { .t-node { r: 2.6px; } .t-hot { r: 3px; } .t-hot.t-seed { r: 4px; } .t-edges { stroke-width: 0.5; } .trio-name { font-size: 0.85rem; } .trio-name span { display: block; margin: 0; } }
 .trio-panel { min-width: 0; }
 .trio-svg { display: block; width: 100%; height: auto; aspect-ratio: 1; overflow: visible; }
-.trio-name { margin: 0.2rem 0 0; font-family: var(--display); font-weight: 700; font-stretch: 80%; font-size: 1.05rem; text-align: center; }
+.trio-name { margin: 0.2rem 0 0; font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; text-align: center; }
 .trio-name span { font-weight: 500; color: var(--muted); margin-left: 0.25rem; }
 .t-edges { stroke: var(--contour); stroke-opacity: 0.55; stroke-width: 0.35; fill: none; }
 .t-node { fill: var(--sheet); stroke: var(--contour); stroke-width: 0.6; }
@@ -155,7 +155,7 @@ dl.assumptions dt { font-family: var(--display); font-weight: 650; } dl.assumpti
 /* charts */
 figure.chart { margin: 1.2rem 0; min-width: 0; }
 figure.chart figcaption { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.5rem; max-width: 72ch; }
-figure.chart figcaption strong { color: var(--ink); font-weight: 680; }
+figure.chart figcaption strong { color: var(--ink); font-weight: 650; }
 figure.chart svg { display: block; overflow: visible; }
 .tick-label { font: 500 12px var(--display); fill: var(--muted); }
 .direct-label { font: 700 13px var(--display); fill: var(--ink); }

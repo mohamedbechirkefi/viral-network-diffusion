@@ -24,10 +24,10 @@ Series in charts: ER harbour blue, WS moss `#5F7F12`, BA heather `#8A3F8F`, alwa
 
 ## Type
 
-- **Archivo** (variable, width 74 to 88, weight 500 to 760): map lettering. Condensed and heavy for the hero question and headings, as on a surveyed sheet; regular width for navigation, controls, tables, figure captions and chart labels, with tabular figures.
+- **Familjen Grotesk** (variable, weight 500 to 700): map lettering. A compact grotesk from a Stockholm studio with sharp, slightly irregular details, set bold and tightly tracked for the hero question and headings, like the lettering on a surveyed sheet; regular to medium for navigation, controls, tables, figure captions and chart labels, with tabular figures (`tnum`). Chosen in the unique-typeface round (owner request of 2026-11-26: no two labs share a family); it replaces Archivo, which needed its width axis to look condensed, whereas Familjen is compact by drawing and keeps the map-label character at its natural width.
 - **Newsreader** (variable weight): the reading face for paragraphs, verdicts and notes, like a public-health bulletin.
 
-Scale: 18 px body; headings 22, 28 to 38 (fluid); hero 34 to 62 (fluid). Body measure capped at 68 characters.
+Scale: 18 px body; headings 22, 27 to 37 (fluid); hero 32 to 58 (fluid), tracked -0.024 em because the face opens up at display sizes. Body measure capped at 68 characters.
 
 ## Layout
 
@@ -38,7 +38,7 @@ Scale: 18 px body; headings 22, 28 to 38 (fluid); hero 34 to 62 (fluid). Body me
 | HOW DO NETWORK TOPOLOGY AND        |  Answer in one sentence        |
 | INITIAL EXPOSURE CHANGE HOW FAR    |  (Newsreader, 20 px)           |
 | IDENTICAL CONTENT SPREADS?         |  byline                        |
-| (Archivo condensed 760)            |                                |
+| (Familjen Grotesk 700)             |                                |
 +---------------------------------------------------------------------+
 | map sheet with graticule                                             |
 |  [ Random ER ]      [ Small-world WS ]      [ Scale-free BA ]        |
@@ -72,6 +72,6 @@ Three network shapes side by side on a surveyed sheet, lighting up from one seed
 - A dark "situation room" map was considered first, with glowing red nodes; that is the near-black with one hot accent tell; moved to a pale survey sheet where red reads as incidence on paper.
 - The old page had an uppercase tracked kicker and uppercase result labels. Removed: the study name is in the lockup, and labels are sentence case.
 - Setting the hero numbers (13 of 14, 7 of 14) in large type was considered and dropped: a big number with a small label is the default hero; the numbers stay in the text where they are qualified.
-- No mono data labels: figures use Archivo with tabular figures; monospace is kept only for commands, paths and claim ids, which are code.
+- No mono data labels: figures use Familjen Grotesk with tabular figures; monospace is kept only for commands, paths and claim ids, which are code.
 - No section numbering (the sections are not a sequence) and no fade-up on every section; the only scroll-triggered motion is the chart reveal.
 - Distinct from the other labs: MATCH is a card table, HERD a line of people, FLOW a transit map; VIRAL is a field epidemiology sheet with three graphs.

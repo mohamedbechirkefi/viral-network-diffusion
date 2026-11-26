@@ -107,7 +107,7 @@ cd demo && npm ci && npm test && npm run build`}</code></pre>
               licence. AI assistance: an AI research and development assistant (Claude, Anthropic) was used for code,
               analysis and drafting under the author's direction; it is not an author.
             </p>
-            <p>Typefaces: Archivo and Newsreader, both under the SIL Open Font License 1.1, bundled with this page.</p>
+            <p>Typefaces: Familjen Grotesk and Newsreader, both under the SIL Open Font License 1.1, bundled with this page.</p>
           </div>
         </div>
       </footer>

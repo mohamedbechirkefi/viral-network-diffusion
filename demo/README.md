@@ -29,13 +29,13 @@ The data file `public/data/results.json` is written by `../scripts/export_demo_d
 
 ## Design and brand
 
-The page has its own identity (owner request of 2026-11-26), planned in `DESIGN.md`: a field epidemiology map sheet, Archivo for map lettering and Newsreader for reading. The hero is a labelled illustration (one cascade on each of three 56-node graphs, drawn with the sandbox's own generators and cascade rule), not study data. Brand files are in `public/brand/`: `mark.svg`, `mark-mono.svg`, `mark-dark.svg`, `lockup.svg`, `lockup-mono.svg`, `lockup-dark.svg`, `favicon.svg`, `favicon-32.png` and the Open Graph image `og.png` (1200 by 630). The wordmark is Archivo (weight 760, width 78) converted to outlines.
+The page has its own identity (owner request of 2026-11-26), planned in `DESIGN.md`: a field epidemiology map sheet, Familjen Grotesk for map lettering and Newsreader for reading. The hero is a labelled illustration (one cascade on each of three 56-node graphs, drawn with the sandbox's own generators and cascade rule), not study data. Brand files are in `public/brand/`: `mark.svg`, `mark-mono.svg`, `mark-dark.svg`, `lockup.svg`, `lockup-mono.svg`, `lockup-dark.svg`, `favicon.svg`, `favicon-32.png` and the Open Graph image `og.png` (1200 by 630). The wordmark is Familjen Grotesk (weight 700) converted to outlines.
 
 ## Third-party notes
 
 | Component | Version | Licence | Use |
 | --- | --- | --- | --- |
-| Archivo (`@fontsource-variable/archivo`) | 5.3.0 | SIL Open Font License 1.1 | Display and interface face, wordmark outlines; latin weight and width file only |
+| Familjen Grotesk (`@fontsource-variable/familjen-grotesk`) | 5.3.0 | SIL Open Font License 1.1 | Display and interface face, wordmark outlines; latin weight file only |
 | Newsreader (`@fontsource-variable/newsreader`) | 5.3.0 | SIL Open Font License 1.1 | Reading face; latin weight file only |
 
 Both are installed from npm with exact versions (resolved with `npm_config_before=2026-11-12`), bundled into `dist/` and served from the page's own origin.
