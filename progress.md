@@ -511,3 +511,31 @@ $ node tools/a11y_check.mjs dist -> A11Y-CHECK PASS (39 of 39 reached; no reques
 
 ### Next action
 The owner's B15 (articles), B16 (full-text review and sign-off) and B18 (release). The coordinator pushes and deploys on the owner's word.
+
+## 2026-11-26: demo brand identity, motion and UI redesign (owner request)
+
+Brief: `labs/_shared/DEMO-BRAND-brief.md` (each demo its own brand, motion and premium UI; the shared "Labs Instrument" look rejected).
+
+### Decisions
+- Direction: a field epidemiologist's map sheet. Map paper `#EDF1EE`, survey ink `#14262B`, contour grey `#8FA39E` for what is not reached, incidence red `#C2361F` for what is, fresh-case amber `#E9A23B` for the newest round, harbour blue `#2B6A8E`. Light scheme only. Plan, wireframe, motion plan and the review against the generated-page tells in `demo/DESIGN.md`.
+- Type: Archivo variable (condensed heavy for headings, regular width for interface and figures, tabular figures) and Newsreader variable (reading face), both OFL 1.1, Fontsource 5.3.0, resolved with `npm_config_before=2026-11-12`, saved exact; recorded in `demo/README.md` third-party notes. Only the latin files are bundled (Archivo weight and width, Newsreader weight).
+- Hero: three network shapes side by side (ER, WS, BA, 56 nodes each), one independent cascade on each drawn with the sandbox's own generators, layout and cascade rule from one fixed stream, lighting up round by round with a replay button; labelled "Illustration, not study data." and showing no number.
+- Information architecture: question and one-sentence answer (the manuscript's own sentence); "Same content, three reaches" with Figure B (EXP-002 S by p) moved up as the key picture (the EXP-002 panel now points to it); overview; published results; assumptions; method and limitations; sandbox; reproduce; footer with repository, manuscript, labs index, licence, AI-use and font lines.
+- Motion: hero cascade (CSS keyframes on transform and opacity, per-node delays), chart series and forest points revealed once in view, sandbox result line fade, button press. Reduced motion: hero final state, no pulses, opacity-only reveals. The old `transition: r, fill` on sandbox nodes (a property animation on every round step) was removed.
+- Brand files in `demo/public/brand/`: mark (a seed passing the content to one neighbour and not yet the other, the two links drawing a V), lockups, favicon SVG and 32 px PNG, Open Graph image 1200 by 630 rendered from HTML with Chrome headless. `svg_audit.py`: marks 100/100 after snapping the links to 60 degrees; lockups 90/100 with one WARN for the near-miss angles of Archivo's own V glyph (type design, left as drawn).
+
+### Commands and actual outputs
+- `npm install --save-exact @fontsource-variable/archivo @fontsource-variable/newsreader` (with `npm_config_before=2026-11-12`): added 2 packages, both 5.3.0.
+- `npm test`: Test Files 2 passed, Tests 30 passed (no test changed).
+- `npm run build`: index JS 268.25 kB (gzip 84.85 kB), CSS 13.99 kB, fonts 90.10 + 58.08 kB woff2; `dist/` 718474 bytes including the Open Graph image.
+- `node tools/a11y_check.mjs dist`: 9 PASS, keyboard 44 of 44, `A11Y-CHECK PASS`.
+- `uv run --locked pytest tests/test_demo_export.py`: 8 passed (exported data and every displayed number unchanged).
+- Screenshots (Chrome headless on 127.0.0.1:5236, desktop 1440, phone 390 in an iframe, `--virtual-time-budget=4000`), two critique passes: answer and byline grouped in one column, replay button moved beside the caption on wide screens, three panels kept side by side on phones with larger nodes, wordmark kept in the phone header, Open Graph drawing corrected so every red link joins two reached nodes.
+
+### Deviations and incidents
+- During the checks a stray `git stash` was run on the working tree by mistake and popped immediately (`git stash pop`); the tracked changes were restored intact and the stash entry dropped. Untracked files were never touched.
+- Under Chrome's virtual time the sandbox worker does not finish, so the screenshots show it at its progress line; the a11y check (real time) confirms the sandbox runs to its output line.
+- No number, result, exported data, fixture, test or test expectation changed. Nothing pushed or deployed.
+
+### Next action
+Coordinator: push and redeploy `demo/dist`.

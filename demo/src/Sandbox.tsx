@@ -93,7 +93,7 @@ export function Sandbox() {
   return (
     <section id="sandbox" aria-labelledby="h-sandbox" className="sandbox">
       <h2 id="h-sandbox">Sandbox: run cascades yourself</h2>
-      <p className="label label-sandbox">Sandbox output, computed in your browser</p>
+      <p className="label-row"><span className="label label-sandbox">Sandbox output, computed in your browser</span></p>
       <p className="note">
         The diffusion rules are a port of the research engine: on the same graph and random stream they reproduce its
         cascades exactly (tested). The graphs are generated in your browser by the same three models at a smaller size,
@@ -157,7 +157,9 @@ export function Sandbox() {
           <button type="button" onClick={exportJson} disabled={!result || running}>Save as JSON</button>
         </div>
       </form>
-      <p aria-live="polite" className="sandbox-out">{out}</p>
+      <p aria-live="polite" className="sandbox-out">
+        <span key={out} className="out-text">{out}</span>
+      </p>
       {running && <p className="note">Running: {Math.round(progress * 100)} percent.</p>}
       <label className="check">
         <input id="sb-animate" type="checkbox" checked={animate} onChange={(e) => setAnimate(e.target.checked)} /> Animate the cascade round by round

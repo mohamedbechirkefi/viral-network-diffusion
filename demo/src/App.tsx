@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: LicenseRef-VIRAL-NC-Research-1.0
 import { useEffect, useState } from "react";
+import { Mark, Wordmark } from "./Brand";
 import { ForestPlot, LevelsChart } from "./charts";
+import { NetworkTrio } from "./NetworkTrio";
 import { fmtEstimate, fmtInterval, loadResults, ResultsError, type Estimate, type Experiment, type Results } from "./results";
 import { Sandbox } from "./Sandbox";
 
@@ -20,39 +22,93 @@ export function App() {
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
-      <header className="site">
-        <div className="wrap">
-          <p className="kicker">VIRAL, a simulation study of network diffusion</p>
-          <h1>How do network topology and initial exposure change how far identical content spreads?</h1>
+      <header className="topbar">
+        <div className="wrap topbar-inner">
+          <a className="brand" href="#top" aria-label="Viral, back to the top">
+            <Mark size={28} />
+            <Wordmark height={20} />
+          </a>
           <nav aria-label="Sections">
-            <a href="#overview">Overview</a>
-            <a href="#results">Results</a>
-            <a href="#assumptions">Assumptions</a>
-            <a href="#method">Method and limitations</a>
+            <a href="#key">Result</a>
+            <a href="#results">Evidence</a>
             <a href="#sandbox">Sandbox</a>
+            <a href="#method">Method</a>
           </nav>
         </div>
       </header>
-      <main id="main" className="wrap">
-        {state.kind === "loading" && <p role="status">Loading the published results.</p>}
-        {state.kind === "error" && (
-          <div role="alert" className="panel error">
-            <h2>Results unavailable</h2>
-            <p>The published results file failed validation, so no numbers are shown.</p>
-            <p><code>{state.message}</code></p>
+      <main id="main">
+        <section id="top" className="hero" aria-labelledby="h-hero">
+          <div className="wrap">
+            <div className="hero-copy">
+              <h1 id="h-hero">How do network topology and initial exposure change how far identical content spreads?</h1>
+              <div>
+              <p className="answer">
+                Within these models, topology effects are large but are not one effect: their sign and size depend on
+                p and on the contagion rule.
+              </p>
+              <p className="byline">
+                A preregistered simulation study by Mohamed Bechir Kefi, independent researcher. Preprint draft, not
+                peer-reviewed; nothing here describes a real platform.
+              </p>
+              </div>
+            </div>
+            <NetworkTrio />
           </div>
-        )}
-        {state.kind === "ready" && <Published r={state.results} />}
-        <Sandbox />
+        </section>
+        <div className="wrap">
+          {state.kind === "loading" && <p role="status">Loading the published results.</p>}
+          {state.kind === "error" && (
+            <div role="alert" className="panel error">
+              <h2>Results unavailable</h2>
+              <p>The published results file failed validation, so no numbers are shown.</p>
+              <p><code>{state.message}</code></p>
+            </div>
+          )}
+          {state.kind === "ready" && <Published r={state.results} />}
+          <Sandbox />
+          <section id="reproduce" aria-labelledby="h-reproduce">
+            <h2 id="h-reproduce">Reproduce</h2>
+            <p>
+              Every number on this page is rebuilt from the repository. The research environment is locked with uv; the
+              page reads one exported file and validates it before showing any number.
+            </p>
+            <pre className="cmd"><code>{`uv sync --locked --all-groups
+uv run --locked pytest
+uv run --locked viral smoke        # EXP-001 exploratory smoke run
+python scripts/export_demo_data.py
+cd demo && npm ci && npm test && npm run build`}</code></pre>
+            <p className="note">
+              Each confirmatory run is <code>uv run --locked viral run --config experiments/EXP-00N/config.json</code>,
+              refused unless its config hash is listed in <code>research/freeze.json</code>; the step-by-step commands
+              are in each experiment's <code>reproduction.md</code>.
+            </p>
+          </section>
+        </div>
       </main>
       <footer className="site">
-        <div className="wrap">
-          <p>
-            Runs offline after the first load. No data about visitors is collected, stored or sent anywhere. All results
-            are simulations of stylised models; nothing here describes a real social platform, its algorithms, real
-            people or any guarantee of virality.
-          </p>
-          <p>Mohamed Bechir Kefi, independent researcher.</p>
+        <div className="wrap footer-grid">
+          <div>
+            <img className="footer-lockup" src="brand/lockup.svg" alt="Viral" width="140" height="53" />
+            <p>Mohamed Bechir Kefi, independent researcher.</p>
+          </div>
+          <ul className="footer-links">
+            <li><a href="https://github.com/mohamedbechirkefi/viral-network-diffusion">Repository on GitHub</a></li>
+            <li><a href="https://github.com/mohamedbechirkefi/viral-network-diffusion/blob/main/research/paper/manuscript.md">Manuscript (preprint draft)</a></li>
+            <li><a href="https://labs.kefimohamedbechir.workers.dev">All lab studies</a></li>
+          </ul>
+          <div className="footer-notes">
+            <p>
+              Runs offline after the first load. No data about visitors is collected, stored or sent anywhere. All results
+              are simulations of stylised models; nothing here describes a real social platform, its algorithms, real
+              people or any guarantee of virality.
+            </p>
+            <p>
+              Licence: VIRAL Source-Available Non-Commercial Research License v1.0, not an OSI-approved open-source
+              licence. AI assistance: an AI research and development assistant (Claude, Anthropic) was used for code,
+              analysis and drafting under the author's direction; it is not an author.
+            </p>
+            <p>Typefaces: Archivo and Newsreader, both under the SIL Open Font License 1.1, bundled with this page.</p>
+          </div>
         </div>
       </footer>
     </>
@@ -112,8 +168,7 @@ function ExperimentPanel({ e, r }: { e: Experiment; r: Results }) {
         <p key={i} className="note">{n}</p>
       ))}
       {e.id === "EXP-002" && (
-        <LevelsChart block={r.levels["EXP-002"]} title="Figure B. Mean final cascade fraction S by p (EXP-002, IC, one random seed)."
-          description="Each point is the mean over 120 graph replicates of the per-graph mean S. Lines join measured grid points only. BA takes off first; ER overtakes it above both thresholds; WS stays far below ER at p = 0.30 and finishes highest at p = 0.50." />
+        <p className="note">Figure B, the mean final cascade fraction by p for this experiment, is shown at the top of the page, <a href="#key">under the result</a>.</p>
       )}
       {e.id === "EXP-003" && (
         <LevelsChart block={r.levels["EXP-003"]} title="Figure C. Mean S by threshold phi (EXP-003, LT, ten random seeds)."
@@ -150,6 +205,16 @@ function ExperimentPanel({ e, r }: { e: Experiment; r: Results }) {
 function Published({ r }: { r: Results }) {
   return (
     <>
+      <section id="key" aria-labelledby="h-key">
+        <h2 id="h-key">Same content, three reaches</h2>
+        <p className="lede">
+          Every edge carries the content with the same probability p. Which network shape spreads it furthest depends on
+          p: the curves cross.
+        </p>
+        <LevelsChart block={r.levels["EXP-002"]} title="Figure B. Mean final cascade fraction S by p (EXP-002, IC, one random seed)."
+          description="Each point is the mean over 120 graph replicates of the per-graph mean S. Lines join measured grid points only. BA takes off first; ER overtakes it above both thresholds; WS stays far below ER at p = 0.30 and finishes highest at p = 0.50." />
+      </section>
+
       <section id="overview" aria-labelledby="h-overview">
         <h2 id="h-overview">Overview</h2>
         <p className="status-label">{r.status_label}</p>

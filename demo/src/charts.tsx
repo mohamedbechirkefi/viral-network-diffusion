@@ -2,6 +2,7 @@
 // Hand-written SVG charts. Colours come from CSS tokens (style.css); text uses text tokens.
 // Every chart has a plain-language description and a table with the same numbers.
 import { useEffect, useRef, useState, type RefObject } from "react";
+import { useRevealOnce } from "./reveal";
 import type { Estimate, LevelBlock } from "./results";
 
 export function useWidth<T extends HTMLElement>(fallback = 640): [RefObject<T | null>, number] {
@@ -51,8 +52,9 @@ export function ForestPlot({ rows, sesoi, title, description }: { rows: Estimate
   const x1 = width - 12;
   const x = (v: number) => x0 + ((v - d0) / (d1 - d0)) * (x1 - x0);
   const id = title.replace(/\W+/g, "-");
+  const reveal = useRevealOnce(ref);
   return (
-    <figure className="chart" ref={ref}>
+    <figure className={`chart forest${reveal}`} ref={ref}>
       <figcaption id={`${id}-cap`}>
         <strong>{title}</strong> {description}
       </figcaption>
@@ -63,7 +65,7 @@ export function ForestPlot({ rows, sesoi, title, description }: { rows: Estimate
           const y = top + i * rowH + rowH / 2;
           const filled = r.rejected === true;
           return (
-            <g key={r.label}>
+            <g key={r.label} style={{ ["--row" as string]: i }}>
               <text className="tick-label" x={labelW} y={y + 4} textAnchor="end">
                 {typeof r.param === "string" ? `${r.contrast}, ${r.param}` : `${r.contrast}, ${r.param_name} = ${r.param}`}
               </text>
@@ -108,13 +110,14 @@ export function LevelsChart({ block, title, description }: { block: LevelBlock; 
   const y = (v: number) => m.t + (1 - v) * (height - m.t - m.b);
   const id = title.replace(/\W+/g, "-");
   const [open, setOpen] = useState(false);
+  const reveal = useRevealOnce(ref);
   // Direct labels at the right end, nudged apart so they never overlap.
   const ends = block.series.map((s) => ({ s, y: y(s.points[s.points.length - 1].mean) })).sort((a, b) => a.y - b.y);
   for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 14) ends[i].y = ends[i - 1].y + 14;
   const over = ends.length ? ends[ends.length - 1].y - (y(0) - 8) : 0;
   if (over > 0) for (const e of ends) e.y -= over;
   return (
-    <figure className="chart" ref={ref}>
+    <figure className={`chart levels${reveal}`} ref={ref}>
       <figcaption id={`${id}-cap`}>
         <strong>{title}</strong> {description}
       </figcaption>
@@ -131,10 +134,10 @@ export function LevelsChart({ block, title, description }: { block: LevelBlock; 
           </text>
         ))}
         <text className="tick-label" x={(m.l + width - m.r) / 2} y={height - 4} textAnchor="middle">{block.param_name}</text>
-        {block.series.map((s) => {
+        {block.series.map((s, si) => {
           const band = s.points.map((p) => `${x(p.param)},${y(p.hi)}`).concat([...s.points].reverse().map((p) => `${x(p.param)},${y(p.lo)}`)).join(" ");
           return (
-            <g key={s.topology} className={seriesClass(s.topology)}>
+            <g key={s.topology} className={`series ${seriesClass(s.topology)}`} style={{ ["--row" as string]: si }}>
               <polygon className="band" points={band} />
               <polyline className="line" points={s.points.map((p) => `${x(p.param)},${y(p.mean)}`).join(" ")} />
               {s.points.map((p) => (

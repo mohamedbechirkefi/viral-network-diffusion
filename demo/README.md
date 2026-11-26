@@ -27,6 +27,19 @@ node tools/a11y_check.mjs dist --screenshots <dir>   # offline and accessibility
 
 The data file `public/data/results.json` is written by `../scripts/export_demo_data.py` from committed results only; `../tests/test_demo_export.py` checks that it is up to date and that every displayed number is printed verbatim in the manuscript or its supplementary tables. The loader fails closed: a missing or malformed field shows an error panel and no numbers.
 
+## Design and brand
+
+The page has its own identity (owner request of 2026-11-26), planned in `DESIGN.md`: a field epidemiology map sheet, Archivo for map lettering and Newsreader for reading. The hero is a labelled illustration (one cascade on each of three 56-node graphs, drawn with the sandbox's own generators and cascade rule), not study data. Brand files are in `public/brand/`: `mark.svg`, `mark-mono.svg`, `mark-dark.svg`, `lockup.svg`, `lockup-mono.svg`, `lockup-dark.svg`, `favicon.svg`, `favicon-32.png` and the Open Graph image `og.png` (1200 by 630). The wordmark is Archivo (weight 760, width 78) converted to outlines.
+
+## Third-party notes
+
+| Component | Version | Licence | Use |
+| --- | --- | --- | --- |
+| Archivo (`@fontsource-variable/archivo`) | 5.3.0 | SIL Open Font License 1.1 | Display and interface face, wordmark outlines; latin weight and width file only |
+| Newsreader (`@fontsource-variable/newsreader`) | 5.3.0 | SIL Open Font License 1.1 | Reading face; latin weight file only |
+
+Both are installed from npm with exact versions (resolved with `npm_config_before=2026-11-12`), bundled into `dist/` and served from the page's own origin.
+
 Demo: <https://viral-network-diffusion.kefimohamedbechir.workers.dev>. The built page (`dist/`) is hosted as Cloudflare Workers static assets on the free plan, configured by `wrangler.jsonc` (assets only, no Worker script). It is deployed by the lab coordinator, not by any script of this repository.
 
 Author: Mohamed Bechir Kefi, independent researcher.
